@@ -1,0 +1,52 @@
+.audio-player {
+  flex-direction: column;
+  justify-content: center;
+
+  &,
+  &__controls {
+    display: flex;
+    align-items: center;
+  }
+
+  &__controls {
+    margin-bottom: 5px;
+    column-gap: 10px;
+  }
+
+  &__button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 0;
+    border-radius: 50%;
+
+    &--prev {
+      background-image: url("../assets/svg/play-prev.svg");
+    }
+
+    &--play {
+      width: 40px;
+      height: 40px;
+
+      background-image: url("../assets/svg/play.svg");
+    }
+
+    &--next {
+      background-image: url("../assets/svg/play-next.svg");
+    }
+  }
+
+  &__playlist {
+    padding: 0;
+    margin: 0;
+
+    line-height: 2;
+
+    list-style: none;
+  }
+}
