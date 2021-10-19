@@ -1,0 +1,20 @@
+.weather {
+  &__input {
+    display: block;
+    padding: 0;
+
+    font-family: inherit;
+    color: inherit;
+
+    background-color: transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+  }
+
+  &__icon,
+  &__temp,
+  &__wind,
+  &__humidity {
+    margin: 0;
+  }
+}

@@ -3,7 +3,9 @@ html(lang="en")
   head
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Momentum
+    title
+      | Momentum
+    link(rel="stylesheet" href="styles/owfont-regular.css")
 
   body.page
     //- *** AUDIO PLAYER ***
@@ -29,6 +31,16 @@ html(lang="en")
           | Aqua Caelestis
         li
           | Aqua Caelestis
+
+    //- *** DATE ***
+    section.weather
+      h2.visually-hidden
+        | Weather
+      input.weather__input(type="text" value="Minsk")
+      p.weather__icon
+      p.weather__temp
+      p.weather__wind
+      p.weather__humidity
 
     //- *** DATE ***
     section.date
