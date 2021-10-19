@@ -1,6 +1,6 @@
 const setDate = () => {
   const currentTime = document.querySelector('.date__time');
-  const currentDate = document.querySelector('.date__date');
+  const currentDate = document.querySelector('.date__day');
   const greeting = document.querySelector('.date__greeting');
 
   const now = new Date();
@@ -10,13 +10,13 @@ const setDate = () => {
   let hour = now.getHours();
 
   if (hour >= 6 && hour < 12) {
-    greeting.textContent = 'Good morning';
+    greeting.textContent = 'Good morning,';
   } else if (hour >= 12 && hour < 18) {
-    greeting.textContent = 'Good afternoon';
+    greeting.textContent = 'Good afternoon,';
   } else if (hour >= 18 && hour < 24) {
-    greeting.textContent = 'Good evening';
+    greeting.textContent = 'Good evening,';
   } else {
-    greeting.textContent = 'Good night';
+    greeting.textContent = 'Good night,';
   }
 
   if (hour < 10) {

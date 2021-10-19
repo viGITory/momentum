@@ -1,20 +1,52 @@
 .weather {
   &__input {
+    box-sizing: border-box;
     display: block;
+    width: 150px;
+    height: 40px;
     padding: 0;
 
     font-family: inherit;
-    color: inherit;
+    font-size: 20px;
 
     background-color: transparent;
     border: 0;
     border-bottom: 1px solid #fff;
+    outline: none;
+
+    &,
+    &::placeholder {
+      color: inherit;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    margin: 0;
+    column-gap: 10px;
   }
 
   &__icon,
-  &__temp,
-  &__wind,
-  &__humidity {
+  &__text {
     margin: 0;
+  }
+
+  &__input,
+  &__text {
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__icon {
+    font-size: 27px;
+  }
+
+  &__temp {
+    font-size: 20px;
   }
 }

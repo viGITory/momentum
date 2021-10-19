@@ -3,6 +3,7 @@ const weatherCity = document.querySelector('.weather__input');
 async function getWeather() {
   const weatherIcon = document.querySelector('.weather__icon');
   const weatherTemp = document.querySelector('.weather__temp');
+  const weatherDescr = document.querySelector('.weather__descr');
   const weatherWind = document.querySelector('.weather__wind');
   const weatherHumidity = document.querySelector('.weather__humidity');
 
@@ -14,11 +15,12 @@ async function getWeather() {
   weatherIcon.className = 'weather__icon owf';
   weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
-  weatherTemp.textContent = `${weatherData.main.temp.toFixed(0)}°C ${weatherData.weather[0].description}`;
+  weatherTemp.textContent = `${weatherData.main.temp.toFixed(0)}°C`;
+  weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(1)}`;
   weatherWind.textContent = `Wind speed: ${weatherData.wind.speed.toFixed(0)}m/s`;
   weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);
-weatherCity.addEventListener('input', getWeather);
+weatherCity.addEventListener('change', getWeather);
 setInterval(getWeather, 600000);

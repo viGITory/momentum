@@ -2,31 +2,41 @@
   text-align: center;
 
   &__time {
-    font-size: 46px;
+    font-size: 50px;
     font-variant-numeric: tabular-nums;
   }
 
   &__time,
-  &__date,
+  &__day,
   &__wrapper {
     margin: 0;
   }
 
-  &__date {
+  &__day {
+    margin-bottom: 5px;
+
     font-size: 20px;
+  }
+
+  &__wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__greeting {
+    margin-right: 3px;
   }
 
   &__input {
     padding: 0;
-    margin-left: 10px;
 
     font-family: inherit;
     font-size: inherit;
-    color: inherit;
 
     background-color: transparent;
     border: 0;
 
+    &,
     &::placeholder {
       color: inherit;
     }
