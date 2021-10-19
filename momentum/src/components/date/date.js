@@ -36,3 +36,18 @@ const setDate = () => {
 };
 setDate();
 setInterval(setDate, 1000);
+
+const setUserName = () => {
+  const userName = document.querySelector('.date__input');
+
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('name', userName.value);
+  });
+
+  window.addEventListener('load', () => {
+    if (localStorage.getItem('name')) {
+      userName.value = localStorage.getItem('name');
+    }
+  });
+};
+setUserName();
