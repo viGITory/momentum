@@ -24,3 +24,19 @@ async function getWeather() {
 document.addEventListener('DOMContentLoaded', getWeather);
 weatherCity.addEventListener('change', getWeather);
 setInterval(getWeather, 600000);
+
+const setUserCity = () => {
+  const userCity = document.querySelector('.weather__input');
+
+  window.addEventListener('beforeunload', () => {
+    localStorage.setItem('city', userCity.value);
+  });
+
+  window.addEventListener('load', () => {
+    if (localStorage.getItem('city')) {
+      userCity.value = localStorage.getItem('city');
+      getWeather();
+    }
+  });
+};
+setUserCity();
