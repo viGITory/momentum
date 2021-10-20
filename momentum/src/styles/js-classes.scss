@@ -1,0 +1,14 @@
+// *** AUDIO PLAYER ***
+.js-play-btn {
+  background-image: url("../assets/svg/pause.svg");
+}
+
+.js-track-play {
+  &::after {
+    width: 100%;
+
+    animation-name: track-play;
+    animation-duration: 1s;
+    animation-timing-function: ease;
+  }
+}

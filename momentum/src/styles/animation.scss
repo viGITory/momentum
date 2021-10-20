@@ -1,0 +1,21 @@
+@keyframes track-play {
+  from {
+    width: 0;
+    background-color: transparent;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes track-stop {
+  from {
+    width: 100%;
+  }
+
+  to {
+    width: 0;
+    background-color: transparent;
+  }
+}

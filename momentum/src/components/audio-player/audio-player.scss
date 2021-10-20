@@ -41,6 +41,8 @@
       height: 40px;
 
       background-image: url("../assets/svg/play.svg");
+
+      transition: background-image .2s ease;
     }
 
     &--next {
@@ -53,5 +55,26 @@
     row-gap: 10px;
 
     list-style: none;
+  }
+
+  &__track {
+    position: relative;
+
+    transition: color .2s ease;
+
+    &::after {
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 1px;
+
+      content: "";
+      background-color: #fff;
+
+      animation-name: track-stop;
+      animation-duration: 1s;
+      animation-timing-function: ease;
+    }
   }
 }
