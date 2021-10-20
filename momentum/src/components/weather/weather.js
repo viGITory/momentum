@@ -22,7 +22,10 @@ async function getWeather() {
 }
 
 document.addEventListener('DOMContentLoaded', getWeather);
-weatherCity.addEventListener('change', getWeather);
+weatherCity.addEventListener('change', () => {
+  getWeather();
+  weatherCity.value = `${weatherCity.value[0].toUpperCase()}${weatherCity.value.slice(1)}`;
+});
 setInterval(getWeather, 600000);
 
 const setUserCity = () => {

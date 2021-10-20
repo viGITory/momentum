@@ -49,5 +49,9 @@ const setUserName = () => {
       userName.value = localStorage.getItem('name');
     }
   });
+
+  userName.addEventListener('change', () => {
+    userName.value = `${userName.value[0].toUpperCase()}${userName.value.slice(1)}`;
+  });
 };
 setUserName();
