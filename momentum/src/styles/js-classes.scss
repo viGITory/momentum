@@ -11,3 +11,10 @@
   animation-name: track-play;
   animation-duration: 2s;
 }
+
+// *** WEATHER ***
+.js-weather-warn {
+  &::placeholder {
+    color: #ff4040;
+  }
+}
