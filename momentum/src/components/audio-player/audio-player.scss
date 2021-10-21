@@ -1,4 +1,6 @@
 .audio-player {
+  order: 1;
+
   &,
   &__playlist {
     flex-direction: column;
@@ -12,7 +14,7 @@
 
   &__controls {
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 37px;
     column-gap: 10px;
   }
 
@@ -52,29 +54,20 @@
 
   &__playlist {
     margin: 0;
-    row-gap: 10px;
+    row-gap: .625rem;
 
     list-style: none;
   }
 
   &__track {
-    position: relative;
+    overflow: hidden;
 
-    transition: color .2s ease;
+    white-space: nowrap;
 
-    &::after {
-      position: absolute;
-      bottom: -5px;
-      left: 0;
-      width: 0;
-      height: 1px;
+    border-bottom: 1px solid transparent;
 
-      content: "";
-      background-color: #fff;
-
-      animation-name: track-stop;
-      animation-duration: 1s;
-      animation-timing-function: ease;
-    }
+    animation-name: track-stop;
+    animation-duration: 1s;
+    animation-timing-function: ease;
   }
 }

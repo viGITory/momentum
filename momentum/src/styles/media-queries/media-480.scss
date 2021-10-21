@@ -1,0 +1,26 @@
+@media (min-width: 480px) {
+  .page {
+    font-size: 16px;
+
+    &__center {
+      order: 0;
+    }
+  }
+
+  .section {
+    width: auto;
+    padding: 0;
+
+    border: 0;
+  }
+
+  .audio-player {
+    order: 0;
+  }
+
+  .weather {
+    &__text {
+      line-height: 20px;
+    }
+  }
+}

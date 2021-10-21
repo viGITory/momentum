@@ -5,7 +5,6 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title
       | Momentum
-    link(rel="stylesheet" href="styles/owfont-regular.css")
 
     //- *** PRELOAD ***
     link(rel="preload" href="../assets/fonts/Lato-Light.woff2" as="font" type="font/woff2" crossorigin)
@@ -13,7 +12,7 @@ html(lang="en")
   body.page
     div.page__top
       //- *** AUDIO PLAYER ***
-      section.audio-player
+      section.section.audio-player
         h2.visually-hidden
           | Audio-player
         div.audio-player__controls
@@ -29,7 +28,7 @@ html(lang="en")
         ul.audio-player__playlist
 
       //- *** WEATHER ***
-      section.weather
+      section.section.weather
         h2.visually-hidden
           | Weather
         input.weather__input(type="text" value="Minsk" placeholder="[Enter city]")

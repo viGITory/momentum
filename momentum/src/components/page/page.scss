@@ -1,6 +1,5 @@
 .page {
   flex-direction: column;
-  min-height: 100vh;
   padding: 20px;
   margin: 0;
   row-gap: 50px;
@@ -15,10 +14,15 @@
   &,
   &__top {
     display: flex;
+    row-gap: 20px;
   }
 
   &__top {
     flex-wrap: wrap;
     justify-content: space-between;
+  }
+
+  &__center {
+    order: -1;
   }
 }

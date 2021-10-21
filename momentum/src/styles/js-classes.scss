@@ -4,11 +4,10 @@
 }
 
 .js-track-play {
-  &::after {
-    width: 100%;
+  color: #fff;
 
-    animation-name: track-play;
-    animation-duration: 1s;
-    animation-timing-function: ease;
-  }
+  border-color: #fff;
+
+  animation-name: track-play;
+  animation-duration: 2s;
 }

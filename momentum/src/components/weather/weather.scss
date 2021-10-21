@@ -1,4 +1,7 @@
 .weather {
+  box-sizing: border-box;
+  min-height: 180px;
+
   &__input {
     box-sizing: border-box;
     display: block;
@@ -22,6 +25,7 @@
 
   &__wrapper {
     display: flex;
+    min-height: 27px;
     margin: 0;
     column-gap: 10px;
   }
@@ -37,6 +41,8 @@
   }
 
   &__text {
+    line-height: 18px;
+
     &:last-child {
       margin-bottom: 0;
     }

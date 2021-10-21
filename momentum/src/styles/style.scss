@@ -1,9 +1,11 @@
 // *** BASE ***
+@import "owfont-regular";
 @import "fonts";
 
 // *** COMPONENTS ***
 @import "../components/page/page";
 @import "../components/visually-hidden/visually-hidden";
+@import "../components/section/section";
 
 // *** AUDIO PLAYER ***
 @import "../components/audio-player/audio-player";
@@ -19,3 +21,6 @@
 
 // *** JS CLASSES ***
 @import "js-classes";
+
+// *** MEDIA-QUERIES ***
+@import "media-queries/media-480";
