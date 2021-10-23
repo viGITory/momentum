@@ -1,0 +1,31 @@
+.main-footer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__text,
+  &__year {
+    margin: 0;
+  }
+
+  &__link {
+    margin-left: 3px;
+
+    font-size: 20px;
+    color: #ff4040;
+    text-decoration: none;
+  }
+
+  &__logo {
+    display: block;
+    width: 100px;
+    height: 37px;
+
+    background-image: url("../assets/svg/rsschool-icon.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    filter: invert(100%);
+  }
+}
