@@ -16,15 +16,39 @@ html(lang="en")
         h2.visually-hidden
           | Audio-player
         div.audio-player__controls
-          button.audio-player__button.audio-player__button--prev
-            span.visually-hidden
-              | Prev
-          button.audio-player__button.audio-player__button--play
-            span.visually-hidden
-              | Play/pause
-          button.audio-player__button.audio-player__button--next
-            span.visually-hidden
-              | Next
+          div.audio-player__top
+            div.audio-player__description
+              div.audio-player__name
+              div
+                span.audio-player__time 00:00
+                | /
+                span.audio-player__duration 00:00
+            input.audio-player__progress(type="range"
+                                         value="0"
+                                         min="0"
+                                         max="100"
+                                         step="1"
+                                         aria-label="progress")
+          div.audio-player__buttons
+            button.audio-player__button.audio-player__button--prev
+              span.visually-hidden
+                | Prev
+            button.audio-player__button.audio-player__button--play
+              span.visually-hidden
+                | Play/pause
+            button.audio-player__button.audio-player__button--next
+              span.visually-hidden
+                | Next
+          div.audio-player__volume
+            button.audio-player__button.audio-player__button--volume
+              span.visually-hidden
+                | Volume
+            input.audio-player__volume-bar(type="range"
+                                           value="50"
+                                           min="0"
+                                           max="100"
+                                           step="1"
+                                           aria-label="volume")
         ul.audio-player__playlist
 
       //- *** WEATHER ***
