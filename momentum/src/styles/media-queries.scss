@@ -1,0 +1,72 @@
+@media (min-width: 600px) {
+  .page {
+    font-size: 16px;
+  }
+
+  .weather,
+  .audio-player {
+    width: 49%;
+  }
+
+  .audio-player {
+    order: -1;
+  }
+}
+
+@media (min-width: 768px) {
+  .page {
+    justify-content: space-between;
+
+    &__center {
+      order: -1;
+    }
+  }
+
+  .section {
+    padding: 20px 15px;
+  }
+
+  .weather {
+    &__wrapper {
+      min-height: 50px;
+    }
+
+    &__icon {
+      font-size: 50px;
+    }
+
+    &__temp {
+      font-size: 42px;
+    }
+  }
+
+  .audio-player {
+    &__center,
+    &__buttons,
+    &__volume {
+      column-gap: 15px;
+    }
+
+    &__button {
+      width: 40px;
+      min-height: 40px;
+      height: 40px;
+
+      &--play {
+        width: 50px;
+        min-height: 50px;
+        height: 50px;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .page {
+    font-size: 20px;
+  }
+
+  .section {
+    padding: 30px 20px;
+  }
+}
