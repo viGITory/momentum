@@ -17,9 +17,9 @@ async function getWeather() {
     weatherIcon.className = 'weather__icon owf';
     weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
-    weatherTemp.textContent = `${weatherData.main.temp.toFixed(0)}°C`;
+    weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
     weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(1)}`;
-    weatherWind.textContent = `Wind speed: ${weatherData.wind.speed.toFixed(0)}m/s`;
+    weatherWind.textContent = `Wind speed: ${Math.round(weatherData.wind.speed)}m/s`;
     weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
 
     weatherCity.placeholder = '[Enter city]';
