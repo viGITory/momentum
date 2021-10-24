@@ -1,11 +1,23 @@
 @media (min-width: 600px) {
   .page {
     font-size: 16px;
+
+    &__top {
+      background-color: rgba(0, 0, 0, 0.7);
+      border: 1px solid #fff;
+      border-radius: 5px;
+    }
+  }
+
+  .date,
+  .quotes {
+    background-color: transparent;
+    border: 0;
   }
 
   .weather,
   .audio-player {
-    width: 49%;
+    width: calc(50% - 10px);
   }
 
   .audio-player {
@@ -17,13 +29,25 @@
   .page {
     justify-content: space-between;
 
+    &__top {
+      flex-grow: 1;
+    }
+
     &__center {
       order: -1;
     }
   }
 
   .section {
-    padding: 20px 15px;
+    padding: 25px 20px;
+  }
+
+  .quotes {
+    &__button {
+      width: 50px;
+      min-width: 50px;
+      height: 50px;
+    }
   }
 
   .weather {
@@ -67,6 +91,25 @@
   }
 
   .section {
-    padding: 30px 20px;
+    padding: 30px 25px;
+  }
+
+  .quotes {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1920px) {
+  .audio-player {
+    &__controls {
+      max-width: 50%;
+    }
+  }
+
+  .weather {
+    &__input {
+      max-width: 50%;
+    }
   }
 }

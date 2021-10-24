@@ -17,3 +17,13 @@
     color: #fff;
   }
 }
+
+@keyframes rotate-btn {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

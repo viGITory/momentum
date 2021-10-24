@@ -1,5 +1,4 @@
 .page {
-  flex-direction: column;
   box-sizing: border-box;
   min-width: 320px;
   min-height: 100vh;
@@ -17,17 +16,23 @@
   background-size: cover;
 
   &,
+  &__top {
+    flex-direction: column;
+  }
+
+  &,
+  &__top,
   &__center {
     display: flex;
     row-gap: 20px;
   }
 
-  &__top {
-    flex-grow: 1;
+  &__top,
+  &__center {
+    justify-content: space-between;
   }
 
   &__center {
     flex-wrap: wrap;
-    justify-content: space-between;
   }
 }

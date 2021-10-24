@@ -1,0 +1,37 @@
+.quotes {
+  text-align: center;
+
+  &__button {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    padding: 0;
+    margin-bottom: 20px;
+
+    font-family: inherit;
+    color: #fff;
+
+    background-color: transparent;
+    background-image: url("../assets/svg/reload.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 0;
+
+    animation-duration: 1s;
+    animation-timing-function: ease;
+  }
+
+  &__text,
+  &__author {
+    margin: 0;
+  }
+
+  &__text {
+    margin-bottom: 10px;
+  }
+
+  &__author {
+    color: #ff4040;
+  }
+}
