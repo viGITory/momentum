@@ -10,7 +10,30 @@ html(lang="en")
     link(rel="preload" href="../assets/fonts/Lato-Light.woff2" as="font" type="font/woff2" crossorigin)
 
   body.page
-    div.page__top
+    div.section.page__top
+      //- *** DATE ***
+      section.date
+        h2.visually-hidden
+          | Date
+        p.date__time
+        p.date__day
+        p.date__wrapper
+          span.date__greeting
+          input.date__input(type="text" placeholder="[Enter your name]")
+
+    div.page__center
+      //- *** WEATHER ***
+      section.section.weather
+        h2.visually-hidden
+          | Weather
+        input.weather__input(type="text" value="Minsk" placeholder="[Enter city]")
+        p.weather__wrapper
+          span.weather__icon
+          span.weather__temp
+        p.weather__text.weather__descr
+        p.weather__text.weather__wind
+        p.weather__text.weather__humidity
+
       //- *** AUDIO PLAYER ***
       section.section.audio-player
         h2.visually-hidden
@@ -29,50 +52,28 @@ html(lang="en")
                                          max="100"
                                          step="1"
                                          aria-label="progress")
-          div.audio-player__buttons
-            button.audio-player__button.audio-player__button--prev
-              span.visually-hidden
-                | Prev
-            button.audio-player__button.audio-player__button--play
-              span.visually-hidden
-                | Play/pause
-            button.audio-player__button.audio-player__button--next
-              span.visually-hidden
-                | Next
-          div.audio-player__volume
-            button.audio-player__button.audio-player__button--volume
-              span.visually-hidden
-                | Volume
-            input.audio-player__volume-bar(type="range"
-                                           value="50"
-                                           min="0"
-                                           max="100"
-                                           step="1"
-                                           aria-label="volume")
+          div.audio-player__center
+            div.audio-player__buttons
+              button.audio-player__button.audio-player__button--prev
+                span.visually-hidden
+                  | Prev
+              button.audio-player__button.audio-player__button--play
+                span.visually-hidden
+                  | Play/pause
+              button.audio-player__button.audio-player__button--next
+                span.visually-hidden
+                  | Next
+            div.audio-player__volume
+              button.audio-player__button.audio-player__button--volume
+                span.visually-hidden
+                  | Volume
+              input.audio-player__volume-bar(type="range"
+                                             value="50"
+                                             min="0"
+                                             max="100"
+                                             step="1"
+                                             aria-label="volume")
         ul.audio-player__playlist
-
-      //- *** WEATHER ***
-      section.section.weather
-        h2.visually-hidden
-          | Weather
-        input.weather__input(type="text" value="Minsk" placeholder="[Enter city]")
-        p.weather__wrapper
-          span.weather__icon
-          span.weather__temp
-        p.weather__text.weather__descr
-        p.weather__text.weather__wind
-        p.weather__text.weather__humidity
-
-    div.page__center
-      //- *** DATE ***
-      section.date
-        h2.visually-hidden
-          | Date
-        p.date__time
-        p.date__day
-        p.date__wrapper
-          span.date__greeting
-          input.date__input(type="text" placeholder="[Enter your name]")
 
     //- *** FOOTER ***
     footer.section.main-footer

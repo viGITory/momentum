@@ -7,14 +7,14 @@
 @import "../components/visually-hidden/visually-hidden";
 @import "../components/section/section";
 
-// *** AUDIO PLAYER ***
-@import "../components/audio-player/audio-player";
+// *** DATE ***
+@import "../components/date/date";
 
 // *** WEATHER ***
 @import "../components/weather/weather";
 
-// *** DATE ***
-@import "../components/date/date";
+// *** AUDIO PLAYER ***
+@import "../components/audio-player/audio-player";
 
 // *** FOOTER ***
 @import "../components/main-footer/main-footer";
@@ -26,4 +26,4 @@
 @import "js-classes";
 
 // *** MEDIA-QUERIES ***
-@import "media-queries/media-480";
+@import "media-queries";

@@ -1,28 +1,27 @@
 .audio-player {
-  order: 1;
-
   &__controls,
   &__description,
+  &__center,
   &__buttons,
   &__volume,
   &__playlist {
     display: flex;
   }
 
-  &__controls {
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+  &__controls,
+  &__playlist {
     row-gap: 10px;
   }
 
-  &__top {
-    width: 100%;
+  &__controls {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 
   &__description {
     justify-content: space-between;
 
-    font-size: 10px;
+    font-size: 0.75em;
   }
 
   &__progress,
@@ -37,9 +36,20 @@
     margin: 0;
   }
 
+  &__top,
+  &__center,
   &__progress,
+  &__volume,
   &__volume-bar {
     width: 100%;
+  }
+
+  &__top {
+    min-height: 40px;
+  }
+
+  &__progress,
+  &__volume-bar {
     height: 5px;
 
     &,
@@ -53,18 +63,21 @@
       height: 15px;
 
       cursor: ew-resize;
+      background-color: #ff4040;
       border-radius: 50%;
+      border: 2px solid #fff;
     }
+  }
+
+  &__center,
+  &__buttons,
+  &__volume {
+    column-gap: 10px;
   }
 
   &__buttons,
   &__volume {
     align-items: center;
-    column-gap: 10px;
-  }
-
-  &__buttons {
-    margin-right: 20px;
   }
 
   &__button,
@@ -105,17 +118,12 @@
     }
   }
 
-  &__volume {
-    flex-grow: 1;
-  }
-
   &__volume-bar {
     background-image: linear-gradient(to right, #ff4040 50%, #ff4040 50%, #fff 0%, #fff 100%);
   }
 
   &__playlist {
     flex-direction: column;
-    row-gap: .625rem;
 
     list-style: none;
   }
@@ -124,8 +132,6 @@
     overflow: hidden;
 
     white-space: nowrap;
-
-    border-bottom: 1px solid transparent;
 
     animation-name: track-stop;
     animation-duration: 1s;

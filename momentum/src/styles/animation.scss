@@ -1,21 +1,19 @@
 @keyframes track-play {
   from {
     width: 0;
-    border-color: transparent;
   }
 
   to {
     width: 100%;
-    border-color: #fff;
   }
 }
 
 @keyframes track-stop {
   from {
-    border-color: #fff;
+    color: #ff4040;
   }
 
   to {
-    border-color: transparent;
+    color: #fff;
   }
 }

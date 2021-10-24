@@ -2,7 +2,7 @@
   text-align: center;
 
   &__time {
-    font-size: 50px;
+    font-size: 3.25em;
     font-variant-numeric: tabular-nums;
   }
 
@@ -12,33 +12,45 @@
     margin: 0;
   }
 
+  &__day,
+  &__input {
+    font-size: 1.375em;
+  }
+
   &__day {
     margin-bottom: 5px;
-
-    font-size: 20px;
   }
 
   &__wrapper {
     display: flex;
+    align-items: baseline;
     justify-content: center;
+  }
+
+  &__greeting,
+  &__input {
+    width: 50%;
   }
 
   &__greeting {
     margin-right: 3px;
+
+    text-align: right;
   }
 
   &__input {
     padding: 0;
 
     font-family: inherit;
-    font-size: inherit;
+    color: #ff4040;
 
     background-color: transparent;
     border: 0;
+    outline: none;
 
-    &,
     &::placeholder {
-      color: inherit;
+      color: #fff;
+      font-size: 0.875rem;
     }
   }
 }
