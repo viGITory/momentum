@@ -51,6 +51,14 @@
     &::placeholder {
       color: #fff;
       font-size: 0.6875em;
+
+      transition: color .2s ease;
+    }
+
+    &:hover {
+      &::placeholder {
+        color: #ff4040;
+      }
     }
   }
 }

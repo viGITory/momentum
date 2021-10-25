@@ -1,4 +1,6 @@
 .quotes {
+  min-height: 220px;
+
   text-align: center;
 
   &__button {
@@ -11,6 +13,7 @@
     font-family: inherit;
     color: #fff;
 
+    cursor: pointer;
     background-color: transparent;
     background-image: url("../assets/svg/reload.svg");
     background-repeat: no-repeat;
@@ -20,6 +23,12 @@
 
     animation-duration: 1s;
     animation-timing-function: ease;
+
+    transition: filter .2s ease;
+
+    &:hover {
+      filter: opacity(.7);
+    }
   }
 
   &__text,

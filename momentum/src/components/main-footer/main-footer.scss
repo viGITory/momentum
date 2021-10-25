@@ -26,5 +26,11 @@
     background-position: center;
     background-size: contain;
     filter: invert(100%);
+
+    transition: filter .2s ease;
+
+    &:hover {
+      filter: invert(100%) opacity(.7);
+    }
   }
 }

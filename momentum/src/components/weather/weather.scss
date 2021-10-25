@@ -16,9 +16,15 @@
     border-bottom: 1px solid #ff4040;
     outline: none;
 
+    transition: color .2s ease;
+
     &,
     &::placeholder {
       color: inherit;
+    }
+
+    &:hover {
+      color: rgba(255, 255, 255, .7);
     }
   }
 

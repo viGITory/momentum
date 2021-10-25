@@ -90,13 +90,18 @@
     min-width: 30px;
     height: 30px;
 
+    cursor: pointer;
     background-color: transparent;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
     border-radius: 50%;
 
-    transition: background-image .2s ease;
+    transition: background-image .2s ease, filter .2s ease;
+
+    &:hover {
+      filter: opacity(.7);
+    }
 
     &--prev {
       background-image: url("../assets/svg/play-prev.svg");
