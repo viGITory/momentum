@@ -7,6 +7,18 @@
       border: 1px solid #fff;
       border-radius: 5px;
     }
+
+    &__arrow {
+      top: 50%;
+
+      &--prev {
+        left: 20px;
+      }
+
+      &--next {
+        right: 20px;
+      }
+    }
   }
 
   .date,

@@ -11,9 +11,10 @@
   color: #fff;
 
   background-color: rgba(0, 0, 0, .5);
-  background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
+  background-blend-mode: multiply;
+
+  transition: background-image 1s ease;
 
   & * {
     &::selection {
@@ -21,6 +22,12 @@
 
       background-color: #ff4040;
     }
+  }
+
+  &,
+  &__arrow {
+    background-repeat: no-repeat;
+    background-position: center;
   }
 
   &,
@@ -33,6 +40,45 @@
   &__center {
     display: flex;
     row-gap: 20px;
+  }
+
+  &__top {
+    position: relative;
+  }
+
+  &__arrow {
+    position: absolute;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+
+    cursor: pointer;
+    border: 0;
+    background-color: transparent;
+    background-size: contain;
+
+    transition: filter .2s ease;
+
+    &:hover {
+      filter: opacity(.7);
+    }
+
+    &--prev {
+      left: 10px;
+
+      background-image: url("../assets/svg/slider-next.svg");
+
+      transform: rotate(180deg) translateY(50%);
+    }
+
+    &--next {
+      right: 10px;
+
+      background-image: url("../assets/svg/slider-next.svg");
+
+      transform: translateY(-50%);
+    }
   }
 
   &__top,
