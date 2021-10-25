@@ -51,7 +51,9 @@ const setUserName = () => {
   });
 
   userName.addEventListener('change', () => {
-    userName.value = `${userName.value[0].toUpperCase()}${userName.value.slice(1)}`;
+    if (userName.value) {
+      userName.value = `${userName.value[0].toUpperCase()}${userName.value.slice(1)}`;
+    }
   });
 };
 setUserName();
