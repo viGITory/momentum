@@ -1,17 +1,22 @@
 const quoteBtn = document.querySelector('.quotes__button');
 const quoteText = document.querySelector('.quotes__text');
 const quoteAuthor = document.querySelector('.quotes__author');
-let id;
+let quoteId;
 
 async function getQuotes() {
-  const quote = `https://genius-quotes.herokuapp.com/api/quotes/random?prev=${id}`;
-  const res = await fetch(quote);
-  const data = await res.json();
+  const quoteUrl = `https://genius-quotes.herokuapp.com/api/quotes/random?prev=${quoteId}`;
+  const quoteRes = await fetch(quoteUrl);
 
-  id = data.id;
+  if (quoteRes.status === 200) {
+    const quoteData = await quoteRes.json();
+    quoteId = quoteData.id;
 
-  quoteText.textContent = `"${data.text}"`;
-  quoteAuthor.textContent = data.author;
+    quoteText.textContent = `"${quoteData.text}"`;
+    quoteAuthor.textContent = quoteData.author;
+  } else {
+    quoteText.textContent = 'Quote';
+    quoteAuthor.textContent = "Author";
+  }
 }
 getQuotes();
 
