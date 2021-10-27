@@ -6,7 +6,7 @@ let randomNum = Math.floor(1 + Math.random() * 19);
 const getTimeOfDay = () => {
   let hour = new Date().getHours();
 
-  return (hour >= 6 && hour < 12) ? 'evening' :
+  return (hour >= 6 && hour < 12) ? 'morning' :
          (hour >= 12 && hour < 18) ? 'afternoon' :
          (hour >= 18 && hour < 24) ? 'evening' : 'night';
 };
