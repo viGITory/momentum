@@ -11,6 +11,8 @@ async function getQuotes() {
     const quoteData = await quoteRes.json();
     quoteId = quoteData.id;
 
+    quoteText.classList.add('js-show-quote');
+
     quoteText.textContent = `"${quoteData.text}"`;
     quoteAuthor.textContent = quoteData.author;
   } else {
@@ -22,8 +24,10 @@ getQuotes();
 
 quoteBtn.addEventListener('click', () => {
   quoteBtn.classList.add('js-rotate-btn');
-  getQuotes();
 });
+
 quoteBtn.addEventListener('animationend', () => {
   quoteBtn.classList.remove('js-rotate-btn');
+  quoteText.classList.remove('js-show-quote');
+  getQuotes();
 });

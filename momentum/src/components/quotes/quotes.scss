@@ -21,10 +21,9 @@
     background-size: contain;
     border: 0;
 
+    transition: filter .2s ease;
     animation-duration: 1s;
     animation-timing-function: ease;
-
-    transition: filter .2s ease;
 
     &:hover {
       filter: opacity(.7);
@@ -38,6 +37,9 @@
 
   &__text {
     margin-bottom: 10px;
+
+    animation-duration: 1s;
+    animation-timing-function: ease;
   }
 
   &__author {
