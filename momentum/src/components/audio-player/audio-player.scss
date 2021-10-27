@@ -52,6 +52,8 @@
   &__volume-bar {
     height: 5px;
 
+    border-radius: 5px;
+
     &,
     &::-webkit-slider-thumb {
       background-color: #fff;
@@ -96,6 +98,8 @@
     background-position: center;
     background-size: contain;
     border-radius: 50%;
+    -webkit-tap-highlight-color: #fff;
+    -webkit-tap-highlight-color: transparent;
 
     transition: background-image .2s ease, filter .2s ease;
 

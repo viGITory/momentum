@@ -7,9 +7,11 @@ html(lang="en")
       | Momentum
 
     //- *** PRELOAD ***
-    link(rel="preload" href="../assets/fonts/Lato-Light.woff2" as="font" type="font/woff2" crossorigin)
+    link(rel="preload" href="./assets/fonts/Lato-Light.woff2" as="font" type="font/woff2" crossorigin)
 
   body.page
+    h1.visually-hidden
+      | Momentum
     div.page__top
       button.page__arrow.page__arrow--prev(type="button")
         span.visually-hidden
@@ -48,6 +50,7 @@ html(lang="en")
         p.weather__wrapper
           span.weather__icon
           span.weather__temp
+          span.weather__feel
         p.weather__text.weather__descr
         p.weather__text.weather__wind
         p.weather__text.weather__humidity

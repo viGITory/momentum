@@ -60,4 +60,28 @@
   &__temp {
     font-size: 33px;
   }
+
+  &__feel {
+    align-self: flex-start;
+    padding-top: 5px;
+
+    font-size: 0.75em;
+  }
+
+  &__wind,
+  &__humidity {
+    padding-left: 30px;
+
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 100%;
+  }
+
+  &__wind {
+    background-image: url("../assets/svg/wind-icon.svg");
+  }
+
+  &__humidity {
+    background-image: url("../assets/svg/humidity-icon.svg");
+  }
 }

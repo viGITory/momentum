@@ -57,6 +57,8 @@
     border: 0;
     background-color: transparent;
     background-size: contain;
+    -webkit-tap-highlight-color: #fff;
+    -webkit-tap-highlight-color: transparent;
 
     transition: filter .2s ease;
 
