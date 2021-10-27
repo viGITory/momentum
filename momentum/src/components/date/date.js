@@ -1,41 +1,30 @@
 const setDate = () => {
-  const currentTime = document.querySelector('.date__time');
-  const currentDate = document.querySelector('.date__day');
-  const greeting = document.querySelector('.date__greeting');
+  const dateHours = document.querySelector('.date__hour');
+  const dateMinutes = document.querySelector('.date__minute');
+  const dateSeconds = document.querySelector('.date__second');
+  const dateDay = document.querySelector('.date__day');
+  const dateGreeting = document.querySelector('.date__greeting');
+  const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
 
   const now = new Date();
-
+  let hours = now.getHours();
+  let minutes = now.getMinutes();
   let seconds = now.getSeconds();
-  let mins = now.getMinutes();
-  let hour = now.getHours();
 
-  if (hour >= 6 && hour < 12) {
-    greeting.textContent = 'Good morning,';
-  } else if (hour >= 12 && hour < 18) {
-    greeting.textContent = 'Good afternoon,';
-  } else if (hour >= 18 && hour < 24) {
-    greeting.textContent = 'Good evening,';
-  } else {
-    greeting.textContent = 'Good night,';
-  }
+  if (hours < 10) hours = `0${hours}`;
+  if (minutes < 10) minutes = `0${minutes}`;
+  if (seconds < 10) seconds = `0${seconds}`;
 
-  if (hour < 10) {
-    hour = '0' + hour;
-  }
+  dateHours.textContent = `${hours} : `;
+  dateMinutes.textContent = `${minutes} : `;
+  dateSeconds.textContent = `${seconds}`;
+  dateDay.textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
-  if (mins < 10) {
-    mins = '0' + mins;
-  }
+  dateGreeting.textContent = `Good ${timesOfDay[Math.floor(hours/6)]},`;
 
-  if (seconds < 10) {
-    seconds = '0' + seconds;
-  }
-
-  currentTime.textContent = hour + ' : ' + mins + ' : ' + seconds;
-  currentDate.textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  setTimeout(setDate, 1000);
 };
 setDate();
-setInterval(setDate, 1000);
 
 const setUserName = () => {
   const userName = document.querySelector('.date__input');
