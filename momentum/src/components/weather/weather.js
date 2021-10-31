@@ -3,6 +3,7 @@ const weatherCity = document.querySelector('.weather__input');
 async function getWeather() {
   const weatherIcon = document.querySelector('.weather__icon');
   const weatherTemp = document.querySelector('.weather__temp');
+  const weatherFeel = document.querySelector('.weather__feel');
   const weatherDescr = document.querySelector('.weather__descr');
   const weatherWind = document.querySelector('.weather__wind');
   const weatherHumidity = document.querySelector('.weather__humidity');
@@ -18,6 +19,7 @@ async function getWeather() {
     weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
     weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
+    weatherFeel.textContent = `Feels like ${Math.round(weatherData.main.feels_like)}°C`;
     weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(1)}`;
     weatherWind.textContent = `Wind speed: ${Math.round(weatherData.wind.speed)}m/s`;
     weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
