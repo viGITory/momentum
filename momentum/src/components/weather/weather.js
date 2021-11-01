@@ -8,7 +8,7 @@ async function getWeather() {
   const weatherWind = document.querySelector('.weather__wind');
   const weatherHumidity = document.querySelector('.weather__humidity');
 
-  let weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`;
+  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`;
 
   const weatherRes = await fetch(weatherUrl);
 

@@ -1,4 +1,4 @@
-import trackList from './playList.js';
+import trackList from './playlist';
 
 const playBtn = document.querySelector('.audio-player__button--play');
 const prevBtn = document.querySelector('.audio-player__button--prev');
@@ -13,7 +13,7 @@ const playlist = document.querySelector('.audio-player__playlist');
 const audioPlayer = new Audio();
 let index = 0;
 
-trackList.forEach(item => {
+trackList.forEach((item) => {
   const track = document.createElement('li');
 
   track.classList.add('audio-player__track');
@@ -43,31 +43,46 @@ const playAudio = () => {
 };
 
 audioPlayer.addEventListener('ended', () => {
-  index === trackList.length - 1 ? index = 0 : index++;
-  trackArr.forEach(item => item.classList.remove('js-track-play'));
+  if (index === trackList.length - 1) {
+    index = 0;
+  } else {
+    index++;
+  }
+
+  trackArr.forEach((item) => item.classList.remove('js-track-play'));
 
   audioPlayer.src = trackList[index].src;
   playAudio();
 });
 playBtn.addEventListener('click', () => {
-  playAudio()
+  playAudio();
 });
 prevBtn.addEventListener('click', () => {
-  index <= 0 ? index = trackList.length - 1 : index--;
+  if (index <= 0) {
+    index = trackList.length - 1;
+  } else {
+    index--;
+  }
+
   audioPlayer.src = trackList[index].src;
 
-  trackArr.forEach(item => item.classList.remove('js-track-play'));
+  trackArr.forEach((item) => item.classList.remove('js-track-play'));
   playAudio();
 });
 nextBtn.addEventListener('click', () => {
-  index === trackList.length - 1 ? index = 0 : index++;
+  if (index === trackList.length - 1) {
+    index = 0;
+  } else {
+    index++;
+  }
+
   audioPlayer.src = trackList[index].src;
 
-  trackArr.forEach(item => item.classList.remove('js-track-play'));
+  trackArr.forEach((item) => item.classList.remove('js-track-play'));
   playAudio();
 });
 
-//- *** PROGRESS ***
+// *** PROGRESS ***
 const audioProgress = () => {
   const currentMinutes = Math.floor(audioPlayer.currentTime / 60) < 10 ? `0${Math.floor(audioPlayer.currentTime / 60)}` : Math.floor(audioPlayer.currentTime / 60);
   const currentSeconds = Math.floor(audioPlayer.currentTime % 60) < 10 ? `0${Math.floor(audioPlayer.currentTime % 60)}` : Math.floor(audioPlayer.currentTime % 60);
@@ -79,7 +94,7 @@ const audioProgress = () => {
                                                   #fff ${progressBar.value}%, #fff 100%)`;
 };
 
-const changeAudioTime = (event) => {
+const changeAudioTime = () => {
   audioPlayer.currentTime = audioPlayer.duration * (progressBar.value / 100);
 };
 
@@ -99,17 +114,17 @@ progressBar.addEventListener('pointerdown', () => {
 
   progressBar.addEventListener('touchend', () => {
     changeAudioTime();
-    audioPlayer.addEventListener('timeupdate', audioProgress)
+    audioPlayer.addEventListener('timeupdate', audioProgress);
   });
 });
 
-//- *** VOLUME ***
+// *** VOLUME ***
 const volumeBar = document.querySelector('.audio-player__volume-bar');
 audioPlayer.volume = 0.5;
 let currentVolume = audioPlayer.volume;
 
 const сhangeVolume = () => {
-  let volume = volumeBar.value / 100;
+  const volume = volumeBar.value / 100;
   audioPlayer.volume = volume;
 
   if (audioPlayer.volume !== 0) currentVolume = audioPlayer.volume;
@@ -118,8 +133,11 @@ const сhangeVolume = () => {
                                                 #ff4040 ${volume * 100}%, #ff4040 ${volume * 100}%,
                                                 #fff ${volume * 100}%, #fff 100%)`;
 
-  (audioPlayer.volume === 0) ? volumeBtn.style.backgroundImage = 'url(assets/svg/mute.svg)'
-                             : volumeBtn.style.backgroundImage = 'url(assets/svg/volume-btn.svg)';
+  if (audioPlayer.volume === 0) {
+    volumeBtn.style.backgroundImage = 'url(assets/svg/mute.svg)';
+  } else {
+    volumeBtn.style.backgroundImage = 'url(assets/svg/volume-btn.svg)';
+  }
 };
 
 const muteVolume = () => {

@@ -17,7 +17,7 @@ async function getQuotes() {
     quoteAuthor.textContent = quoteData.author;
   } else {
     quoteText.textContent = 'Quote';
-    quoteAuthor.textContent = "Author";
+    quoteAuthor.textContent = 'Author';
   }
 }
 getQuotes();

@@ -20,7 +20,7 @@ const setDate = () => {
   dateSeconds.textContent = `${seconds}`;
   dateDay.textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
 
-  dateGreeting.textContent = `Good ${timesOfDay[Math.floor(hours/6)]},`;
+  dateGreeting.textContent = `Good ${timesOfDay[Math.floor(hours / 6)]},`;
 
   setTimeout(setDate, 1000);
 };
