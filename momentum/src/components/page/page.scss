@@ -10,11 +10,12 @@
   font-weight: 300;
   color: #fff;
 
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(0, 0, 0, 0.5);
   background-size: cover;
   background-blend-mode: multiply;
 
   transition: background-image 1s ease;
+  animation: fade-in 1s ease;
 
   & * {
     &::selection {
@@ -60,10 +61,10 @@
     -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 
-    transition: filter .2s ease;
+    transition: filter 0.2s ease;
 
     &:hover {
-      filter: opacity(.7);
+      filter: opacity(0.7);
     }
 
     &--prev {
