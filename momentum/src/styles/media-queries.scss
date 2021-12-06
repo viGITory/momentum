@@ -108,36 +108,61 @@
 
 @media (min-width: 1024px) {
   .page {
+    padding: 30px;
+
     font-size: 20px;
+
+    background-color: rgba(0, 0, 0, 0.7);
+
+    &__top {
+      flex-grow: 0;
+
+      background-color: transparent;
+      border: 0;
+    }
+
+    &__arrow {
+      &--prev {
+        left: 0;
+      }
+
+      &--next {
+        right: 0;
+      }
+    }
   }
 
   .section {
-    padding: 30px 25px;
+    padding: 0;
+
+    background-color: transparent;
+    border: 0;
+  }
+
+  .date {
+    &__time {
+      font-size: 6em;
+    }
   }
 
   .quotes {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     max-width: 80%;
     margin: 0 auto;
+  }
+
+  .weather,
+  .audio-player {
+    max-width: 400px;
   }
 
   .weather {
     &__wind,
     &__humidity {
       padding-left: 40px;
-    }
-  }
-}
-
-@media (min-width: 1920px) {
-  .audio-player {
-    &__controls {
-      max-width: 50%;
-    }
-  }
-
-  .weather {
-    &__input {
-      max-width: 50%;
     }
   }
 }
