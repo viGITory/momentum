@@ -18,7 +18,11 @@ const setDate = () => {
   dateHours.textContent = `${hours} : `;
   dateMinutes.textContent = `${minutes} : `;
   dateSeconds.textContent = `${seconds}`;
-  dateDay.textContent = now.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  dateDay.textContent = now.toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  });
 
   dateGreeting.textContent = `Good ${timesOfDay[Math.floor(hours / 6)]},`;
 
@@ -41,7 +45,9 @@ const setUserName = () => {
 
   userName.addEventListener('change', () => {
     if (userName.value) {
-      userName.value = `${userName.value[0].toUpperCase()}${userName.value.slice(1)}`;
+      userName.value = `${userName.value[0].toUpperCase()}${userName.value.slice(
+        1
+      )}`;
     }
   });
 };

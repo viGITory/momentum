@@ -46,7 +46,7 @@ audioPlayer.addEventListener('ended', () => {
   if (index === trackList.length - 1) {
     index = 0;
   } else {
-    index++;
+    index += 1;
   }
 
   trackArr.forEach((item) => item.classList.remove('js-track-play'));
@@ -61,7 +61,7 @@ prevBtn.addEventListener('click', () => {
   if (index <= 0) {
     index = trackList.length - 1;
   } else {
-    index--;
+    index -= 1;
   }
 
   audioPlayer.src = trackList[index].src;
@@ -73,7 +73,7 @@ nextBtn.addEventListener('click', () => {
   if (index === trackList.length - 1) {
     index = 0;
   } else {
-    index++;
+    index += 1;
   }
 
   audioPlayer.src = trackList[index].src;
@@ -84,14 +84,20 @@ nextBtn.addEventListener('click', () => {
 
 // *** PROGRESS ***
 const audioProgress = () => {
-  const currentMinutes = Math.floor(audioPlayer.currentTime / 60) < 10 ? `0${Math.floor(audioPlayer.currentTime / 60)}` : Math.floor(audioPlayer.currentTime / 60);
-  const currentSeconds = Math.floor(audioPlayer.currentTime % 60) < 10 ? `0${Math.floor(audioPlayer.currentTime % 60)}` : Math.floor(audioPlayer.currentTime % 60);
+  const currentMinutes =
+    Math.floor(audioPlayer.currentTime / 60) < 10
+      ? `0${Math.floor(audioPlayer.currentTime / 60)}`
+      : Math.floor(audioPlayer.currentTime / 60);
+  const currentSeconds =
+    Math.floor(audioPlayer.currentTime % 60) < 10
+      ? `0${Math.floor(audioPlayer.currentTime % 60)}`
+      : Math.floor(audioPlayer.currentTime % 60);
 
   progressTime.textContent = `${currentMinutes}:${currentSeconds}`;
-  progressBar.value = Math.floor(audioPlayer.currentTime) / (Math.floor(audioPlayer.duration) / 100) || 0;
-  progressBar.style.background = `linear-gradient(to right,
-                                                  #ff4040 0%, #ff4040 ${progressBar.value}%,
-                                                  #fff ${progressBar.value}%, #fff 100%)`;
+  progressBar.value =
+    Math.floor(audioPlayer.currentTime) /
+      (Math.floor(audioPlayer.duration) / 100) || 0;
+  progressBar.style.background = `linear-gradient(to right, #ff4040 0%, #ff4040 ${progressBar.value}%, #fff ${progressBar.value}%, #fff 100%)`;
 };
 
 const changeAudioTime = () => {
@@ -102,9 +108,7 @@ audioPlayer.addEventListener('timeupdate', audioProgress);
 progressBar.addEventListener('pointerdown', () => {
   audioPlayer.removeEventListener('timeupdate', audioProgress);
   progressBar.addEventListener('input', () => {
-    progressBar.style.background = `linear-gradient(to right,
-                                                    #ff4040 0%, #ff4040 ${progressBar.value}%,
-                                                    #fff ${progressBar.value}%, #fff 100%)`;
+    progressBar.style.background = `linear-gradient(to right, #ff4040 0%, #ff4040 ${progressBar.value}%,  #fff ${progressBar.value}%, #fff 100%)`;
   });
 
   progressBar.addEventListener('pointerup', (event) => {
@@ -129,9 +133,9 @@ const сhangeVolume = () => {
 
   if (audioPlayer.volume !== 0) currentVolume = audioPlayer.volume;
 
-  volumeBar.style.background = `linear-gradient(to right,
-                                                #ff4040 ${volume * 100}%, #ff4040 ${volume * 100}%,
-                                                #fff ${volume * 100}%, #fff 100%)`;
+  volumeBar.style.background = `linear-gradient(to right, #ff4040 ${
+    volume * 100
+  }%, #ff4040 ${volume * 100}%,  #fff ${volume * 100}%, #fff 100%)`;
 
   if (audioPlayer.volume === 0) {
     volumeBtn.style.backgroundImage = 'url(assets/svg/mute.svg)';
@@ -145,16 +149,16 @@ const muteVolume = () => {
     audioPlayer.volume = currentVolume;
     volumeBar.value = audioPlayer.volume * 100;
     volumeBtn.style.backgroundImage = 'url(assets/svg/volume-btn.svg)';
-    volumeBar.style.background = `linear-gradient(to right,
-                                                  #ff4040 ${currentVolume * 100}%, #ff4040 ${currentVolume * 100}%,
-                                                  #fff ${currentVolume * 100}%, #fff 100%)`;
+    volumeBar.style.background = `linear-gradient(to right, #ff4040 ${
+      currentVolume * 100
+    }%, #ff4040 ${currentVolume * 100}%,  #fff ${
+      currentVolume * 100
+    }%, #fff 100%)`;
   } else {
     audioPlayer.volume = 0;
     volumeBar.value = 0;
     volumeBtn.style.backgroundImage = 'url(assets/svg/mute.svg)';
-    volumeBar.style.background = `linear-gradient(to right,
-                                                  #ff4040 0%, #ff4040 0%,
-                                                  #fff 0%, #fff 100%)`;
+    volumeBar.style.background = `linear-gradient(to right,  #ff4040 0%, #ff4040 0%, #fff 0%, #fff 100%)`;
   }
 };
 

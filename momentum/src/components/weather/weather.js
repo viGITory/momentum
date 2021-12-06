@@ -19,9 +19,15 @@ async function getWeather() {
     weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
     weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
-    weatherFeel.textContent = `Feels like ${Math.round(weatherData.main.feels_like)}°C`;
-    weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(1)}`;
-    weatherWind.textContent = `Wind speed: ${Math.round(weatherData.wind.speed)}m/s`;
+    weatherFeel.textContent = `Feels like ${Math.round(
+      weatherData.main.feels_like
+    )}°C`;
+    weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(
+      1
+    )}`;
+    weatherWind.textContent = `Wind speed: ${Math.round(
+      weatherData.wind.speed
+    )}m/s`;
     weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
 
     weatherCity.placeholder = '[Enter city]';
@@ -37,7 +43,9 @@ document.addEventListener('DOMContentLoaded', getWeather);
 weatherCity.addEventListener('change', () => {
   if (weatherCity.value) {
     getWeather();
-    weatherCity.value = `${weatherCity.value[0].toUpperCase()}${weatherCity.value.slice(1)}`;
+    weatherCity.value = `${weatherCity.value[0].toUpperCase()}${weatherCity.value.slice(
+      1
+    )}`;
   } else {
     weatherCity.placeholder = 'City not found';
     weatherCity.classList.add('js-weather-warn');

@@ -5,10 +5,14 @@ let randomNum = Math.floor(1 + Math.random() * 19);
 
 const getTimeOfDay = () => {
   const hour = new Date().getHours();
+  let timeOfDay;
 
-  return (hour >= 6 && hour < 12) ? 'morning' :
-         (hour >= 12 && hour < 18) ? 'afternoon' :
-         (hour >= 18 && hour < 24) ? 'evening' : 'night';
+  if (hour >= 6 && hour < 12) timeOfDay = 'morning';
+  else if (hour >= 12 && hour < 18) timeOfDay = 'afternoon';
+  else if (hour >= 18 && hour < 24) timeOfDay = 'evening';
+  else timeOfDay = 'night';
+
+  return timeOfDay;
 };
 
 async function getImage() {
@@ -16,7 +20,9 @@ async function getImage() {
     randomNum = `0${randomNum}`;
   }
 
-  const result = await fetch(`https://raw.githubusercontent.com/viGITory/stage1-tasks/assets/images/${getTimeOfDay()}/${randomNum}.jpg`);
+  const result = await fetch(
+    `https://raw.githubusercontent.com/viGITory/stage1-tasks/assets/images/${getTimeOfDay()}/${randomNum}.jpg`
+  );
   const blob = await result.blob();
 
   page.style.backgroundImage = `url(${URL.createObjectURL(blob)}`;
@@ -28,14 +34,14 @@ document.addEventListener('click', (event) => {
     if (randomNum <= 1) {
       randomNum = 20;
     } else {
-      randomNum--;
+      randomNum -= 1;
     }
     getImage();
   } else if (event.target === arrowNext) {
     if (randomNum === 20) {
       randomNum = 1;
     } else {
-      randomNum++;
+      randomNum = +randomNum + 1;
     }
     getImage();
   }
