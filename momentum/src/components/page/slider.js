@@ -1,3 +1,5 @@
+import getImage from '../../api/image-api';
+
 const page = document.querySelector('.page');
 const arrowPrev = document.querySelector('.page__arrow--prev');
 const arrowNext = document.querySelector('.page__arrow--next');
@@ -15,19 +17,18 @@ const getTimeOfDay = () => {
   return timeOfDay;
 };
 
-async function getImage() {
+async function setImage() {
   if (randomNum < 10) {
     randomNum = `0${randomNum}`;
   }
 
-  const result = await fetch(
-    `https://raw.githubusercontent.com/viGITory/stage1-tasks/assets/images/${getTimeOfDay()}/${randomNum}.jpg`
-  );
-  const blob = await result.blob();
+  try {
+    const imageData = await getImage(getTimeOfDay(), randomNum);
 
-  page.style.backgroundImage = `url(${URL.createObjectURL(blob)}`;
+    page.style.backgroundImage = `url(${URL.createObjectURL(imageData)}`;
+  } catch (err) {}
 }
-getImage();
+setImage();
 
 document.addEventListener('click', (event) => {
   if (event.target === arrowPrev) {
@@ -36,13 +37,13 @@ document.addEventListener('click', (event) => {
     } else {
       randomNum -= 1;
     }
-    getImage();
+    setImage();
   } else if (event.target === arrowNext) {
     if (randomNum === 20) {
       randomNum = 1;
     } else {
       randomNum = +randomNum + 1;
     }
-    getImage();
+    setImage();
   }
 });
