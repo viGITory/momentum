@@ -7,5 +7,8 @@ import '../components/date/date';
 import '../components/quotes/quotes';
 import '../components/weather/weather';
 
+// *** API ***
+import '../api/weather-api';
+
 // *** SELF-RATE ***
 import './self-rate';

@@ -1,6 +1,9 @@
+import getWeather from '../../api/weather-api';
+
 const weatherCity = document.querySelector('.weather__input');
 
-async function getWeather() {
+async function setWeather() {
+  const weatherWrapper = document.querySelector('.weather__wrapper');
   const weatherIcon = document.querySelector('.weather__icon');
   const weatherTemp = document.querySelector('.weather__temp');
   const weatherFeel = document.querySelector('.weather__feel');
@@ -8,12 +11,8 @@ async function getWeather() {
   const weatherWind = document.querySelector('.weather__wind');
   const weatherHumidity = document.querySelector('.weather__humidity');
 
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`;
-
-  const weatherRes = await fetch(weatherUrl);
-
-  if (weatherRes.status === 200) {
-    const weatherData = await weatherRes.json();
+  try {
+    const weatherData = await getWeather(weatherCity.value);
 
     weatherIcon.className = 'weather__icon owf';
     weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
@@ -32,17 +31,15 @@ async function getWeather() {
 
     weatherCity.placeholder = '[Enter city]';
     weatherCity.classList.remove('js-weather-warn');
-  } else {
-    weatherCity.value = '';
-    weatherCity.placeholder = 'City not found';
-    weatherCity.classList.add('js-weather-warn');
+  } catch (err) {
+    weatherWrapper.textContent = 'No weather data';
   }
 }
 
-document.addEventListener('DOMContentLoaded', getWeather);
+document.addEventListener('DOMContentLoaded', setWeather);
 weatherCity.addEventListener('change', () => {
   if (weatherCity.value) {
-    getWeather();
+    setWeather();
     weatherCity.value = `${weatherCity.value[0].toUpperCase()}${weatherCity.value.slice(
       1
     )}`;
@@ -51,7 +48,7 @@ weatherCity.addEventListener('change', () => {
     weatherCity.classList.add('js-weather-warn');
   }
 });
-setInterval(getWeather, 600000);
+setInterval(setWeather, 600000);
 
 const setUserCity = () => {
   const userCity = document.querySelector('.weather__input');
@@ -63,7 +60,7 @@ const setUserCity = () => {
   window.addEventListener('load', () => {
     if (localStorage.getItem('city')) {
       userCity.value = localStorage.getItem('city');
-      getWeather();
+      setWeather();
     }
   });
 };
