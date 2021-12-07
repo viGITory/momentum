@@ -9,6 +9,7 @@ import '../components/weather/weather';
 
 // *** API ***
 import '../api/weather-api';
+import '../api/quotes-api';
 
 // *** SELF-RATE ***
 import './self-rate';
