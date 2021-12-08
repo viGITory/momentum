@@ -1,7 +1,7 @@
 import '../styles/style.scss';
 
 // *** COMPONENTS ***
-import '../components/page/slider';
+import ImageSlider from '../components/page/image-slider';
 import '../components/audio-player/audio-player';
 import DateWidget from '../components/date/date-widget';
 import Quotes from '../components/quotes/quotes';
@@ -16,3 +16,4 @@ import './self-rate';
 
 new DateWidget().init();
 new Quotes().init();
+new ImageSlider().init();
