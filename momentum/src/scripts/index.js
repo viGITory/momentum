@@ -3,7 +3,7 @@ import '../styles/style.scss';
 // *** COMPONENTS ***
 import '../components/page/slider';
 import '../components/audio-player/audio-player';
-import '../components/date/date';
+import DateWidget from '../components/date/date-widget';
 import Quotes from '../components/quotes/quotes';
 import '../components/weather/weather';
 
@@ -14,4 +14,5 @@ import '../api/quotes-api';
 // *** SELF-RATE ***
 import './self-rate';
 
+new DateWidget().init();
 new Quotes().init();
