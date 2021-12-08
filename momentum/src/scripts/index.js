@@ -4,7 +4,7 @@ import '../styles/style.scss';
 import '../components/page/slider';
 import '../components/audio-player/audio-player';
 import '../components/date/date';
-import '../components/quotes/quotes';
+import Quotes from '../components/quotes/quotes';
 import '../components/weather/weather';
 
 // *** API ***
@@ -13,3 +13,5 @@ import '../api/quotes-api';
 
 // *** SELF-RATE ***
 import './self-rate';
+
+new Quotes().init();

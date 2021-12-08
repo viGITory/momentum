@@ -1,31 +1,43 @@
 import getQuotes from '../../api/quotes-api';
 
-const quoteBtn = document.querySelector('.quotes__button');
-const quoteText = document.querySelector('.quotes__text');
-const quoteAuthor = document.querySelector('.quotes__author');
-let quoteId;
+export default class Quotes {
+  constructor() {
+    this.quoteButton = document.querySelector('.quotes__button');
+    this.quoteText = document.querySelector('.quotes__text');
+    this.quoteAuthor = document.querySelector('.quotes__author');
 
-async function setQuotes() {
-  try {
-    const quoteData = await getQuotes(quoteId);
-    quoteId = quoteData.id;
+    this.quoteId = null;
+  }
 
-    quoteText.classList.add('js-show-quote');
+  async setQuotes() {
+    try {
+      const quoteData = await getQuotes(this.quoteId);
+      this.quoteId = quoteData.id;
 
-    quoteText.textContent = `"${quoteData.text}"`;
-    quoteAuthor.textContent = quoteData.author;
-  } catch (err) {
-    quoteText.textContent = 'No quotes data';
+      this.quoteText.textContent = `"${quoteData.text}"`;
+      this.quoteAuthor.textContent = quoteData.author;
+    } catch (err) {
+      this.quoteText.textContent = 'No quotes data';
+      this.quoteAuthor.textContent = '';
+    } finally {
+      this.quoteText.classList.add('js-show-quote');
+    }
+  }
+
+  addListeners() {
+    this.quoteButton.addEventListener('click', () => {
+      this.quoteButton.classList.add('js-rotate-btn');
+    });
+
+    this.quoteButton.addEventListener('animationend', () => {
+      this.quoteButton.classList.remove('js-rotate-btn');
+      this.quoteText.classList.remove('js-show-quote');
+      this.setQuotes();
+    });
+  }
+
+  init() {
+    this.setQuotes();
+    this.addListeners();
   }
 }
-setQuotes();
-
-quoteBtn.addEventListener('click', () => {
-  quoteBtn.classList.add('js-rotate-btn');
-});
-
-quoteBtn.addEventListener('animationend', () => {
-  quoteBtn.classList.remove('js-rotate-btn');
-  quoteText.classList.remove('js-show-quote');
-  setQuotes();
-});
