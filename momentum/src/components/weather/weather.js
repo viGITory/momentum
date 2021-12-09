@@ -1,67 +1,86 @@
 import getWeather from '../../api/weather-api';
 
-const weatherCity = document.querySelector('.weather__input');
+export default class Weather {
+  constructor() {
+    this.weatherCity = document.querySelector('.weather__input');
+    this.weatherIcon = document.querySelector('.weather__icon');
+    this.weatherTemp = document.querySelector('.weather__temp');
+    this.weatherFeel = document.querySelector('.weather__feel');
+    this.weatherDescr = document.querySelector('.weather__descr');
+    this.weatherWind = document.querySelector('.weather__wind');
+    this.weatherHumidity = document.querySelector('.weather__humidity');
 
-async function setWeather() {
-  const weatherWrapper = document.querySelector('.weather__wrapper');
-  const weatherIcon = document.querySelector('.weather__icon');
-  const weatherTemp = document.querySelector('.weather__temp');
-  const weatherFeel = document.querySelector('.weather__feel');
-  const weatherDescr = document.querySelector('.weather__descr');
-  const weatherWind = document.querySelector('.weather__wind');
-  const weatherHumidity = document.querySelector('.weather__humidity');
+    this.warnMessage = document.createElement('span');
+  }
 
-  try {
-    const weatherData = await getWeather(weatherCity.value);
+  async setWeather() {
+    try {
+      if (this.warnMessage) this.warnMessage.remove();
+      if (this.weatherCity.value === '') {
+        this.weatherCity.value =
+          localStorage.getItem('vigitory-city') || 'Minsk';
+      }
 
-    weatherIcon.className = 'weather__icon owf';
-    weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
+      const weatherData = await getWeather(this.weatherCity.value);
 
-    weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
-    weatherFeel.textContent = `Feels like ${Math.round(
-      weatherData.main.feels_like
-    )}°C`;
-    weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(
-      1
-    )}`;
-    weatherWind.textContent = `Wind speed: ${Math.round(
-      weatherData.wind.speed
-    )}m/s`;
-    weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+      this.weatherIcon.className = 'weather__icon owf';
+      this.weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
-    weatherCity.placeholder = '[Enter city]';
-    weatherCity.classList.remove('js-weather-warn');
-  } catch (err) {
-    weatherWrapper.textContent = 'No weather data';
+      this.weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
+      this.weatherFeel.textContent = `Feels like ${Math.round(
+        weatherData.main.feels_like
+      )}°C`;
+      this.weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(
+        1
+      )}`;
+      this.weatherWind.textContent = `Wind speed: ${Math.round(
+        weatherData.wind.speed
+      )}m/s`;
+      this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+    } catch (err) {
+      this.warnMessage.textContent = 'No weather data';
+      this.warnMessage.classList.add('js-weather-warn');
+      this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
+
+      this.weatherCity.value = '';
+
+      this.weatherIcon.textContent = '';
+      this.weatherTemp.textContent = '';
+      this.weatherFeel.textContent = '';
+      this.weatherDescr.textContent = '';
+      this.weatherWind.textContent = '';
+      this.weatherHumidity.textContent = '';
+    }
+  }
+
+  addListeners() {
+    this.weatherCity.addEventListener('keyup', (event) => {
+      if (event.code === 'Enter' && this.weatherCity.value !== '') {
+        this.setWeather();
+        this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
+          1
+        )}`;
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      localStorage.setItem('vigitory-city', this.weatherCity.value);
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('vigitory-city')) {
+        this.weatherCity.value = localStorage.getItem('vigitory-city');
+      } else {
+        this.weatherCity.value = 'Minsk';
+      }
+
+      this.setWeather();
+    });
+  }
+
+  init() {
+    this.addListeners();
+
+    setInterval(() => this.setWeather(), 600000);
   }
 }
-
-document.addEventListener('DOMContentLoaded', setWeather);
-weatherCity.addEventListener('change', () => {
-  if (weatherCity.value) {
-    setWeather();
-    weatherCity.value = `${weatherCity.value[0].toUpperCase()}${weatherCity.value.slice(
-      1
-    )}`;
-  } else {
-    weatherCity.placeholder = 'City not found';
-    weatherCity.classList.add('js-weather-warn');
-  }
-});
-setInterval(setWeather, 600000);
-
-const setUserCity = () => {
-  const userCity = document.querySelector('.weather__input');
-
-  window.addEventListener('beforeunload', () => {
-    localStorage.setItem('city', userCity.value);
-  });
-
-  window.addEventListener('load', () => {
-    if (localStorage.getItem('city')) {
-      userCity.value = localStorage.getItem('city');
-      setWeather();
-    }
-  });
-};
-setUserCity();
