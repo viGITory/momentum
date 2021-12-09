@@ -1,5 +1,5 @@
 .weather {
-  min-height: 200px;
+  min-height: 213px;
 
   &__input {
     box-sizing: border-box;
@@ -16,7 +16,7 @@
     border-bottom: 1px solid #ff4040;
     outline: none;
 
-    transition: color .2s ease;
+    transition: color 0.2s ease;
 
     &,
     &::placeholder {
@@ -24,7 +24,7 @@
     }
 
     &:hover {
-      color: rgba(255, 255, 255, .7);
+      color: rgba(255, 255, 255, 0.7);
     }
   }
 
