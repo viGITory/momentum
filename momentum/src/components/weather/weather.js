@@ -19,10 +19,6 @@ export default class Weather {
       this.dataWrapper.classList.remove('js-show-elem');
 
       if (this.warnMessage) this.warnMessage.remove();
-      if (this.weatherCity.value === '') {
-        this.weatherCity.value =
-          localStorage.getItem('vigitory-city') || 'Minsk';
-      }
 
       const weatherData = await getWeather(this.weatherCity.value);
 
