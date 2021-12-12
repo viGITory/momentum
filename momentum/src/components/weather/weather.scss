@@ -28,6 +28,11 @@
     }
   }
 
+  &__data {
+    animation-duration: 1s;
+    animation-timing-function: ease;
+  }
+
   &__wrapper,
   &__icon,
   &__text {

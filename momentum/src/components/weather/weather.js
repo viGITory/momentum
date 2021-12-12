@@ -3,6 +3,7 @@ import getWeather from '../../api/weather-api';
 export default class Weather {
   constructor() {
     this.weatherCity = document.querySelector('.weather__input');
+    this.dataWrapper = document.querySelector('.weather__data');
     this.weatherIcon = document.querySelector('.weather__icon');
     this.weatherTemp = document.querySelector('.weather__temp');
     this.weatherFeel = document.querySelector('.weather__feel');
@@ -15,6 +16,8 @@ export default class Weather {
 
   async setWeather() {
     try {
+      this.dataWrapper.classList.remove('js-show-quote');
+
       if (this.warnMessage) this.warnMessage.remove();
       if (this.weatherCity.value === '') {
         this.weatherCity.value =
@@ -23,6 +26,7 @@ export default class Weather {
 
       const weatherData = await getWeather(this.weatherCity.value);
 
+      this.dataWrapper.classList.add('js-show-quote');
       this.weatherIcon.className = 'weather__icon owf';
       this.weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
@@ -38,6 +42,7 @@ export default class Weather {
       )}m/s`;
       this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
     } catch (err) {
+      this.warnMessage.classList.add('js-show-quote');
       this.warnMessage.textContent = 'No weather data';
       this.warnMessage.classList.add('js-weather-warn');
       this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);

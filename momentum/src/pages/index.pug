@@ -47,13 +47,14 @@ html(lang="en")
         h2.visually-hidden
           | Weather
         input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
-        p.weather__wrapper
-          span.weather__icon
-          span.weather__temp
-          span.weather__feel
-        p.weather__text.weather__descr
-        p.weather__text.weather__wind
-        p.weather__text.weather__humidity
+        div.weather__data
+          p.weather__wrapper
+            span.weather__icon
+            span.weather__temp
+            span.weather__feel
+          p.weather__text.weather__descr
+          p.weather__text.weather__wind
+          p.weather__text.weather__humidity
 
       //- *** AUDIO PLAYER ***
       section.section.audio-player
