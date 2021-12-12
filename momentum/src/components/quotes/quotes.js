@@ -20,7 +20,7 @@ export default class Quotes {
       this.quoteText.textContent = 'No quotes data';
       this.quoteAuthor.textContent = '';
     } finally {
-      this.quoteText.classList.add('js-show-quote');
+      this.quoteText.classList.add('js-show-elem');
     }
   }
 
@@ -31,7 +31,7 @@ export default class Quotes {
 
     this.quoteButton.addEventListener('animationend', () => {
       this.quoteButton.classList.remove('js-rotate-btn');
-      this.quoteText.classList.remove('js-show-quote');
+      this.quoteText.classList.remove('js-show-elem');
       this.setQuotes();
     });
   }

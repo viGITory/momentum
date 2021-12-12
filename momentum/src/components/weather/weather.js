@@ -16,7 +16,7 @@ export default class Weather {
 
   async setWeather() {
     try {
-      this.dataWrapper.classList.remove('js-show-quote');
+      this.dataWrapper.classList.remove('js-show-elem');
 
       if (this.warnMessage) this.warnMessage.remove();
       if (this.weatherCity.value === '') {
@@ -26,7 +26,7 @@ export default class Weather {
 
       const weatherData = await getWeather(this.weatherCity.value);
 
-      this.dataWrapper.classList.add('js-show-quote');
+      this.dataWrapper.classList.add('js-show-elem');
       this.weatherIcon.className = 'weather__icon owf';
       this.weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
@@ -42,7 +42,7 @@ export default class Weather {
       )}m/s`;
       this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
     } catch (err) {
-      this.warnMessage.classList.add('js-show-quote');
+      this.warnMessage.classList.add('js-show-elem');
       this.warnMessage.textContent = 'No weather data';
       this.warnMessage.classList.add('js-weather-warn');
       this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
