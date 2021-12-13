@@ -6,6 +6,7 @@
   display: none;
 
   transform: translateX(-50%);
+  animation: fade-in 1s ease;
 
   &__title {
     margin: 0;
