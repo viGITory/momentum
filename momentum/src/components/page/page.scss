@@ -86,4 +86,11 @@
   &__center {
     flex-wrap: wrap;
   }
+
+  &__settings {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    z-index: 9999;
+  }
 }
