@@ -1,10 +1,10 @@
+.js-show-elem {
+  animation-name: fade-in;
+}
+
 // *** QUOTES ***
 .js-rotate-btn {
   animation-name: rotate-btn;
-}
-
-.js-show-elem {
-  animation-name: fade-in;
 }
 
 // *** AUDIO PLAYER ***
@@ -25,4 +25,11 @@
 
   animation-duration: 1s;
   animation-timing-function: ease;
+}
+
+// *** SETTINGS ***
+.js-hide-section {
+  opacity: 0;
+
+  animation-name: fade-out;
 }
