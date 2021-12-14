@@ -11,11 +11,6 @@
   color: #fff;
 
   background-color: rgba(0, 0, 0, 0.5);
-  background-size: cover;
-  background-attachment: fixed;
-  background-blend-mode: multiply;
-
-  transition: background-image 1s ease;
 
   & * {
     &::selection {
@@ -26,9 +21,9 @@
   }
 
   &,
-  &__arrow {
-    background-repeat: no-repeat;
-    background-position: center;
+  &__top,
+  &__bottom {
+    position: relative;
   }
 
   &,
@@ -43,11 +38,6 @@
     row-gap: 20px;
   }
 
-  &__top,
-  &__bottom {
-    position: relative;
-  }
-
   &__arrow {
     position: absolute;
     bottom: 0;
@@ -60,6 +50,8 @@
     border: 0;
     background-color: transparent;
     background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 

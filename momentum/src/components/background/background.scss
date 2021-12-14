@@ -1,0 +1,17 @@
+.background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -9999;
+
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  transition: background-image 1s ease, opacity 1s ease;
+}

@@ -1,7 +1,7 @@
 import '../styles/style.scss';
 
 // *** COMPONENTS ***
-import ImageSlider from '../components/page/image-slider';
+import ImageSlider from '../components/background/background';
 import AudioPlayer from '../components/audio-player/audio-player';
 import DateWidget from '../components/date/date-widget';
 import Quotes from '../components/quotes/quotes';
