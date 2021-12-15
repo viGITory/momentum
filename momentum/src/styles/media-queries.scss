@@ -145,6 +145,15 @@
   }
 
   .date {
+    flex-direction: column;
+    align-items: center;
+
+    &,
+    &__time-wrapper,
+    &__format {
+      display: flex;
+    }
+
     &__time {
       font-size: 5em;
     }
