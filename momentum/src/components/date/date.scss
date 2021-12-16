@@ -22,44 +22,7 @@
   }
 
   &__format {
-    display: none;
-    flex-direction: column;
     margin-top: 14px;
-
-    font-size: 16px;
-  }
-
-  &__format-item {
-    width: 35px;
-    min-width: 35px;
-    height: 35px;
-    padding: 0;
-
-    font-family: inherit;
-    font-size: inherit;
-    line-height: 35px;
-    color: inherit;
-
-    cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 2px;
-
-    transition: border-color 0.2s ease;
-
-    &:hover {
-      border-color: #fff;
-    }
-
-    &--12 {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    &--24 {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
   }
 
   &__day,

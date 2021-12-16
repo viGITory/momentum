@@ -9,9 +9,10 @@ export default class DateWidget {
     this.dateGreeting = document.querySelector('.date__greeting');
     this.userName = document.querySelector('.date__input');
 
-    this.formatWrapper = document.querySelector('.date__format');
-    this.buttonFormat12 = document.querySelector('.date__format-item--12');
-    this.buttonFormat24 = document.querySelector('.date__format-item--24');
+    this.format12 = document.querySelector('.time-format__item--12');
+    this.format24 = document.querySelector('.time-format__item--24');
+    this.formatAM = document.querySelector('.time-format__item--am');
+    this.formatPM = document.querySelector('.time-format__item--pm');
 
     this.timeFormat = +localStorage.getItem('vigitory-timeFormat') || 24;
 
@@ -31,6 +32,14 @@ export default class DateWidget {
 
     if (hours % 6 === 0 && minutes === 0 && seconds === 0) {
       this.backgroundSlider.setImage();
+    }
+
+    if (hours >= 12 && hours < 24) {
+      this.formatPM.classList.add('js-active-btn');
+      this.formatAM.classList.remove('js-active-btn');
+    } else {
+      this.formatPM.classList.remove('js-active-btn');
+      this.formatAM.classList.add('js-active-btn');
     }
 
     hours =
@@ -60,26 +69,25 @@ export default class DateWidget {
     });
 
     document.addEventListener('DOMContentLoaded', () => {
-      if (this.timeFormat === 12)
-        this.buttonFormat12.classList.add('js-active-btn');
+      if (this.timeFormat === 12) this.format12.classList.add('js-active-btn');
       else if (this.timeFormat === 24)
-        this.buttonFormat24.classList.add('js-active-btn');
+        this.format24.classList.add('js-active-btn');
 
       if (localStorage.getItem('vigitory-name')) {
         this.userName.value = localStorage.getItem('vigitory-name');
       }
     });
 
-    this.formatWrapper.addEventListener('click', (event) => {
-      if (event.target === this.buttonFormat12) {
-        this.timeFormat = 12;
-        this.buttonFormat24.classList.remove('js-active-btn');
-        this.buttonFormat12.classList.add('js-active-btn');
-      } else if (event.target === this.buttonFormat24) {
-        this.timeFormat = 24;
-        this.buttonFormat12.classList.remove('js-active-btn');
-        this.buttonFormat24.classList.add('js-active-btn');
-      }
+    this.format12.addEventListener('click', () => {
+      this.timeFormat = 12;
+      this.format24.classList.remove('js-active-btn');
+      this.format12.classList.add('js-active-btn');
+    });
+
+    this.format24.addEventListener('click', () => {
+      this.timeFormat = 24;
+      this.format12.classList.remove('js-active-btn');
+      this.format24.classList.add('js-active-btn');
     });
   }
 

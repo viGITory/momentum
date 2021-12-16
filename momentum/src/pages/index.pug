@@ -29,11 +29,17 @@ html(lang="en")
             span.date__hour
             span.date__minute
             span.date__second
-          div.date__format
-            button.date__format-item.date__format-item--12(type="button")
-              | 12
-            button.date__format-item.date__format-item--24(type="button")
-              | 24
+          div.date__format.time-format
+            div.time-format__wrapper
+              button.time-format__item.time-format__item--12(type="button")
+                | 12
+              button.time-format__item.time-format__item--24(type="button")
+                | 24
+            div.time-format__wrapper
+              span.time-format__item.time-format__item--am
+                | AM
+              span.time-format__item.time-format__item--pm
+                | PM
         p.date__day
         p.date__wrapper
           span.date__greeting

@@ -1,0 +1,50 @@
+.time-format {
+  display: none;
+  flex-direction: column;
+  row-gap: 3px;
+
+  animation: fade-in 1s ease;
+
+  &__wrapper {
+    display: flex;
+    column-gap: 3px;
+  }
+
+  &__item {
+    box-sizing: border-box;
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+
+    line-height: 35px;
+    color: inherit;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+
+    transition: border-color 0.2s ease;
+
+    &--12,
+    &--24 {
+      padding: 0;
+
+      font-family: inherit;
+      font-size: 16px;
+      color: inherit;
+
+      cursor: pointer;
+
+      &:hover {
+        border-color: #fff;
+      }
+    }
+
+    &--am,
+    &--pm {
+      display: inline-block;
+
+      font-size: 14px;
+    }
+  }
+}
