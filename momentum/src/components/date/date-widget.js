@@ -1,3 +1,5 @@
+import Background from '../background/background';
+
 export default class DateWidget {
   constructor() {
     this.dateHours = document.querySelector('.date__hour');
@@ -12,21 +14,27 @@ export default class DateWidget {
     this.buttonFormat24 = document.querySelector('.date__format-item--24');
 
     this.timeFormat = +localStorage.getItem('vigitory-timeFormat') || 24;
+
+    this.backgroundSlider = new Background();
   }
 
   setDate() {
     const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
     const date = new Date();
     let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
 
     this.dateGreeting.textContent = `Good ${
       timesOfDay[Math.floor(hours / 6)]
     },`;
 
+    if (hours % 6 === 0 && minutes === 0 && seconds === 0) {
+      this.backgroundSlider.setImage();
+    }
+
     hours =
       this.timeFormat === 24 ? date.getHours() : date.getHours() % 12 || 12;
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
 
     if (hours < 10) hours = `0${hours}`;
     if (minutes < 10) minutes = `0${minutes}`;
@@ -35,6 +43,7 @@ export default class DateWidget {
     this.dateHours.textContent = `${hours} : `;
     this.dateMinutes.textContent = `${minutes} : `;
     this.dateSeconds.textContent = `${seconds}`;
+
     this.dateDay.textContent = date.toLocaleDateString('en-US', {
       weekday: 'long',
       month: 'long',
