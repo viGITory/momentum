@@ -37,10 +37,14 @@ export default class Weather {
       this.windSpeed.textContent = `Wind: ${Math.round(
         weatherData.wind.speed
       )}m/s,`;
+      this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+
       this.windDirection.style.transform = `rotate(${
         weatherData.wind.deg - 180
       }deg)`;
-      this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+      this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
+        1
+      )}`;
     } catch (err) {
       this.weatherCity.value = '';
 
@@ -62,9 +66,6 @@ export default class Weather {
     this.weatherCity.addEventListener('keyup', (event) => {
       if (event.code === 'Enter' && this.weatherCity.value !== '') {
         this.setWeather();
-        this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
-          1
-        )}`;
       }
     });
 
