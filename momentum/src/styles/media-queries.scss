@@ -34,6 +34,12 @@
     width: calc(50% - 10px);
   }
 
+  .weather {
+    &__wind-speed {
+      margin-right: 7px;
+    }
+  }
+
   .audio-player {
     order: -1;
   }
@@ -79,7 +85,7 @@
       padding-top: 7px;
     }
 
-    &__wind,
+    &__wind-speed,
     &__humidity {
       padding-left: 35px;
     }
@@ -175,9 +181,13 @@
   }
 
   .weather {
-    &__wind,
+    &__wind-speed,
     &__humidity {
       padding-left: 40px;
+    }
+
+    &__wind-speed {
+      margin-right: 10px;
     }
   }
 

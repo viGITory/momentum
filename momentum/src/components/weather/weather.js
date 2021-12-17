@@ -8,7 +8,8 @@ export default class Weather {
     this.weatherTemp = document.querySelector('.weather__temp');
     this.weatherFeel = document.querySelector('.weather__feel');
     this.weatherDescr = document.querySelector('.weather__descr');
-    this.weatherWind = document.querySelector('.weather__wind');
+    this.windSpeed = document.querySelector('.weather__wind-speed');
+    this.windDirection = document.querySelector('.weather__wind-direction');
     this.weatherHumidity = document.querySelector('.weather__humidity');
 
     this.warnMessage = document.createElement('span');
@@ -33,24 +34,27 @@ export default class Weather {
       this.weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(
         1
       )}`;
-      this.weatherWind.textContent = `Wind speed: ${Math.round(
+      this.windSpeed.textContent = `Wind: ${Math.round(
         weatherData.wind.speed
-      )}m/s`;
+      )}m/s,`;
+      this.windDirection.style.transform = `rotate(${
+        weatherData.wind.deg - 180
+      }deg)`;
       this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
     } catch (err) {
-      this.warnMessage.classList.add('js-show-elem');
-      this.warnMessage.textContent = 'No weather data';
-      this.warnMessage.classList.add('js-weather-warn');
-      this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
-
       this.weatherCity.value = '';
 
       this.weatherIcon.textContent = '';
       this.weatherTemp.textContent = '';
       this.weatherFeel.textContent = '';
       this.weatherDescr.textContent = '';
-      this.weatherWind.textContent = '';
+      this.windSpeed.textContent = '';
       this.weatherHumidity.textContent = '';
+
+      this.warnMessage.classList.add('js-show-elem');
+      this.warnMessage.classList.add('js-weather-warn');
+      this.warnMessage.textContent = 'No weather data';
+      this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
     }
   }
 
