@@ -42,6 +42,8 @@ export default class Weather {
       this.windDirection.style.transform = `rotate(${
         weatherData.wind.deg - 180
       }deg)`;
+      this.windDirection.style.backgroundImage =
+        'url("../assets/svg/wind-arrow.svg")';
       this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
         1
       )}`;
@@ -53,6 +55,7 @@ export default class Weather {
       this.weatherFeel.textContent = '';
       this.weatherDescr.textContent = '';
       this.windSpeed.textContent = '';
+      this.windDirection.style.backgroundImage = 'none';
       this.weatherHumidity.textContent = '';
 
       this.warnMessage.classList.add('js-show-elem');
