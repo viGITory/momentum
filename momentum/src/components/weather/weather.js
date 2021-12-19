@@ -54,7 +54,7 @@ export default class Weather {
       )}m/s,`;
       this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
       this.windDescr.textContent = `${
-        windDirections[Math.floor(weatherData.wind.deg / 22.5 + 0.5)]
+        windDirections[this.findDirection(weatherData.wind.deg)]
       }`;
 
       this.windArrow.style.transform = `rotate(${
@@ -80,6 +80,15 @@ export default class Weather {
       this.warnMessage.textContent = 'No weather data';
       this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
     }
+  }
+
+  findDirection(windDdegrees) {
+    let degrees = (windDdegrees * 16) / 360;
+
+    degrees = Math.round(degrees, 0);
+    degrees = (degrees + 16) % 16;
+
+    return degrees;
   }
 
   addListeners() {
