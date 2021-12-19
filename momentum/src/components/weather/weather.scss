@@ -79,8 +79,12 @@
     font-size: 0.75em;
   }
 
+  &__wind {
+    column-gap: 5px;
+  }
+
   &__wind-speed,
-  &__wind-direction,
+  &__wind-arrow,
   &__humidity {
     background-repeat: no-repeat;
   }
@@ -94,12 +98,10 @@
   }
 
   &__wind-speed {
-    margin-right: 5px;
-
     background-image: url("../assets/svg/wind-icon.svg");
   }
 
-  &__wind-direction {
+  &__wind-arrow {
     display: inline-block;
     width: 10px;
     height: 10px;

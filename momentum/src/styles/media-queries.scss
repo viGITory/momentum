@@ -35,8 +35,8 @@
   }
 
   .weather {
-    &__wind-speed {
-      margin-right: 7px;
+    &__wind {
+      column-gap: 7px;
     }
   }
 
@@ -186,11 +186,11 @@
       padding-left: 40px;
     }
 
-    &__wind-speed {
-      margin-right: 10px;
+    &__wind {
+      column-gap: 10px;
     }
 
-    &__wind-direction {
+    &__wind-arrow {
       width: 15px;
       height: 15px;
     }
