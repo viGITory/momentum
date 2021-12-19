@@ -1,12 +1,16 @@
 .weather {
   min-height: 213px;
 
+  &__wrapper {
+    height: 40px;
+  }
+
   &__input {
     box-sizing: border-box;
     display: block;
     width: 100%;
-    height: 40px;
     padding: 0;
+    padding-bottom: 5px;
 
     font-family: inherit;
     font-size: 1.375em;
@@ -28,30 +32,37 @@
     }
   }
 
+  &__country {
+    min-height: 12px;
+
+    color: rgba(255, 255, 255, 0.7);
+  }
+
   &__data {
     animation-duration: 1s;
     animation-timing-function: ease;
   }
 
-  &__wrapper,
+  &__country,
+  &__temp-wrapper,
   &__icon,
   &__text {
     margin: 0;
   }
 
-  &__wrapper,
+  &__temp-wrapper,
   &__wind {
     display: flex;
     align-items: center;
   }
 
-  &__wrapper {
+  &__temp-wrapper {
     min-height: 40px;
     margin-bottom: 20px;
     column-gap: 10px;
   }
 
-  &__input,
+  &__wrapper,
   &__text {
     margin-bottom: 10px;
   }
@@ -72,11 +83,14 @@
     font-size: 33px;
   }
 
+  &__country,
+  &__feel {
+    font-size: 0.75em;
+  }
+
   &__feel {
     align-self: flex-start;
     padding-top: 5px;
-
-    font-size: 0.75em;
   }
 
   &__wind {

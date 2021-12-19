@@ -1,8 +1,10 @@
 import getWeather from '../../api/weather-api';
 import windDirections from '../../data/wind-directions';
+import countryNames from '../../data/country-names';
 
 export default class Weather {
   constructor() {
+    this.weatherCountry = document.querySelector('.weather__country');
     this.weatherCity = document.querySelector('.weather__input');
     this.dataWrapper = document.querySelector('.weather__data');
     this.weatherIcon = document.querySelector('.weather__icon');
@@ -37,6 +39,9 @@ export default class Weather {
       this.weatherIcon.className = 'weather__icon owf';
       this.weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
 
+      this.weatherCountry.textContent = `${
+        countryNames[weatherData.sys.country]
+      }`;
       this.weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
       this.weatherFeel.textContent = `Feels like ${Math.round(
         weatherData.main.feels_like
@@ -60,6 +65,7 @@ export default class Weather {
     } catch (err) {
       this.weatherCity.value = '';
 
+      this.weatherCountry.textContent = '';
       this.weatherIcon.textContent = '';
       this.weatherTemp.textContent = '';
       this.weatherFeel.textContent = '';

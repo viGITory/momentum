@@ -59,9 +59,12 @@ html(lang="en")
       section.section.weather
         h2.visually-hidden
           | Weather
-        input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
+        div.weather__wrapper
+          p.weather__country
+          input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
+          //- span.weather__country
         div.weather__data
-          p.weather__wrapper
+          p.weather__temp-wrapper
             span.weather__icon
             span.weather__temp
             span.weather__feel

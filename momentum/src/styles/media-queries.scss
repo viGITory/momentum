@@ -35,6 +35,13 @@
   }
 
   .weather {
+    &__wrapper {
+      min-height: 50px;
+    }
+
+    &__country {
+      min-height: 14px;
+    }
     &__wind {
       column-gap: 7px;
     }
@@ -42,6 +49,10 @@
 
   .audio-player {
     order: -1;
+
+    &__top {
+      min-height: 50px;
+    }
   }
 }
 
@@ -67,7 +78,7 @@
   }
 
   .weather {
-    &__wrapper {
+    &__temp-wrapper {
       min-height: 50px;
     }
 
@@ -181,6 +192,10 @@
   }
 
   .weather {
+    &__country {
+      min-height: 17px;
+    }
+
     &__wind-speed,
     &__humidity {
       padding-left: 40px;
