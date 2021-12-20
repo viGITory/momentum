@@ -1,4 +1,4 @@
-import playlist from './playlist';
+import playlist from '../../data/playlist';
 
 export default class AudioPlayer {
   constructor() {
