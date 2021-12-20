@@ -15,6 +15,7 @@ export default class Weather {
     this.windArrow = document.querySelector('.weather__wind-arrow');
     this.windDescr = document.querySelector('.weather__wind-descr');
     this.weatherHumidity = document.querySelector('.weather__humidity');
+    this.cityTime = document.querySelector('.weather__city-time');
 
     this.warnMessage = document.createElement('span');
 
@@ -23,12 +24,13 @@ export default class Weather {
 
   async setWeather() {
     this.dataWrapper.classList.remove('js-show-elem');
+
     if (this.warnMessage) this.warnMessage.remove();
 
     try {
-      const weatherData = await getWeather(this.weatherCity.value);
+      this.weatherData = await getWeather(this.weatherCity.value);
 
-      if (weatherData.cod === 200) {
+      if (this.weatherData.cod === 200) {
         this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
           1
         )}`;
@@ -37,33 +39,36 @@ export default class Weather {
 
       this.dataWrapper.classList.add('js-show-elem');
       this.weatherIcon.className = 'weather__icon owf';
-      this.weatherIcon.classList.add(`owf-${weatherData.weather[0].id}`);
+      this.weatherIcon.classList.add(`owf-${this.weatherData.weather[0].id}`);
 
       this.weatherCountry.textContent = `${
-        countryNames[weatherData.sys.country]
+        countryNames[this.weatherData.sys.country]
       }`;
-      this.weatherTemp.textContent = `${Math.round(weatherData.main.temp)}°C`;
-      this.weatherFeel.textContent = `Feels like ${Math.round(
-        weatherData.main.feels_like
+      this.weatherTemp.textContent = `${Math.round(
+        this.weatherData.main.temp
       )}°C`;
-      this.weatherDescr.textContent = `${weatherData.weather[0].description[0].toUpperCase()}${weatherData.weather[0].description.slice(
+      this.weatherFeel.textContent = `Feels like ${Math.round(
+        this.weatherData.main.feels_like
+      )}°C`;
+      this.weatherDescr.textContent = `${this.weatherData.weather[0].description[0].toUpperCase()}${this.weatherData.weather[0].description.slice(
         1
       )}`;
       this.windSpeed.textContent = `Wind: ${Math.round(
-        weatherData.wind.speed
+        this.weatherData.wind.speed
       )}m/s,`;
-      this.weatherHumidity.textContent = `Humidity: ${weatherData.main.humidity}%`;
+      this.weatherHumidity.textContent = `Humidity: ${this.weatherData.main.humidity}%`;
       this.windDescr.textContent = `${
-        windDirections[this.findDirection(weatherData.wind.deg)]
+        windDirections[this.findDirection(this.weatherData.wind.deg)]
       }`;
 
       this.windArrow.style.transform = `rotate(${
-        weatherData.wind.deg - 180
+        this.weatherData.wind.deg - 180
       }deg)`;
       this.windArrow.style.backgroundImage =
         'url("./assets/svg/wind-arrow.svg")';
     } catch (err) {
       this.weatherCity.value = '';
+      this.cityTime.textContent = '';
 
       this.weatherCountry.textContent = '';
       this.weatherIcon.textContent = '';
@@ -80,6 +85,31 @@ export default class Weather {
       this.warnMessage.textContent = 'No weather data';
       this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
     }
+  }
+
+  async setCityTime() {
+    try {
+      const timezone = await this.weatherData.timezone;
+
+      if (!timezone && timezone !== 0) return;
+
+      const date = new Date();
+      const time = date.getTime();
+      const timeOffset = date.getTimezoneOffset() * 60000;
+      const utc = time + timeOffset;
+      const localTime = utc + 1000 * timezone;
+      const localDate = new Date(localTime);
+
+      let hours = localDate.getHours();
+      let minutes = localDate.getMinutes();
+
+      if (hours < 10) hours = `0${hours}`;
+      if (minutes < 10) minutes = `0${minutes}`;
+
+      this.cityTime.textContent = `${hours}:${minutes}`;
+
+      this.cityTime.classList.add('js-show-elem');
+    } catch (err) {}
   }
 
   findDirection(windDdegrees) {
@@ -104,5 +134,6 @@ export default class Weather {
     this.addListeners();
 
     setInterval(() => this.setWeather(), 20 * 60000);
+    setInterval(() => this.setCityTime(), 1000);
   }
 }

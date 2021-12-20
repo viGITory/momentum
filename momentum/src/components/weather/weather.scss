@@ -2,6 +2,7 @@
   min-height: 213px;
 
   &__wrapper {
+    position: relative;
     height: 40px;
   }
 
@@ -32,18 +33,29 @@
     }
   }
 
-  &__country {
-    min-height: 12px;
-
+  &__country,
+  &__city-time {
     color: rgba(255, 255, 255, 0.7);
   }
 
+  &__country {
+    min-height: 12px;
+  }
+
+  &__city-time {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  &__city-time,
   &__data {
     animation-duration: 1s;
     animation-timing-function: ease;
   }
 
   &__country,
+  &__city-time,
   &__temp-wrapper,
   &__icon,
   &__text {
@@ -84,6 +96,7 @@
   }
 
   &__country,
+  &__city-time,
   &__feel {
     font-size: 0.75em;
   }

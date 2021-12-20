@@ -57,12 +57,13 @@ html(lang="en")
     div.page__center
       //- *** WEATHER ***
       section.section.weather
+        //-
         h2.visually-hidden
           | Weather
         div.weather__wrapper
           p.weather__country
+          p.weather__city-time
           input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
-          //- span.weather__country
         div.weather__data
           p.weather__temp-wrapper
             span.weather__icon
