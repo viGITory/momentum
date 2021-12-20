@@ -1,4 +1,5 @@
 import getImage from '../../api/image-api';
+import timesOfDay from '../../data/times-of-day';
 
 export default class ImageSlider {
   constructor() {
@@ -10,15 +11,14 @@ export default class ImageSlider {
   }
 
   async setImage() {
-    const timesArr = ['night', 'morning', 'afternoon', 'evening'];
-    const timeOfDay = timesArr[Math.floor(new Date().getHours() / 6)];
+    const dayPart = timesOfDay[Math.floor(new Date().getHours() / 6)];
 
     if (this.randomNum < 10) {
       this.randomNum = `0${this.randomNum}`;
     }
 
     try {
-      const imageData = await getImage(timeOfDay, this.randomNum);
+      const imageData = await getImage(dayPart, this.randomNum);
 
       this.background.style.backgroundImage = `url(${URL.createObjectURL(
         imageData

@@ -1,4 +1,5 @@
 import Background from '../background/background';
+import timesOfDay from '../../data/times-of-day';
 
 export default class DateWidget {
   constructor() {
@@ -20,7 +21,6 @@ export default class DateWidget {
   }
 
   setDate() {
-    const timesOfDay = ['night', 'morning', 'afternoon', 'evening'];
     const date = new Date();
     let hours = date.getHours();
     let minutes = date.getMinutes();
