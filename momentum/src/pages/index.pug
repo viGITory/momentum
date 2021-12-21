@@ -61,9 +61,13 @@ html(lang="en")
         h2.visually-hidden
           | Weather
         div.weather__wrapper
-          p.weather__country
-          p.weather__city-time
-          input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
+          div.weather__top
+            input.weather__input(type="text" placeholder="[Enter city]" aria-label="user-city")
+            p.weather__city-time
+          div.weather__country-wrapper
+            span.weather__line
+            p.weather__country
+            span.weather__line
         div.weather__data
           p.weather__temp-wrapper
             span.weather__icon

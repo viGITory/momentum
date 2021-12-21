@@ -15,7 +15,7 @@
 
   &__controls {
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   &__description {
@@ -101,10 +101,10 @@
     -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 
-    transition: background-image .2s ease, filter .2s ease;
+    transition: background-image 0.2s ease, filter 0.2s ease;
 
     &:hover {
-      filter: opacity(.7);
+      filter: opacity(0.7);
     }
 
     &--prev {
@@ -128,7 +128,13 @@
   }
 
   &__volume-bar {
-    background-image: linear-gradient(to right, #ff4040 50%, #ff4040 50%, #fff 0%, #fff 100%);
+    background-image: linear-gradient(
+      to right,
+      #ff4040 50%,
+      #ff4040 50%,
+      #fff 0%,
+      #fff 100%
+    );
   }
 
   &__playlist {

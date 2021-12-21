@@ -83,7 +83,7 @@ export default class Weather {
       this.warnMessage.classList.add('js-show-elem');
       this.warnMessage.classList.add('js-weather-warn');
       this.warnMessage.textContent = 'No weather data';
-      this.weatherCity.insertAdjacentElement('afterend', this.warnMessage);
+      this.dataWrapper.insertAdjacentElement('beforebegin', this.warnMessage);
     }
   }
 

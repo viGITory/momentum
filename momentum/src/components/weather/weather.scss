@@ -1,24 +1,29 @@
 .weather {
-  min-height: 213px;
+  min-height: 208px;
+
+  &__top,
+  &__country-wrapper,
+  &__temp-wrapper,
+  &__wind {
+    display: flex;
+    align-items: center;
+  }
 
   &__wrapper {
-    position: relative;
     height: 40px;
   }
 
   &__input {
     box-sizing: border-box;
     display: block;
-    width: 100%;
     padding: 0;
-    padding-bottom: 5px;
+    padding-right: 5px;
 
     font-family: inherit;
     font-size: 1.375em;
 
     background-color: transparent;
     border: 0;
-    border-bottom: 1px solid #ff4040;
     outline: none;
 
     transition: color 0.2s ease;
@@ -27,25 +32,45 @@
     &::placeholder {
       color: inherit;
     }
+  }
 
-    &:hover {
-      color: rgba(255, 255, 255, 0.7);
-    }
+  &__input,
+  &__line {
+    width: 100%;
+  }
+
+  &__country-wrapper {
+    min-height: 15px;
   }
 
   &__country,
-  &__city-time {
+  &__city-time,
+  &__input:hover {
     color: rgba(255, 255, 255, 0.7);
   }
 
-  &__country {
-    min-height: 12px;
+  &__city-time {
+    min-width: 40px;
+
+    text-align: right;
   }
 
-  &__city-time {
-    position: absolute;
-    top: 0;
-    right: 0;
+  &__country {
+    flex-shrink: 0;
+    max-width: 90%;
+    padding: 0 7px;
+
+    font-size: 0.625em;
+    letter-spacing: calc(2em / 5);
+    text-indent: calc(2em / 5);
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  &__line {
+    height: 1px;
+
+    background-color: rgba(255, 255, 255, 0.7);
   }
 
   &__city-time,
@@ -62,15 +87,9 @@
     margin: 0;
   }
 
-  &__temp-wrapper,
-  &__wind {
-    display: flex;
-    align-items: center;
-  }
-
   &__temp-wrapper {
     min-height: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     column-gap: 10px;
   }
 
@@ -95,7 +114,6 @@
     font-size: 33px;
   }
 
-  &__country,
   &__city-time,
   &__feel {
     font-size: 0.75em;

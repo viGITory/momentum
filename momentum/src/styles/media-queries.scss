@@ -39,9 +39,6 @@
       min-height: 50px;
     }
 
-    &__country {
-      min-height: 14px;
-    }
     &__wind {
       column-gap: 7px;
     }
@@ -132,21 +129,12 @@
     background-color: rgba(0, 0, 0, 0.7);
 
     &__top {
+      position: static;
       flex-grow: 0;
       row-gap: 70px;
 
       background-color: transparent;
       border: 0;
-    }
-
-    &__arrow {
-      &--prev {
-        left: 0;
-      }
-
-      &--next {
-        right: 0;
-      }
     }
   }
 
@@ -192,10 +180,6 @@
   }
 
   .weather {
-    &__country {
-      min-height: 17px;
-    }
-
     &__wind-speed,
     &__humidity {
       padding-left: 40px;
