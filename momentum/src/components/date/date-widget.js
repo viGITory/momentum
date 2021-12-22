@@ -65,7 +65,10 @@ export default class DateWidget {
   addListeners() {
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('vigitory-timeFormat', this.timeFormat);
-      localStorage.setItem('vigitory-name', this.userName.value);
+
+      if (this.userName.value)
+        localStorage.setItem('vigitory-userName', this.userName.value);
+      else localStorage.removeItem('vigitory-userName');
     });
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -73,8 +76,8 @@ export default class DateWidget {
       else if (this.timeFormat === 24)
         this.format24.classList.add('js-active-btn');
 
-      if (localStorage.getItem('vigitory-name')) {
-        this.userName.value = localStorage.getItem('vigitory-name');
+      if (localStorage.getItem('vigitory-userName')) {
+        this.userName.value = localStorage.getItem('vigitory-userName');
       }
     });
 
