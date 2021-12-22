@@ -122,10 +122,8 @@ export default class Weather {
   }
 
   addListeners() {
-    this.weatherCity.addEventListener('keyup', (event) => {
-      if (event.code === 'Enter' && this.weatherCity.value !== '') {
-        this.setWeather();
-      }
+    this.weatherCity.addEventListener('change', () => {
+      if (this.weatherCity.value !== '') this.setWeather();
     });
   }
 
