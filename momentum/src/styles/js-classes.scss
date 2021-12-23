@@ -29,6 +29,12 @@
   animation-timing-function: ease;
 }
 
+.js-weather-line {
+  width: 100%;
+
+  animation-name: weather-line;
+}
+
 // *** SETTINGS ***
 .js-hide-section {
   opacity: 0;

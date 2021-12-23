@@ -5,6 +5,7 @@ import countryNames from '../../data/country-names';
 export default class Weather {
   constructor() {
     this.weatherCountry = document.querySelector('.weather__country');
+    this.weatherLines = document.querySelectorAll('.weather__line');
     this.weatherCity = document.querySelector('.weather__input');
     this.dataWrapper = document.querySelector('.weather__data');
     this.weatherIcon = document.querySelector('.weather__icon');
@@ -24,6 +25,10 @@ export default class Weather {
 
   async setWeather() {
     this.dataWrapper.classList.remove('js-show-elem');
+    this.weatherCountry.classList.remove('js-show-elem');
+    this.weatherLines.forEach((item) => {
+      item.classList.remove('js-weather-line');
+    });
 
     if (this.warnMessage) this.warnMessage.remove();
 
@@ -35,9 +40,14 @@ export default class Weather {
           1
         )}`;
         localStorage.setItem('vigitory-city', this.weatherCity.value);
+
+        this.weatherLines.forEach((item) => {
+          item.classList.add('js-weather-line');
+        });
       }
 
       this.dataWrapper.classList.add('js-show-elem');
+      this.weatherCountry.classList.add('js-show-elem');
       this.weatherIcon.className = 'weather__icon owf';
       this.weatherIcon.classList.add(`owf-${this.weatherData.weather[0].id}`);
 
