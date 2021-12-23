@@ -1,32 +1,46 @@
 export default class Settings {
   constructor() {
-    this.playerSection = document.querySelector('.audio-player');
-    this.weatherSection = document.querySelector('.weather');
-    this.dateSection = document.querySelector('.date');
-    this.quotesSection = document.querySelector('.quotes');
-    this.footer = document.querySelector('.main-footer');
-
-    this.buttonsWrapper = document.querySelector('.settings__wrapper');
-
-    this.buttonPlayer = document.querySelector('.settings__button--player');
-    this.buttonWeather = document.querySelector('.settings__button--weather');
-    this.buttonDate = document.querySelector('.settings__button--date');
-    this.buttonQuotes = document.querySelector('.settings__button--quotes');
-    this.buttonFooter = document.querySelector('.settings__button--footer');
+    this.inputsWrapper = document.querySelector('.settings__wrapper');
+    this.inputs = document.querySelectorAll('.settings__button');
   }
 
   addListeners() {
-    this.buttonsWrapper.addEventListener('click', (event) => {
-      if (event.target === this.buttonPlayer)
-        this.playerSection.classList.toggle('js-hide-section');
-      else if (event.target === this.buttonWeather)
-        this.weatherSection.classList.toggle('js-hide-section');
-      else if (event.target === this.buttonDate)
-        this.dateSection.classList.toggle('js-hide-section');
-      else if (event.target === this.buttonQuotes)
-        this.quotesSection.classList.toggle('js-hide-section');
-      else if (event.target === this.buttonFooter)
-        this.footer.classList.toggle('js-hide-section');
+    this.inputsWrapper.addEventListener('click', (event) => {
+      const inputId = event.target.getAttribute('id').split('-')[1];
+      const section = document.querySelector(`#section-${inputId}`);
+
+      section.classList.toggle('js-hide-section');
+      event.target.classList.toggle('js-active-btn');
+    });
+
+    window.addEventListener('beforeunload', () => {
+      this.inputs.forEach((input) => {
+        const inputId = input.getAttribute('id').split('-')[1];
+
+        if (input.checked)
+          localStorage.setItem(`vigitory-${inputId}`, 'visible');
+        else localStorage.setItem(`vigitory-${inputId}`, 'hidden');
+      });
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      this.inputs.forEach((input) => {
+        const inputId = input.getAttribute('id').split('-')[1];
+        const section = document.querySelector(`#section-${inputId}`);
+
+        if (localStorage.getItem(`vigitory-${inputId}`) === 'visible') {
+          input.setAttribute('checked', true);
+          section.classList.remove('js-hide-section');
+          input.classList.add('js-active-btn');
+        } else if (localStorage.getItem(`vigitory-${inputId}`) === 'hidden') {
+          input.removeAttribute('checked');
+          section.classList.add('js-hide-section');
+          input.classList.remove('js-active-btn');
+        } else {
+          input.classList.add('js-active-btn');
+          section.classList.remove('js-hide-section');
+        }
+      });
     });
   }
 

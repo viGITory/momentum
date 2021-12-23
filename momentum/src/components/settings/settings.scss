@@ -3,12 +3,16 @@
 
   animation: fade-in 1s ease;
 
+  &__title,
+  &__button::after {
+    text-align: center;
+  }
+
   &__title {
     margin: 0;
     margin-bottom: 5px;
 
     font-size: 0.75em;
-    text-align: center;
 
     animation: settings-help 40s ease infinite;
   }
@@ -22,19 +26,26 @@
     width: 30px;
     min-width: 30px;
     height: 30px;
-    padding: 0;
+    margin: 0;
 
     font-family: inherit;
     font-size: 12px;
     line-height: 30px;
     color: inherit;
 
+    appearance: none;
     cursor: pointer;
     background-color: rgba(0, 0, 0, 0.5);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 3px;
 
     transition: border-color 0.5s ease;
+
+    &::after {
+      display: block;
+
+      content: attr(value);
+    }
 
     &:hover {
       border-color: rgba(255, 255, 255, 0.5);

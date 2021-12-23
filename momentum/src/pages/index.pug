@@ -21,7 +21,7 @@ html(lang="en")
         span.visually-hidden
           | Next slide
       //- *** DATE ***
-      section.section.date
+      section.section.date#section-date
         h2.visually-hidden
           | Date
         div.date__time-wrapper
@@ -45,7 +45,7 @@ html(lang="en")
           span.date__greeting
           input.date__input(type="text" placeholder="[Enter your name]" aria-label="username")
 
-      section.section.quotes
+      section.section.quotes#section-quotes
         h2.visually-hidden
           | Quotes
         button.quotes__button(type="button")
@@ -56,8 +56,7 @@ html(lang="en")
 
     div.page__center
       //- *** WEATHER ***
-      section.section.weather
-        //-
+      section.section.weather#section-weather
         h2.visually-hidden
           | Weather
         div.weather__wrapper
@@ -81,7 +80,7 @@ html(lang="en")
           p.weather__text.weather__humidity
 
       //- *** AUDIO PLAYER ***
-      section.section.audio-player
+      section.section.audio-player#section-player
         h2.visually-hidden
           | Audio-player
         div.audio-player__controls
@@ -129,19 +128,14 @@ html(lang="en")
         p.settings__title
           | Click to hide/show widget
         div.settings__wrapper
-          button.settings__button.settings__button--player(type="button" title="Player")
-            | P
-          button.settings__button.settings__button--weather(type="button" title="Weather")
-            | W
-          button.settings__button.settings__button--date(type="button" title="Date/time")
-            | D
-          button.settings__button.settings__button--quotes(type="button" title="Quotes")
-            | Q
-          button.settings__button.settings__button--footer(type="button" title="Footer")
-            | F
+          input.settings__button#checkbox-player(type="checkbox" value="P" aria-label="checkbox-player" checked)
+          input.settings__button#checkbox-weather(type="checkbox" value="W" aria-label="checkbox-weather" checked)
+          input.settings__button#checkbox-date(type="checkbox" value="D" aria-label="checkbox-date" checked)
+          input.settings__button#checkbox-quotes(type="checkbox" value="Q" aria-label="checkbox-quotes" checked)
+          input.settings__button#checkbox-footer(type="checkbox" value="F" aria-label="checkbox-footer" checked)
 
       //- *** FOOTER ***
-      footer.section.main-footer
+      footer.section.main-footer#section-footer
         div.main-footer__left
           a.main-footer__link(href="https://github.com/viGITory" target="_blank" title="“This is the way..” (The Mandalorian)")
             | viGITory
@@ -149,5 +143,5 @@ html(lang="en")
             time(datetime="2021")
               | 2021
         a.main-footer__logo(href="https://rs.school/js" target="_blank")
-        span.visually-hidden
-          | Rsschool
+          span.visually-hidden
+            | Rsschool
