@@ -50,7 +50,7 @@ export default class Settings {
         const section = document.querySelector(`#section-${inputId}`);
 
         if (localStorage.getItem(`vigitory-${inputId}`) === 'visible') {
-          input.setAttribute('checked', true);
+          input.setAttribute('checked', '');
           section.classList.remove('js-hide-section');
           input.classList.add('js-active-btn');
         } else if (localStorage.getItem(`vigitory-${inputId}`) === 'hidden') {
