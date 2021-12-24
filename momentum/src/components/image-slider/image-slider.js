@@ -3,11 +3,19 @@ import timesOfDay from '../../data/times-of-day';
 
 export default class ImageSlider {
   constructor() {
-    this.background = document.querySelector('.background');
-    this.arrowPrev = document.querySelector('.page__arrow--prev');
-    this.arrowNext = document.querySelector('.page__arrow--next');
+    this.container = document.createElement('div');
+    this.container.classList.add('background');
 
     this.randomNum = Math.floor(1 + Math.random() * 19);
+  }
+
+  getElements() {
+    this.arrowPrev = document.querySelector('.page__arrow--prev');
+    this.arrowNext = document.querySelector('.page__arrow--next');
+  }
+
+  render() {
+    return this.container;
   }
 
   async setImage() {
@@ -20,10 +28,10 @@ export default class ImageSlider {
     try {
       const imageData = await getImage(dayPart, this.randomNum);
 
-      this.background.style.backgroundImage = `url(${URL.createObjectURL(
+      this.container.style.backgroundImage = `url(${URL.createObjectURL(
         imageData
       )}`;
-      this.background.style.opacity = '1';
+      this.container.style.opacity = '1';
     } catch (err) {}
   }
 
@@ -48,6 +56,7 @@ export default class ImageSlider {
   }
 
   init() {
+    this.getElements();
     this.setImage();
     this.addListeners();
   }

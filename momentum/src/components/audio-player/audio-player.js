@@ -2,22 +2,82 @@ import playlist from '../../data/playlist';
 
 export default class AudioPlayer {
   constructor() {
-    this.playButton = document.querySelector('.audio-player__button--play');
-    this.prevButton = document.querySelector('.audio-player__button--prev');
-    this.nextButton = document.querySelector('.audio-player__button--next');
-    this.volumeButton = document.querySelector('.audio-player__button--volume');
-    this.progressBar = document.querySelector('.audio-player__progress');
-    this.progressTrackName = document.querySelector('.audio-player__name');
-    this.progressTime = document.querySelector('.audio-player__time');
-    this.audioDuration = document.querySelector('.audio-player__duration');
-    this.volumeBar = document.querySelector('.audio-player__volume-bar');
-    this.playerPlaylist = document.querySelector('.audio-player__playlist');
+    this.container = document.createElement('section');
+    this.container.classList.add('section', 'audio-player');
+    this.container.id = 'section-player';
 
     this.audioPlayer = new Audio();
     this.audioPlayer.volume = 0.5;
     this.currentVolume = this.audioPlayer.volume;
 
     this.currentTrack = 0;
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <h2 class="visually-hidden">Audio-player</h2>
+      <div class="audio-player__controls">
+        <div class="audio-player__top">
+          <div class="audio-player__description">
+            <div class="audio-player__name"></div>
+            <div>
+              <span class="audio-player__time">00:00</span>
+              /
+              <span class="audio-player__duration">00:00</span>
+            </div>
+          </div>
+          <input class="audio-player__progress" type="range" value="0" min="0" max="100" step="1" aria-label="progress">
+        </div>
+        <div class="audio-player__center">
+          <div class="audio-player__buttons">
+            <button class="audio-player__button audio-player__button--prev">
+              <span class="visually-hidden">Prev</span>
+            </button>
+            <button class="audio-player__button audio-player__button--play">
+              <span class="visually-hidden">Play/pause</span>
+            </button><button class="audio-player__button audio-player__button--next">
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <div class="audio-player__volume">
+            <button class="audio-player__button audio-player__button--volume">
+              <span class="visually-hidden">Volume</span>
+            </button>
+            <input class="audio-player__volume-bar" type="range" value="50" min="0" max="100" step="1" aria-label="volume">
+          </div>
+        </div>
+      </div>
+      <ul class="audio-player__playlist"></ul>
+    `;
+
+    return this.container;
+  }
+
+  getElements() {
+    this.audioDuration = this.container.querySelector(
+      '.audio-player__duration'
+    );
+    this.progressTrackName = this.container.querySelector(
+      '.audio-player__name'
+    );
+    this.playerPlaylist = this.container.querySelector(
+      '.audio-player__playlist'
+    );
+    this.progressTime = this.container.querySelector('.audio-player__time');
+    this.playButton = this.container.querySelector(
+      '.audio-player__button--play'
+    );
+    this.prevButton = this.container.querySelector(
+      '.audio-player__button--prev'
+    );
+    this.nextButton = this.container.querySelector(
+      '.audio-player__button--next'
+    );
+    this.progressBar = this.container.querySelector('.audio-player__progress');
+    this.volumeButton = this.container.querySelector(
+      '.audio-player__button--volume'
+    );
+    this.volumeBar = this.container.querySelector('.audio-player__volume-bar');
   }
 
   createPlaylist() {
@@ -35,7 +95,7 @@ export default class AudioPlayer {
   }
 
   playAudio() {
-    const tracks = document.querySelectorAll('.audio-player__track');
+    const tracks = this.container.querySelectorAll('.audio-player__track');
 
     this.audioDuration.textContent = playlist[this.currentTrack].duration;
     this.progressTrackName.textContent = playlist[this.currentTrack].title;
@@ -114,7 +174,7 @@ export default class AudioPlayer {
   };
 
   addListeners() {
-    const tracks = document.querySelectorAll('.audio-player__track');
+    const tracks = this.container.querySelectorAll('.audio-player__track');
 
     this.playButton.addEventListener('click', () => {
       this.playAudio();
@@ -187,6 +247,7 @@ export default class AudioPlayer {
   }
 
   init() {
+    this.getElements();
     this.createPlaylist();
     this.addListeners();
   }

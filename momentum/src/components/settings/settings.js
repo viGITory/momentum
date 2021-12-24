@@ -1,7 +1,28 @@
 export default class Settings {
   constructor() {
-    this.inputsWrapper = document.querySelector('.settings__wrapper');
-    this.inputs = document.querySelectorAll('.settings__button');
+    this.container = document.createElement('section');
+    this.container.classList.add('page__settings', 'settings');
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <h2 class="visually-hidden">Settings</h2>
+      <p class="settings__title">Click to hide/show widget</p>
+      <div class="settings__wrapper">
+        <input class="settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
+        <input class="settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
+        <input class="settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
+        <input class="settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
+        <input class="settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
+      </div>
+    `;
+
+    return this.container;
+  }
+
+  getElements() {
+    this.inputsWrapper = this.container.querySelector('.settings__wrapper');
+    this.inputs = this.container.querySelectorAll('.settings__button');
   }
 
   addListeners() {
@@ -45,6 +66,7 @@ export default class Settings {
   }
 
   init() {
+    this.getElements();
     this.addListeners();
   }
 }

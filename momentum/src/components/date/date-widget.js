@@ -1,23 +1,60 @@
-import Background from '../background/background';
+import ImageSlider from '../image-slider/image-slider';
 import timesOfDay from '../../data/times-of-day';
 
 export default class DateWidget {
   constructor() {
-    this.dateHours = document.querySelector('.date__hour');
-    this.dateMinutes = document.querySelector('.date__minute');
-    this.dateSeconds = document.querySelector('.date__second');
-    this.dateDay = document.querySelector('.date__day');
-    this.dateGreeting = document.querySelector('.date__greeting');
-    this.userName = document.querySelector('.date__input');
-
-    this.format12 = document.querySelector('.time-format__item--12');
-    this.format24 = document.querySelector('.time-format__item--24');
-    this.formatAM = document.querySelector('.time-format__item--am');
-    this.formatPM = document.querySelector('.time-format__item--pm');
+    this.container = document.createElement('section');
+    this.container.classList.add('section', 'date');
+    this.container.id = 'section-date';
 
     this.timeFormat = +localStorage.getItem('vigitory-timeFormat') || 24;
 
-    this.backgroundSlider = new Background();
+    this.imageSlider = new ImageSlider();
+  }
+
+  render() {
+    this.container.innerHTML = `
+      <h2 class="visually-hidden">Date</h2>
+      <div class="date__time-wrapper">
+        <p class="date__time">
+          <span class="date__hour"></span>
+          <span class="date__minute"></span>
+          <span class="date__second"></span>
+        </p>
+        <div class="date__format time-format">
+          <div class="time-format__wrapper">
+            <button class="time-format__item time-format__item--12" type="button">12</button>
+            <button class="time-format__item time-format__item--24" type="button">24</button>
+          </div>
+          <div class="time-format__wrapper">
+            <span class="time-format__item time-format__item--am">AM</span>
+            <span class="time-format__item time-format__item--pm">PM</span>
+          </div>
+        </div>
+      </div>
+      <p class="date__day"></p>
+      <p class="date__wrapper">
+        <span class="date__greeting"></span>
+        <input class="date__input" type="text" placeholder="[Enter your name]" aria-label="username">
+      </p>
+    `;
+
+    return this.container;
+  }
+
+  getElements() {
+    this.dateHours = this.container.querySelector('.date__hour');
+    this.dateMinutes = this.container.querySelector('.date__minute');
+    this.dateSeconds = this.container.querySelector('.date__second');
+    this.dateDay = this.container.querySelector('.date__day');
+    this.dateGreeting = this.container.querySelector('.date__greeting');
+
+    this.userName = this.container.querySelector('.date__input');
+
+    this.format12 = this.container.querySelector('.time-format__item--12');
+    this.format24 = this.container.querySelector('.time-format__item--24');
+    this.formatAM = this.container.querySelector('.time-format__item--am');
+    this.formatPM = this.container.querySelector('.time-format__item--pm');
   }
 
   setDate() {
@@ -31,7 +68,7 @@ export default class DateWidget {
     },`;
 
     if (hours % 6 === 0 && minutes === 0 && seconds === 0) {
-      this.backgroundSlider.setImage();
+      this.imageSlider.setImage();
     }
 
     if (hours >= 12 && hours < 24) {
@@ -95,6 +132,7 @@ export default class DateWidget {
   }
 
   init() {
+    this.getElements();
     this.setDate();
     this.addListeners();
   }

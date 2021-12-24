@@ -4,22 +4,63 @@ import countryNames from '../../data/country-names';
 
 export default class Weather {
   constructor() {
-    this.weatherCountry = document.querySelector('.weather__country');
-    this.weatherLines = document.querySelectorAll('.weather__line');
-    this.weatherCity = document.querySelector('.weather__input');
-    this.dataWrapper = document.querySelector('.weather__data');
-    this.weatherIcon = document.querySelector('.weather__icon');
-    this.weatherTemp = document.querySelector('.weather__temp');
-    this.weatherFeel = document.querySelector('.weather__feel');
-    this.weatherDescr = document.querySelector('.weather__descr');
-    this.windSpeed = document.querySelector('.weather__wind-speed');
-    this.windArrow = document.querySelector('.weather__wind-arrow');
-    this.windDescr = document.querySelector('.weather__wind-descr');
-    this.weatherHumidity = document.querySelector('.weather__humidity');
-    this.cityTime = document.querySelector('.weather__city-time');
+    this.container = document.createElement('section');
+    this.container.classList.add('section', 'weather');
+    this.container.id = 'section-weather';
 
     this.warnMessage = document.createElement('span');
+  }
 
+  render() {
+    this.container.innerHTML = `
+      <h2 class="visually-hidden">Weather</h2>
+      <div class="weather__wrapper">
+        <div class="weather__top">
+          <input class="weather__input" type="text" placeholder="[Enter city]" aria-label="user-city">
+          <p class="weather__city-time"></p>
+        </div>
+        <div class="weather__country-wrapper">
+          <span class="weather__line"></span>
+          <p class="weather__country"></p>
+          <span class="weather__line"></span>
+        </div>
+      </div>
+      <div class="weather__data">
+        <p class="weather__temp-wrapper">
+          <span class="weather__icon"></span>
+          <span class="weather__temp"></span>
+          <span class="weather__feel"></span>
+        </p>
+        <p class="weather__text weather__descr"></p>
+        <p class="weather__text weather__wind">
+          <span class="weather__wind-speed"></span>
+          <span class="weather__wind-arrow"></span>
+          <span class="weather__wind-descr"></span>
+        </p>
+        <p class="weather__text weather__humidity"></p>
+      </div>
+    `;
+
+    return this.container;
+  }
+
+  getElements() {
+    this.weatherCountry = this.container.querySelector('.weather__country');
+    this.weatherLines = this.container.querySelectorAll('.weather__line');
+    this.dataWrapper = this.container.querySelector('.weather__data');
+    this.weatherCity = this.container.querySelector('.weather__input');
+    this.weatherIcon = this.container.querySelector('.weather__icon');
+    this.weatherTemp = this.container.querySelector('.weather__temp');
+    this.weatherFeel = this.container.querySelector('.weather__feel');
+    this.weatherDescr = this.container.querySelector('.weather__descr');
+    this.windSpeed = this.container.querySelector('.weather__wind-speed');
+    this.windArrow = this.container.querySelector('.weather__wind-arrow');
+    this.windDescr = this.container.querySelector('.weather__wind-descr');
+    this.weatherHumidity = this.container.querySelector('.weather__humidity');
+    this.cityTime = this.container.querySelector('.weather__city-time');
+  }
+
+  setCityValue() {
     this.weatherCity.value = localStorage.getItem('vigitory-city') || 'Minsk';
   }
 
@@ -138,6 +179,8 @@ export default class Weather {
   }
 
   init() {
+    this.getElements();
+    this.setCityValue();
     this.setWeather();
     this.addListeners();
 
