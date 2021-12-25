@@ -16,7 +16,9 @@ export default class Weather {
       <h2 class="visually-hidden">Weather</h2>
       <div class="weather__wrapper">
         <div class="weather__top">
-          <input class="weather__input" type="text" placeholder="[Enter city]" aria-label="user-city">
+          <input class="weather__input" type="text" placeholder="[Enter city]" value="${
+            localStorage.getItem('vigitory-city') || 'Minsk'
+          }" aria-label="user-city">
           <p class="weather__city-time"></p>
         </div>
         <div class="weather__country-wrapper">
@@ -58,10 +60,6 @@ export default class Weather {
     this.windDescr = this.container.querySelector('.weather__wind-descr');
     this.weatherHumidity = this.container.querySelector('.weather__humidity');
     this.cityTime = this.container.querySelector('.weather__city-time');
-  }
-
-  setCityValue() {
-    this.weatherCity.value = localStorage.getItem('vigitory-city') || 'Minsk';
   }
 
   async setWeather() {
@@ -180,7 +178,6 @@ export default class Weather {
 
   init() {
     this.getElements();
-    this.setCityValue();
     this.setWeather();
     this.addListeners();
 
