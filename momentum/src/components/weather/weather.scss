@@ -1,5 +1,6 @@
 .weather {
   min-height: 208px;
+  position: relative;
 
   &__top,
   &__country-wrapper,
@@ -163,5 +164,25 @@
 
   &__humidity {
     background-image: url("../assets/svg/humidity-icon.svg");
+  }
+
+  &__map-wrapper,
+  &__map {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__map-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -9999;
+
+    -webkit-mask-image: radial-gradient(#000 -200%, transparent);
+  }
+
+  &__map {
+    background-color: transparent;
+    -webkit-mask-image: radial-gradient(#000 0%, transparent);
   }
 }

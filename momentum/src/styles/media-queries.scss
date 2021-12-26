@@ -108,7 +108,7 @@
 
     &__button {
       width: 40px;
-      min-height: 40px;
+      min-width: 40px;
       height: 40px;
 
       &--play {
@@ -192,6 +192,10 @@
     &__wind-arrow {
       width: 15px;
       height: 15px;
+    }
+
+    &__map {
+      -webkit-mask-image: radial-gradient(#000 -50%, transparent);
     }
   }
 

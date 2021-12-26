@@ -41,6 +41,9 @@ export default class Weather {
         </p>
         <p class="weather__text weather__humidity"></p>
       </div>
+      <div class="weather__map-wrapper">
+        <div class="weather__map" id="map"></div>
+      </div>
     `;
 
     return this.container;
@@ -62,6 +65,28 @@ export default class Weather {
     this.cityTime = this.container.querySelector('.weather__city-time');
   }
 
+  setMap(lat, lon) {
+    if (this.map) this.map.remove();
+
+    this.map = L.map('map', {
+      center: [lat, lon],
+      zoom: 8,
+      attributionControl: false,
+      zoomControl: false,
+    });
+
+    L.tileLayer(
+      'https://api.mapbox.com/styles/v1/pantory/ckxn8k9633p8415rqenh18x11/draft/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGFudG9yeSIsImEiOiJja3RvdWtrcTcwZ2JmMnVvYXhzcTJ1Ymx2In0.iHARQCH0cLkTZ2s52LQ-HQ',
+      {
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1,
+        accessToken:
+          'pk.eyJ1IjoicGFudG9yeSIsImEiOiJja3RvdWtrcTcwZ2JmMnVvYXhzcTJ1Ymx2In0.iHARQCH0cLkTZ2s52LQ-HQ',
+      }
+    ).addTo(this.map);
+  }
+
   async setWeather() {
     this.dataWrapper.classList.remove('js-show-elem');
     this.weatherCountry.classList.remove('js-show-elem');
@@ -73,6 +98,7 @@ export default class Weather {
 
     try {
       this.weatherData = await getWeather(this.weatherCity.value);
+      this.setMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
 
       if (this.weatherData.cod === 200) {
         this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
