@@ -1,6 +1,7 @@
 import getWeather from '../../api/weather-api';
 import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
+import findDirection from '../../utils/find-direction';
 
 export default class Weather {
   constructor() {
@@ -133,7 +134,7 @@ export default class Weather {
       )}m/s,`;
       this.weatherHumidity.textContent = `Humidity: ${this.weatherData.main.humidity}%`;
       this.windDescr.textContent = `${
-        windDirections[this.findDirection(this.weatherData.wind.deg)]
+        windDirections[findDirection(this.weatherData.wind.deg)]
       }`;
 
       this.windArrow.style.transform = `rotate(${
@@ -185,15 +186,6 @@ export default class Weather {
 
       this.cityTime.classList.add('js-show-elem');
     } catch (err) {}
-  }
-
-  findDirection(windDdegrees) {
-    let degrees = (windDdegrees * 16) / 360;
-
-    degrees = Math.round(degrees, 0);
-    degrees = (degrees + 16) % 16;
-
-    return degrees;
   }
 
   addListeners() {
