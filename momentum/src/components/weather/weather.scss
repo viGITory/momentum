@@ -10,7 +10,7 @@
     align-items: center;
   }
 
-  &__wrapper {
+  &__top-wrapper {
     height: 40px;
   }
 
@@ -101,7 +101,7 @@
     column-gap: 10px;
   }
 
-  &__wrapper,
+  &__top-wrapper,
   &__text {
     margin-bottom: 10px;
   }
@@ -159,6 +159,7 @@
     width: 10px;
     height: 10px;
 
+    background-image: url("../assets/svg/wind-arrow.svg");
     background-size: contain;
   }
 

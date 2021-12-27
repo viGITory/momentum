@@ -8,14 +8,15 @@ export default class Weather {
     this.container = document.createElement('section');
     this.container.classList.add('section', 'weather');
     this.container.id = 'section-weather';
-
-    this.warnMessage = document.createElement('span');
   }
 
   render() {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Weather</h2>
-      <div class="weather__wrapper">
+      <div class="weather__map-wrapper">
+        <div class="weather__map" id="map"></div>
+      </div>
+      <div class="weather__top-wrapper">
         <div class="weather__top">
           <input class="weather__input" type="text" placeholder="[Enter city]" value="${
             localStorage.getItem('vigitory-city') || 'Minsk'
@@ -28,42 +29,18 @@ export default class Weather {
           <span class="weather__line"></span>
         </div>
       </div>
-      <div class="weather__data">
-        <p class="weather__temp-wrapper">
-          <span class="weather__icon"></span>
-          <span class="weather__temp"></span>
-          <span class="weather__feel"></span>
-        </p>
-        <p class="weather__text weather__descr"></p>
-        <p class="weather__text weather__wind">
-          <span class="weather__wind-speed"></span>
-          <span class="weather__wind-arrow"></span>
-          <span class="weather__wind-descr"></span>
-        </p>
-        <p class="weather__text weather__humidity"></p>
-      </div>
-      <div class="weather__map-wrapper">
-        <div class="weather__map" id="map"></div>
-      </div>
+      <div class="weather__data"></div>
     `;
 
     return this.container;
   }
 
   getElements() {
+    this.weatherCity = this.container.querySelector('.weather__input');
+    this.cityTime = this.container.querySelector('.weather__city-time');
     this.weatherCountry = this.container.querySelector('.weather__country');
     this.weatherLines = this.container.querySelectorAll('.weather__line');
     this.dataWrapper = this.container.querySelector('.weather__data');
-    this.weatherCity = this.container.querySelector('.weather__input');
-    this.weatherIcon = this.container.querySelector('.weather__icon');
-    this.weatherTemp = this.container.querySelector('.weather__temp');
-    this.weatherFeel = this.container.querySelector('.weather__feel');
-    this.weatherDescr = this.container.querySelector('.weather__descr');
-    this.windSpeed = this.container.querySelector('.weather__wind-speed');
-    this.windArrow = this.container.querySelector('.weather__wind-arrow');
-    this.windDescr = this.container.querySelector('.weather__wind-descr');
-    this.weatherHumidity = this.container.querySelector('.weather__humidity');
-    this.cityTime = this.container.querySelector('.weather__city-time');
   }
 
   setMap(lat, lon) {
@@ -89,13 +66,11 @@ export default class Weather {
   }
 
   async setWeather() {
-    this.dataWrapper.classList.remove('js-show-elem');
     this.weatherCountry.classList.remove('js-show-elem');
+    this.dataWrapper.classList.remove('js-show-elem');
     this.weatherLines.forEach((item) => {
       item.classList.remove('js-weather-line');
     });
-
-    if (this.warnMessage) this.warnMessage.remove();
 
     try {
       this.weatherData = await getWeather(this.weatherCity.value);
@@ -112,54 +87,51 @@ export default class Weather {
         });
       }
 
-      this.dataWrapper.classList.add('js-show-elem');
+      this.dataWrapper.innerHTML = `
+        <p class="weather__temp-wrapper">
+          <span class="weather__icon weather__icon owf owf-${
+            this.weatherData.weather[0].id
+          }"></span>
+          <span class="weather__temp">${Math.round(
+            this.weatherData.main.temp
+          )}°C</span>
+          <span class="weather__feel">Feels like ${Math.round(
+            this.weatherData.main.feels_like
+          )}°C</span>
+        </p>
+        <p class="weather__text weather__descr">${this.weatherData.weather[0].description[0].toUpperCase()}${this.weatherData.weather[0].description.slice(
+        1
+      )}</p>
+        <p class="weather__text weather__wind">
+          <span class="weather__wind-speed">Wind: ${Math.round(
+            this.weatherData.wind.speed
+          )}m/s,</span>
+          <span class="weather__wind-arrow" style="transform: rotate(${
+            this.weatherData.wind.deg - 180
+          }deg)"></span>
+          <span class="weather__wind-descr">${
+            windDirections[findDirection(this.weatherData.wind.deg)]
+          }</span>
+        </p>
+        <p class="weather__text weather__humidity">Humidity: ${
+          this.weatherData.main.humidity
+        }%</p>
+      `;
+
       this.weatherCountry.classList.add('js-show-elem');
-      this.weatherIcon.className = 'weather__icon owf';
-      this.weatherIcon.classList.add(`owf-${this.weatherData.weather[0].id}`);
+      this.dataWrapper.classList.add('js-show-elem');
 
       this.weatherCountry.textContent = `${
         countryNames[this.weatherData.sys.country]
       }`;
-      this.weatherTemp.textContent = `${Math.round(
-        this.weatherData.main.temp
-      )}°C`;
-      this.weatherFeel.textContent = `Feels like ${Math.round(
-        this.weatherData.main.feels_like
-      )}°C`;
-      this.weatherDescr.textContent = `${this.weatherData.weather[0].description[0].toUpperCase()}${this.weatherData.weather[0].description.slice(
-        1
-      )}`;
-      this.windSpeed.textContent = `Wind: ${Math.round(
-        this.weatherData.wind.speed
-      )}m/s,`;
-      this.weatherHumidity.textContent = `Humidity: ${this.weatherData.main.humidity}%`;
-      this.windDescr.textContent = `${
-        windDirections[findDirection(this.weatherData.wind.deg)]
-      }`;
-
-      this.windArrow.style.transform = `rotate(${
-        this.weatherData.wind.deg - 180
-      }deg)`;
-      this.windArrow.style.backgroundImage =
-        'url("./assets/svg/wind-arrow.svg")';
     } catch (err) {
+      this.dataWrapper.innerHTML = `
+        <span class="js-weather-warn js-show-elem">No weather data</span>
+      `;
+
       this.weatherCity.value = '';
       this.cityTime.textContent = '';
-
       this.weatherCountry.textContent = '';
-      this.weatherIcon.textContent = '';
-      this.weatherTemp.textContent = '';
-      this.weatherFeel.textContent = '';
-      this.weatherDescr.textContent = '';
-      this.windSpeed.textContent = '';
-      this.windArrow.style.backgroundImage = 'none';
-      this.windDescr.textContent = '';
-      this.weatherHumidity.textContent = '';
-
-      this.warnMessage.classList.add('js-show-elem');
-      this.warnMessage.classList.add('js-weather-warn');
-      this.warnMessage.textContent = 'No weather data';
-      this.dataWrapper.insertAdjacentElement('beforebegin', this.warnMessage);
     }
   }
 
