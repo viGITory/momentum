@@ -15,16 +15,14 @@ export default class Quotes {
       <button class="quotes__button" type="button">
         <span class="visually-hidden">Update quotes</span>
       </button>
-      <p class="quotes__text"></p>
-      <p class="quotes__author"></p>
+      <div class="quotes__wrapper"></div>
     `;
 
     return this.container;
   }
 
   getElements() {
-    this.quoteText = this.container.querySelector('.quotes__text');
-    this.quoteAuthor = this.container.querySelector('.quotes__author');
+    this.quotesWrapper = this.container.querySelector('.quotes__wrapper');
     this.quoteButton = this.container.querySelector('.quotes__button');
   }
 
@@ -33,13 +31,14 @@ export default class Quotes {
       const quoteData = await getQuotes(this.quoteId);
       this.quoteId = quoteData.id;
 
-      this.quoteText.textContent = `"${quoteData.text}"`;
-      this.quoteAuthor.textContent = quoteData.author;
+      this.quotesWrapper.innerHTML = `
+        <p class="quotes__text">"${quoteData.text}"</p>
+        <p class="quotes__author">${quoteData.author}</p>
+      `;
     } catch (err) {
-      this.quoteText.textContent = 'No quotes data';
-      this.quoteAuthor.textContent = '';
-    } finally {
-      this.quoteText.classList.add('js-show-elem');
+      this.quotesWrapper.innerHTML = `
+        <p class="quotes__warn">No quotes data</p>
+      `;
     }
   }
 
@@ -50,7 +49,6 @@ export default class Quotes {
 
     this.quoteButton.addEventListener('animationend', () => {
       this.quoteButton.classList.remove('js-rotate-btn');
-      this.quoteText.classList.remove('js-show-elem');
       this.setQuotes();
     });
   }

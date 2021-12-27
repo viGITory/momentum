@@ -33,18 +33,23 @@
   }
 
   &__text,
-  &__author {
+  &__author,
+  &__warn {
     margin: 0;
   }
 
   &__text {
     margin-bottom: 10px;
-
-    animation-duration: 1s;
-    animation-timing-function: ease;
   }
 
-  &__author {
+  &__text,
+  &__author,
+  &__warn {
+    animation: fade-in 1s ease;
+  }
+
+  &__author,
+  &__warn {
     color: #ff4040;
   }
 }
