@@ -16,11 +16,7 @@ export default class DateWidget {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Date</h2>
       <div class="date__time-wrapper">
-        <p class="date__time">
-          <span class="date__hour"></span>
-          <span class="date__minute"></span>
-          <span class="date__second"></span>
-        </p>
+        <p class="date__time"></p>
         <div class="date__format time-format">
           <div class="time-format__wrapper">
             <button class="time-format__item time-format__item--12" type="button">12</button>
@@ -33,7 +29,7 @@ export default class DateWidget {
         </div>
       </div>
       <p class="date__day"></p>
-      <p class="date__wrapper">
+      <p class="date__greeting-wrapper">
         <span class="date__greeting"></span>
         <input class="date__input" type="text" placeholder="[Enter your name]" aria-label="username">
       </p>
@@ -43,9 +39,7 @@ export default class DateWidget {
   }
 
   getElements() {
-    this.dateHours = this.container.querySelector('.date__hour');
-    this.dateMinutes = this.container.querySelector('.date__minute');
-    this.dateSeconds = this.container.querySelector('.date__second');
+    this.dateTime = this.container.querySelector('.date__time');
     this.dateDay = this.container.querySelector('.date__day');
     this.dateGreeting = this.container.querySelector('.date__greeting');
 
@@ -86,9 +80,9 @@ export default class DateWidget {
     if (minutes < 10) minutes = `0${minutes}`;
     if (seconds < 10) seconds = `0${seconds}`;
 
-    this.dateHours.textContent = `${hours} : `;
-    this.dateMinutes.textContent = `${minutes} : `;
-    this.dateSeconds.textContent = `${seconds}`;
+    this.dateTime.innerHTML = `
+      ${hours} : ${minutes} : <span class="date__second">${seconds}</span>
+    `;
 
     this.dateDay.textContent = date.toLocaleDateString('en-US', {
       weekday: 'long',
