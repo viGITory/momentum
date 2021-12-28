@@ -162,6 +162,14 @@
     &__time {
       font-size: 5em;
     }
+
+    &__day {
+      cursor: pointer;
+    }
+
+    &__day:hover ~ .calendar {
+      opacity: 1;
+    }
   }
 
   .time-format {

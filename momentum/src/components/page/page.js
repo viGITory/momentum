@@ -1,5 +1,6 @@
 import ImageSlider from '../image-slider/image-slider';
 import DateWidget from '../date/date-widget';
+import Calendar from '../calendar/calendar';
 import Quotes from '../quotes/quotes';
 import Weather from '../weather/weather';
 import AudioPlayer from '../audio-player/audio-player';
@@ -12,6 +13,7 @@ export default class Page {
 
     this.imageSlider = new ImageSlider();
     this.dateWidget = new DateWidget();
+    this.calendar = new Calendar();
     this.quotes = new Quotes();
     this.weather = new Weather();
     this.audioPlayer = new AudioPlayer();
@@ -51,6 +53,10 @@ export default class Page {
     this.pageCenter.append(this.audioPlayer.render());
     this.pageBottom.append(this.settings.render());
     this.pageBottom.append(this.mainFooter.render());
+
+    this.container
+      .querySelector('.date__day-wrapper')
+      .append(this.calendar.render());
   }
 
   init() {
@@ -60,6 +66,7 @@ export default class Page {
 
     this.imageSlider.init();
     this.dateWidget.init();
+    this.calendar.init();
     this.quotes.init();
     this.weather.init();
     this.audioPlayer.init();

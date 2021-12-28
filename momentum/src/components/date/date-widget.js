@@ -28,7 +28,9 @@ export default class DateWidget {
           </div>
         </div>
       </div>
-      <p class="date__day"></p>
+      <div class="date__day-wrapper">
+        <p class="date__day"></p>
+      </div>
       <p class="date__greeting-wrapper">
         <span class="date__greeting"></span>
         <input class="date__input" type="text" placeholder="[Enter your name]" aria-label="username">
