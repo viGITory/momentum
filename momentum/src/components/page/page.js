@@ -59,10 +59,33 @@ export default class Page {
       .append(this.calendar.render());
   }
 
+  updateComponents() {
+    const date = new Date();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const seconds = date.getSeconds();
+
+    if (
+      date.getDate() === 1 &&
+      hours % 6 === 0 &&
+      minutes === 0 &&
+      seconds === 0
+    ) {
+      this.calendar.init();
+    }
+
+    if (hours % 6 === 0 && minutes === 0 && seconds === 0) {
+      this.imageSlider.setImage();
+    }
+
+    setTimeout(() => this.updateComponents(), 1000);
+  }
+
   init() {
     this.render();
     this.getElements();
     this.addComponents();
+    this.updateComponents();
 
     this.imageSlider.init();
     this.dateWidget.init();

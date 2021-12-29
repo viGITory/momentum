@@ -1,4 +1,3 @@
-import ImageSlider from '../image-slider/image-slider';
 import timesOfDay from '../../data/times-of-day';
 
 export default class DateWidget {
@@ -8,8 +7,6 @@ export default class DateWidget {
     this.container.id = 'section-date';
 
     this.timeFormat = +localStorage.getItem('vigitory-timeFormat') || 24;
-
-    this.imageSlider = new ImageSlider();
   }
 
   render() {
@@ -62,10 +59,6 @@ export default class DateWidget {
     this.dateGreeting.textContent = `Good ${
       timesOfDay[Math.floor(hours / 6)]
     },`;
-
-    if (hours % 6 === 0 && minutes === 0 && seconds === 0) {
-      this.imageSlider.setImage();
-    }
 
     if (hours >= 12 && hours < 24) {
       this.formatPM.classList.add('js-active-btn');
