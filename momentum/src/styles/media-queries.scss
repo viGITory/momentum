@@ -150,21 +150,30 @@
   }
 
   .date {
-    flex-direction: column;
-    align-items: center;
-
-    &,
     &__time-wrapper,
     &__format {
       display: flex;
+    }
+
+    &__time-wrapper {
+      justify-content: center;
     }
 
     &__time {
       font-size: 5em;
     }
 
+    &__day-wrapper {
+      max-width: 350px;
+      margin: 0 auto;
+    }
+
     &__day {
       cursor: pointer;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
     }
 
     &__day:hover ~ .calendar {

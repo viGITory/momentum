@@ -30,6 +30,7 @@
     border: 0;
   }
 
+  &__name,
   &__progress,
   &__volume-bar,
   &__playlist {
@@ -147,8 +148,6 @@
     overflow: hidden;
 
     white-space: nowrap;
-
-    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
 
     animation-name: track-stop;
     animation-duration: 1s;

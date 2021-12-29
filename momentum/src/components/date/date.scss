@@ -38,16 +38,12 @@
     margin-bottom: 5px;
 
     transition: color 0.2s ease;
-
-    &:hover {
-      color: rgba(255, 255, 255, 0.7);
-    }
   }
 
   &__calendar {
     position: absolute;
     top: -15px;
-    left: -101%;
+    left: -60%;
   }
 
   &__greeting-wrapper {

@@ -19,7 +19,7 @@ export default class AudioPlayer {
       <div class="audio-player__controls">
         <div class="audio-player__top">
           <div class="audio-player__description">
-            <div class="audio-player__name"></div>
+            <p class="audio-player__name"></p>
             <div>
               <span class="audio-player__time">00:00</span>
               /

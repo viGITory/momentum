@@ -3,8 +3,9 @@
   justify-content: space-between;
   align-items: center;
 
-  &__year {
-    margin: 0;
+  &__link,
+  &__logo {
+    display: block;
   }
 
   &__link {
@@ -14,7 +15,6 @@
   }
 
   &__logo {
-    display: block;
     width: 70px;
     height: 30px;
 
