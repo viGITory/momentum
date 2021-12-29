@@ -73,6 +73,10 @@ export default class Weather {
     });
 
     try {
+      if (this.weatherCity.value === '')
+        this.weatherCity.value =
+          localStorage.getItem('vigitory-city') || 'Minsk';
+
       this.weatherData = await getWeather(this.weatherCity.value);
       this.setMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
 
