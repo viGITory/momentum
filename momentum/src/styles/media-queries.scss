@@ -163,6 +163,26 @@
       font-size: 5em;
     }
 
+    &__format {
+      position: relative;
+
+      &::before {
+        position: absolute;
+        top: -51%;
+        right: -8px;
+        width: 60px;
+        height: 60px;
+
+        content: "";
+        background-image: url("../assets/svg/santa-hat.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        transform: rotate(10deg);
+      }
+    }
+
     &__day-wrapper {
       max-width: 350px;
       margin: 0 auto;
