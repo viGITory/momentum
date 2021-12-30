@@ -21,12 +21,12 @@ export default class ImageSlider {
   async setImage() {
     const dayPart = timesOfDay[Math.floor(new Date().getHours() / 6)];
 
-    if (this.randomNum < 10) {
-      this.randomNum = `0${this.randomNum}`;
-    }
-
     try {
-      const imageData = await getImage(dayPart, this.randomNum);
+      let imageData;
+
+      if (this.randomNum < 10)
+        imageData = await getImage(dayPart, `0${this.randomNum}`);
+      else imageData = await getImage(dayPart, this.randomNum);
 
       this.container.style.backgroundImage = `url(${URL.createObjectURL(
         imageData
