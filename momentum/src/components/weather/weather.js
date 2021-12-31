@@ -73,6 +73,8 @@ export default class Weather {
     });
 
     try {
+      this.weatherCity.value = this.weatherCity.value.trim();
+
       if (this.weatherCity.value === '')
         this.weatherCity.value =
           localStorage.getItem('vigitory-city') || 'Minsk';
