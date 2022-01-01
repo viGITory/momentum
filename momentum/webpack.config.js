@@ -27,9 +27,6 @@ module.exports = ({ development }) => ({
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'assets/images/[name][ext]',
   },
-  optimization: {
-    minimize: false,
-  },
   module: {
     rules: [
       {
