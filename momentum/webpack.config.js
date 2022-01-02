@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const StylelintPlugin = require('stylelint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
@@ -64,6 +65,13 @@ module.exports = ({ development }) => ({
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: 'style.css' }),
+    new StylelintPlugin({
+      configFile: '.stylelintrc.json',
+      fix: true,
+      files: '**/*.scss',
+      syntax: 'scss',
+      failOnError: false,
+    }),
     new HtmlWebpackPlugin({
       template: 'src/pages/index.pug',
       favicon: './src/favicon.ico',
