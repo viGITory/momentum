@@ -35,6 +35,7 @@ module.exports = ({ development }) => ({
         generator: {
           filename: 'assets/svg/[name][ext]',
         },
+        use: 'svgo-loader',
       },
       {
         test: /\.(?:ico|gif|png|jpg|jpeg|webp)$/i,
