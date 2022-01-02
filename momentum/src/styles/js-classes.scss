@@ -19,6 +19,10 @@
   animation-duration: 2s;
 }
 
+.js-track-stop {
+  animation-name: track-stop;
+}
+
 // *** WEATHER ***
 .js-weather-warn {
   color: #ff4040;

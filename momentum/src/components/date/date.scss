@@ -27,6 +27,7 @@
 
   &__day-wrapper {
     position: relative;
+    margin-bottom: 5px;
   }
 
   &__day,
@@ -35,15 +36,15 @@
   }
 
   &__day {
-    margin-bottom: 5px;
-
     transition: color 0.2s ease;
   }
 
   &__calendar {
     position: absolute;
-    top: -15px;
-    left: -60%;
+    top: -330px;
+    left: 50%;
+
+    transform: translateX(-50%);
   }
 
   &__greeting-wrapper {

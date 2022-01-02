@@ -101,11 +101,13 @@ export default class AudioPlayer {
     this.progressTrackName.textContent = playlist[this.currentTrack].title;
 
     if (this.audioPlayer.paused) {
+      tracks[this.currentTrack].classList.remove('js-track-stop');
       tracks[this.currentTrack].classList.add('js-track-play');
       this.playButton.classList.add('js-play-btn');
       this.audioPlayer.play();
     } else {
       this.audioPlayer.pause();
+      tracks[this.currentTrack].classList.add('js-track-stop');
       tracks[this.currentTrack].classList.remove('js-track-play');
       this.playButton.classList.remove('js-play-btn');
     }
