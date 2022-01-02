@@ -36,7 +36,7 @@
   }
 
   &__day {
-    transition: color 0.2s ease;
+    transition: color .2s ease;
   }
 
   &__calendar {
@@ -74,10 +74,10 @@
     outline: none;
 
     &::placeholder {
+      font-size: .6875em;
       color: #fff;
-      font-size: 0.6875em;
 
-      transition: color 0.2s ease;
+      transition: color .2s ease;
     }
 
     &:hover {

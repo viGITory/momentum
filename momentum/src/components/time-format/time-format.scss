@@ -20,11 +20,11 @@
     line-height: 30px;
     color: inherit;
 
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgba(0, 0, 0, .5);
+    border: 1px solid rgba(255, 255, 255, .2);
     border-radius: 3px;
 
-    transition: border-color 0.2s ease;
+    transition: border-color .2s ease;
 
     &--12,
     &--24 {
@@ -36,7 +36,7 @@
       cursor: pointer;
 
       &:hover {
-        border-color: rgba(255, 255, 255, 0.5);
+        border-color: rgba(255, 255, 255, .5);
       }
     }
 

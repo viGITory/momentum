@@ -23,12 +23,12 @@
     -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 
-    transition: filter 0.2s ease;
+    transition: filter .2s ease;
     animation-duration: 1s;
     animation-timing-function: ease;
 
     &:hover {
-      filter: opacity(0.7);
+      filter: opacity(.7);
     }
   }
 
@@ -36,16 +36,12 @@
   &__author,
   &__warn {
     margin: 0;
+
+    animation: fade-in 1s ease;
   }
 
   &__text {
     margin-bottom: 10px;
-  }
-
-  &__text,
-  &__author,
-  &__warn {
-    animation: fade-in 1s ease;
   }
 
   &__author,
