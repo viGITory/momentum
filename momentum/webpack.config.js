@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ImageminWebpWebpackPlugin = require('imagemin-webp-webpack-plugin');
 
 const devServer = (isDev) =>
   !isDev
@@ -96,7 +95,6 @@ module.exports = ({ development }) => ({
         },
       ],
     }),
-    new ImageminWebpWebpackPlugin(),
   ],
   resolve: {
     extensions: ['.js'],
