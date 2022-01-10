@@ -8,3 +8,8 @@ import Page from '../components/page/page';
 import './self-rate';
 
 new Page().init();
+
+// ### PWA ###
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('./service-worker.js').catch();
+}
