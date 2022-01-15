@@ -62,6 +62,9 @@ export default class TodoList {
         targetParent.parentNode
           .querySelector('.todo-list__input-wrapper')
           .classList.add('todo-list__input-wrapper--complete');
+        targetParent.parentNode.querySelector(
+          '.todo-list__input'
+        ).readOnly = true;
         targetParent.parentNode.querySelector('.todo-list__input').style.color =
           'rgba(255, 255, 255, 0.5)';
         targetParent.parentNode.style.borderColor = 'rgba(255, 255, 255, 0.2)';
