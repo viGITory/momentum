@@ -6,6 +6,7 @@ import Weather from '../weather/weather';
 import AudioPlayer from '../audio-player/audio-player';
 import MainFooter from '../main-footer/main-footer';
 import Settings from '../settings/settings';
+import TodoList from '../todo-list/todo-list';
 
 export default class Page {
   constructor() {
@@ -19,6 +20,7 @@ export default class Page {
     this.audioPlayer = new AudioPlayer();
     this.mainFooter = new MainFooter();
     this.settings = new Settings();
+    this.todoList = new TodoList();
   }
 
   render() {
@@ -51,6 +53,7 @@ export default class Page {
     this.pageTop.append(this.quotes.render());
     this.pageCenter.append(this.weather.render());
     this.pageCenter.append(this.audioPlayer.render());
+    this.pageBottom.append(this.todoList.render());
     this.pageBottom.append(this.settings.render());
     this.pageBottom.append(this.mainFooter.render());
 
@@ -94,5 +97,6 @@ export default class Page {
     this.weather.init();
     this.audioPlayer.init();
     this.settings.init();
+    this.todoList.init();
   }
 }

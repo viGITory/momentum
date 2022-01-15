@@ -1,0 +1,135 @@
+.todo-list {
+  display: none;
+  width: 280px;
+
+  animation: fade-in 1s ease;
+
+  &__top,
+  &__item,
+  &__buttons-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  &__top {
+    border: 1px solid rgba(255, 255, 255, .2);
+  }
+
+  &__top,
+  &__item {
+    box-sizing: border-box;
+    height: 40px;
+    padding-right: 5px;
+    padding-left: 10px;
+
+    line-height: 40px;
+
+    background-color: rgba(0, 0, 0, .8);
+    border-radius: 5px;
+  }
+
+  &__item {
+    margin-bottom: 3px;
+
+    border: 1px solid rgba(255, 255, 255, .5);
+
+    transition: border-color .2s ease;
+    animation: fade-in 1s ease;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &--complete {
+      animation-name: fade-out;
+    }
+  }
+
+  &__input,
+  &__button {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+
+    background-color: transparent;
+    border: 0;
+    outline: none;
+  }
+
+  &__input-wrapper {
+    position: relative;
+
+    &--complete {
+      &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 1px;
+
+        content: "";
+        background-color: #fff;
+        border-radius: 1px;
+
+        transform: translateY(-50%);
+        animation: weather-line 1s ease;
+      }
+    }
+  }
+
+  &__input-wrapper,
+  &__input {
+    width: 100%;
+  }
+
+  &__input,
+  &__button,
+  &__list {
+    padding: 0;
+  }
+
+  &__input {
+    box-sizing: border-box;
+
+    transition: color .2s ease;
+  }
+
+  &__button {
+    width: 30px;
+    min-width: 30px;
+
+    cursor: pointer;
+
+    transition: color .2s ease;
+
+    &:hover {
+      color: #ff4040;
+    }
+  }
+
+  &__list {
+    max-height: 169px;
+    margin: 0;
+    margin-top: 3px;
+    overflow-y: auto;
+
+    list-style: none;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-track,
+    &::-webkit-scrollbar-thumb {
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: rgba(255, 255, 255, .5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+    }
+  }
+}

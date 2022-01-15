@@ -87,6 +87,12 @@
     flex-wrap: wrap;
   }
 
+  &__todo-list {
+    position: absolute;
+    right: 0;
+    bottom: 52px;
+  }
+
   &__settings {
     position: absolute;
     bottom: 0;
