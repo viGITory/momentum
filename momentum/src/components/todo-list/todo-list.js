@@ -2,6 +2,7 @@ export default class TodoList {
   constructor() {
     this.container = document.createElement('section');
     this.container.classList.add('page__todo-list', 'todo-list');
+    this.container.id = 'section-todo';
   }
 
   render() {

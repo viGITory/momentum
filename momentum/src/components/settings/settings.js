@@ -13,6 +13,7 @@ export default class Settings {
         <input class="settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
         <input class="settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
         <input class="settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
+        <input class="settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
         <input class="settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
       </div>
     `;
