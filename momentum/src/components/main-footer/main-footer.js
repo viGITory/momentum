@@ -1,4 +1,4 @@
-export default class Footer {
+export default class MainFooter {
   constructor() {
     this.container = document.createElement('footer');
     this.container.classList.add('section', 'main-footer');
