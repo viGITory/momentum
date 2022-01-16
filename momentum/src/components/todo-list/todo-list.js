@@ -3,6 +3,8 @@ export default class TodoList {
     this.container = document.createElement('section');
     this.container.classList.add('page__todo-list', 'todo-list');
     this.container.id = 'section-todo';
+
+    this.todoStorage = [];
   }
 
   render() {
@@ -18,13 +20,13 @@ export default class TodoList {
     return this.container;
   }
 
-  createTodoItem() {
+  createTodoItem(value) {
     this.newTodoItem = document.createElement('li');
     this.newTodoItem.classList.add('todo-list__item');
 
     this.newTodoItem.innerHTML = `
       <div class="todo-list__input-wrapper">
-        <input class="todo-list__input" type="text" value="${this.newTodoInput.value}">
+        <input class="todo-list__input" type="text" value="${value}">
       </div>
       <div class="todo-list__buttons-wrapper">
         <button class="todo-list__button" type="button" name="button-complete">✔</button>
@@ -45,11 +47,11 @@ export default class TodoList {
 
   addListeners() {
     this.newTodoInput.addEventListener('change', () => {
-      this.todoList.append(this.createTodoItem());
+      this.todoList.append(this.createTodoItem(this.newTodoInput.value));
     });
 
     this.buttonAdd.addEventListener('click', () => {
-      this.createTodoItem();
+      this.createTodoItem(this.newTodoInput.value);
     });
 
     this.todoList.addEventListener('click', (event) => {
@@ -74,6 +76,31 @@ export default class TodoList {
 
         targetParent.parentNode.addEventListener('animationend', () => {
           targetParent.parentNode.remove();
+        });
+      }
+    });
+
+    window.addEventListener('beforeunload', () => {
+      const todoItems = this.container.querySelectorAll(
+        '.todo-list__input-wrapper > .todo-list__input'
+      );
+
+      todoItems.forEach((item) => {
+        this.todoStorage.push(item.value);
+      });
+
+      localStorage.setItem(
+        'vigitory-todo-list',
+        JSON.stringify(this.todoStorage)
+      );
+    });
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const todoItems = JSON.parse(localStorage.getItem('vigitory-todo-list'));
+
+      if (todoItems) {
+        todoItems.forEach((item) => {
+          this.todoList.append(this.createTodoItem(item));
         });
       }
     });
