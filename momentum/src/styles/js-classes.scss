@@ -39,6 +39,7 @@
 
 // *** SETTINGS ***
 .js-hide-section {
+  pointer-events: none;
   opacity: 0;
 
   animation-name: fade-out;
