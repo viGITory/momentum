@@ -11,7 +11,7 @@ export default class TodoList {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Todo</h2>
       <div class="todo-list__top">
-        <input class="todo-list__input" type="text" name="new-todo-input" placeholder="Add new todo...">
+        <input class="todo-list__input" type="text" name="new-todo-input" placeholder="Add new todo..." aria-label="new-todo">
         <button class="todo-list__button" type="button" name="button-add">✚</button>
       </div>
       <ul class="todo-list__list"></ul>
@@ -26,7 +26,7 @@ export default class TodoList {
 
     this.newTodoItem.innerHTML = `
       <div class="todo-list__input-wrapper">
-        <input class="todo-list__input" type="text" value="${value}">
+        <input class="todo-list__input" type="text" value="${value}" aria-label="todo-item">
       </div>
       <div class="todo-list__buttons-wrapper">
         <button class="todo-list__button" type="button" name="button-complete">✔</button>
