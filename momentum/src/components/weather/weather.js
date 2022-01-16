@@ -69,7 +69,7 @@ export default class Weather {
     this.weatherCountry.classList.remove('js-show-elem');
     this.dataWrapper.classList.remove('js-show-elem');
     this.weatherLines.forEach((item) => {
-      item.classList.remove('js-weather-line');
+      item.classList.remove('js-line-through');
     });
 
     try {
@@ -89,7 +89,7 @@ export default class Weather {
         localStorage.setItem('vigitory-city', this.weatherCity.value);
 
         this.weatherLines.forEach((item) => {
-          item.classList.add('js-weather-line');
+          item.classList.add('js-line-through');
         });
       }
 
