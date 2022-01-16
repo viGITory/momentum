@@ -1,20 +1,20 @@
-export default class Settings {
+export default class PageSettings {
   constructor() {
     this.container = document.createElement('section');
-    this.container.classList.add('page__settings', 'settings');
+    this.container.classList.add('page__settings', 'page-settings');
   }
 
   render() {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Settings</h2>
-      <p class="settings__title">Click to hide/show widget</p>
-      <div class="settings__wrapper">
-        <input class="settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
-        <input class="settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
-        <input class="settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
-        <input class="settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
-        <input class="settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
-        <input class="settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
+      <p class="page-settings__title">Click to hide/show widget</p>
+      <div class="page-settings__wrapper">
+        <input class="page-settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
+        <input class="page-settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
+        <input class="page-settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
+        <input class="page-settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
+        <input class="page-settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
+        <input class="page-settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
       </div>
     `;
 
@@ -22,8 +22,10 @@ export default class Settings {
   }
 
   getElements() {
-    this.inputsWrapper = this.container.querySelector('.settings__wrapper');
-    this.inputs = this.container.querySelectorAll('.settings__button');
+    this.inputsWrapper = this.container.querySelector(
+      '.page-settings__wrapper'
+    );
+    this.inputs = this.container.querySelectorAll('.page-settings__button');
   }
 
   addListeners() {

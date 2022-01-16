@@ -5,7 +5,7 @@ import Quotes from '../quotes/quotes';
 import Weather from '../weather/weather';
 import AudioPlayer from '../audio-player/audio-player';
 import MainFooter from '../main-footer/main-footer';
-import Settings from '../settings/settings';
+import PageSettings from '../page-settings/page-settings';
 import TodoList from '../todo-list/todo-list';
 
 export default class Page {
@@ -19,7 +19,7 @@ export default class Page {
     this.weather = new Weather();
     this.audioPlayer = new AudioPlayer();
     this.mainFooter = new MainFooter();
-    this.settings = new Settings();
+    this.pageSettings = new PageSettings();
     this.todoList = new TodoList();
   }
 
@@ -54,7 +54,7 @@ export default class Page {
     this.pageCenter.append(this.weather.render());
     this.pageCenter.append(this.audioPlayer.render());
     this.pageBottom.append(this.todoList.render());
-    this.pageBottom.append(this.settings.render());
+    this.pageBottom.append(this.pageSettings.render());
     this.pageBottom.append(this.mainFooter.render());
 
     this.container
@@ -96,7 +96,7 @@ export default class Page {
     this.quotes.init();
     this.weather.init();
     this.audioPlayer.init();
-    this.settings.init();
+    this.pageSettings.init();
     this.todoList.init();
   }
 }
