@@ -1,9 +1,24 @@
 .todo-list {
   height: 142px;
+  padding-right: 5px;
 
   background-color: rgba(0, 0, 0, .5);
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 5px;
+
+  &,
+  &__item {
+    padding-right: 5px;
+  }
+
+  &__top {
+    padding-left: 25px;
+
+    background-image: url("../assets/svg/todo-icon.svg");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: auto 100%;
+  }
 
   &__top,
   &__item,
@@ -81,6 +96,10 @@
 
   &__input {
     -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+
+    &::placeholder {
+      color: rgba(255, 255, 255, .2);
+    }
   }
 
   &__button {
@@ -102,7 +121,7 @@
     list-style: none;
 
     &::-webkit-scrollbar {
-      width: 5px;
+      width: 3px;
     }
 
     &::-webkit-scrollbar-track,
@@ -111,11 +130,11 @@
     }
 
     &::-webkit-scrollbar-track {
-      background-color: rgba(255, 255, 255, .5);
+      background-color: rgba(255, 255, 255, .2);
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, .2);
     }
   }
 }

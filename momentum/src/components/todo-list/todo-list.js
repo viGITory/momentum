@@ -64,7 +64,6 @@ export default class TodoList {
         ).readOnly = true;
         targetParent.parentNode.querySelector('.todo-list__input').style.color =
           'rgba(255, 255, 255, 0.5)';
-        targetParent.parentNode.style.borderColor = 'rgba(255, 255, 255, 0.2)';
       } else if (target.name === 'button-delete') {
         targetParent.parentNode.classList.add('js-hide-section');
 
