@@ -12,7 +12,6 @@ export default class TodoList {
       <h2 class="visually-hidden">Todo</h2>
       <div class="todo-list__top">
         <input class="todo-list__input" type="text" name="new-todo-input" placeholder="Add new todo..." aria-label="new-todo">
-        <button class="todo-list__button" type="button" name="button-add">✚</button>
       </div>
       <ul class="todo-list__list"></ul>
     `;
@@ -42,16 +41,11 @@ export default class TodoList {
   getElements() {
     this.newTodoInput = this.container.querySelector('[name=new-todo-input]');
     this.todoList = this.container.querySelector('.todo-list__list');
-    this.buttonAdd = this.container.querySelector('[name=button-add]');
   }
 
   addListeners() {
     this.newTodoInput.addEventListener('change', () => {
       this.todoList.append(this.createTodoItem(this.newTodoInput.value));
-    });
-
-    this.buttonAdd.addEventListener('click', () => {
-      this.createTodoItem(this.newTodoInput.value);
     });
 
     this.todoList.addEventListener('click', (event) => {
