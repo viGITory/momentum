@@ -1,8 +1,9 @@
 .todo-list {
-  display: none;
-  width: 280px;
+  height: 142px;
 
-  animation: fade-in 1s ease;
+  background-color: rgba(0, 0, 0, .5);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 5px;
 
   &__top,
   &__item,
@@ -11,35 +12,12 @@
     align-items: center;
   }
 
-  &__top {
-    border: 1px solid rgba(255, 255, 255, .2);
-
-    transition: border-color .2s ease;
-
-    &:hover {
-      border-color: rgba(255, 255, 255, .5);
-    }
-  }
-
   &__top,
   &__item {
-    box-sizing: border-box;
-    height: 40px;
-    padding-right: 5px;
-    padding-left: 10px;
-
-    line-height: 40px;
-
-    background-color: rgba(0, 0, 0, .5);
-    border-radius: 5px;
+    margin-bottom: 10px;
   }
 
   &__item {
-    margin-bottom: 3px;
-
-    border: 1px solid rgba(255, 255, 255, .5);
-
-    transition: border-color .2s ease;
     animation: fade-in 1s ease;
 
     &:last-child {
@@ -64,6 +42,8 @@
 
   &__input-wrapper {
     position: relative;
+
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
 
     &--complete {
       &::after {
@@ -94,19 +74,20 @@
     padding: 0;
   }
 
-  &__input {
-    box-sizing: border-box;
-
+  &__input,
+  &__button {
     transition: color .2s ease;
   }
 
+  &__input {
+    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+  }
+
   &__button {
-    width: 30px;
-    min-width: 30px;
+    width: 25px;
+    min-width: 25px;
 
     cursor: pointer;
-
-    transition: color .2s ease;
 
     &:hover {
       color: rgba(255, 255, 255, .7);
@@ -114,9 +95,8 @@
   }
 
   &__list {
-    max-height: 169px;
+    max-height: 80px;
     margin: 0;
-    margin-top: 3px;
     overflow-y: auto;
 
     list-style: none;
