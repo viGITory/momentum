@@ -25,7 +25,7 @@ export default class TodoList {
 
     this.newTodoItem.innerHTML = `
       <div class="todo-list__input-wrapper">
-        <input class="todo-list__input" type="text" value="${value}" aria-label="todo-item">
+        <input class="todo-list__input" type="text" value="${value.trim()}" aria-label="todo-item">
       </div>
       <div class="todo-list__buttons-wrapper">
         <button class="todo-list__button" type="button" name="button-complete">✔</button>
