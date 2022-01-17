@@ -80,7 +80,9 @@ export default class TodoList {
       );
 
       todoItems.forEach((item) => {
-        this.todoStorage.push(item.value);
+        if (!item.readOnly) {
+          this.todoStorage.push(item.value);
+        }
       });
 
       localStorage.setItem(
