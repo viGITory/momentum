@@ -9,8 +9,23 @@ import PageSettings from '../page-settings/page-settings';
 import TodoList from '../todo-list/todo-list';
 
 export default class Page {
+  imageSlider: ImageSlider;
+  dateWidget: DateWidget;
+  calendar: Calendar;
+  quotes: Quotes;
+  weather: Weather;
+  audioPlayer: AudioPlayer;
+  mainFooter: MainFooter;
+  pageSettings: PageSettings;
+  todoList: TodoList;
+
+  container: HTMLBodyElement;
+  pageTop!: HTMLDivElement;
+  pageCenter!: HTMLDivElement;
+  pageBottom!: HTMLDivElement;
+
   constructor() {
-    this.container = document.querySelector('.page');
+    this.container = document.querySelector('.page') as HTMLBodyElement;
 
     this.imageSlider = new ImageSlider();
     this.dateWidget = new DateWidget();
@@ -23,7 +38,7 @@ export default class Page {
     this.todoList = new TodoList();
   }
 
-  render() {
+  render(): HTMLBodyElement {
     this.container.innerHTML = `
       <h1 class="visually-hidden">Momentum</h1>
       <div class="page__top">
@@ -41,13 +56,17 @@ export default class Page {
     return this.container;
   }
 
-  getElements() {
-    this.pageTop = this.container.querySelector('.page__top');
-    this.pageCenter = this.container.querySelector('.page__center');
-    this.pageBottom = this.container.querySelector('.page__bottom');
+  getElements(): void {
+    this.pageTop = this.container.querySelector('.page__top') as HTMLDivElement;
+    this.pageCenter = this.container.querySelector(
+      '.page__center'
+    ) as HTMLDivElement;
+    this.pageBottom = this.container.querySelector(
+      '.page__bottom'
+    ) as HTMLDivElement;
   }
 
-  addComponents() {
+  addComponents(): void {
     this.container.prepend(this.imageSlider.render());
     this.pageTop.append(this.dateWidget.render());
     this.pageTop.append(this.quotes.render());
@@ -59,10 +78,10 @@ export default class Page {
 
     this.container
       .querySelector('.date__day-wrapper')
-      .append(this.calendar.render());
+      ?.append(this.calendar.render());
   }
 
-  updateComponents() {
+  updateComponents(): void {
     const date = new Date();
     const hours = date.getHours();
     const minutes = date.getMinutes();
@@ -84,7 +103,7 @@ export default class Page {
     setTimeout(() => this.updateComponents(), 1000);
   }
 
-  init() {
+  init(): void {
     this.render();
     this.getElements();
     this.addComponents();
