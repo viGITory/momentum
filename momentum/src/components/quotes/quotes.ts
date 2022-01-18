@@ -1,6 +1,12 @@
 import getQuotes from '../../api/quotes-api';
 
 export default class Quotes {
+  container: HTMLElement;
+  quotesWrapper!: HTMLDivElement;
+  quoteButton!: HTMLButtonElement;
+
+  quoteId: number | null;
+
   constructor() {
     this.container = document.createElement('section');
     this.container.classList.add('section', 'quotes');
@@ -9,7 +15,7 @@ export default class Quotes {
     this.quoteId = null;
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Quotes</h2>
       <button class="quotes__button" type="button">
@@ -21,12 +27,16 @@ export default class Quotes {
     return this.container;
   }
 
-  getElements() {
-    this.quotesWrapper = this.container.querySelector('.quotes__wrapper');
-    this.quoteButton = this.container.querySelector('.quotes__button');
+  getElements(): void {
+    this.quotesWrapper = this.container.querySelector(
+      '.quotes__wrapper'
+    ) as HTMLDivElement;
+    this.quoteButton = this.container.querySelector(
+      '.quotes__button'
+    ) as HTMLButtonElement;
   }
 
-  async setQuotes() {
+  async setQuotes(): Promise<void> {
     try {
       const quoteData = await getQuotes(this.quoteId);
       this.quoteId = quoteData.id;
@@ -42,7 +52,7 @@ export default class Quotes {
     }
   }
 
-  addListeners() {
+  addListeners(): void {
     this.quoteButton.addEventListener('click', () => {
       this.quoteButton.classList.add('js-rotate-btn');
     });
@@ -53,7 +63,7 @@ export default class Quotes {
     });
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.setQuotes();
     this.addListeners();
