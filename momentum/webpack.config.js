@@ -20,7 +20,7 @@ module.exports = ({ development }) => ({
   mode: development ? 'development' : 'production',
   devtool: development ? 'inline-source-map' : false,
   entry: {
-    index: './src/scripts/index.js',
+    index: './src/scripts/index.ts',
   },
   output: {
     filename: '[name].js',
@@ -29,6 +29,11 @@ module.exports = ({ development }) => ({
   },
   module: {
     rules: [
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
       {
         test: /\.svg$/i,
         type: 'asset/resource',
@@ -97,7 +102,7 @@ module.exports = ({ development }) => ({
     }),
   ],
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.ts', '.js'],
   },
   ...devServer(development),
 });
