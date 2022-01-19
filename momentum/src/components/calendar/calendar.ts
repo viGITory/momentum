@@ -1,14 +1,16 @@
 export default class Calendar {
+  container: HTMLDivElement;
+
   constructor() {
-    this.container = document.createElement('div');
+    this.container = document.createElement('div') as HTMLDivElement;
     this.container.classList.add('date__calendar', 'calendar');
   }
 
-  render() {
+  render(): HTMLDivElement {
     return this.container;
   }
 
-  createCalendar(year, month) {
+  createCalendar(year: number, month: number): void {
     const mon = month;
     const d = new Date(year, mon);
 
@@ -52,7 +54,7 @@ export default class Calendar {
     this.container.innerHTML = table;
   }
 
-  getDay(date) {
+  getDay(date: Date): number {
     let day = date.getDay();
 
     if (day === 0) day = 7;
@@ -60,7 +62,7 @@ export default class Calendar {
     return day - 1;
   }
 
-  init() {
+  init(): void {
     this.createCalendar(new Date().getFullYear(), new Date().getMonth());
   }
 }
