@@ -25,7 +25,7 @@ export default class Page {
   pageBottom!: HTMLDivElement;
 
   constructor() {
-    this.container = document.querySelector('.page') as HTMLBodyElement;
+    this.container = document.querySelector('#root') as HTMLBodyElement;
 
     this.imageSlider = new ImageSlider();
     this.dateWidget = new DateWidget();
