@@ -1,7 +1,7 @@
-const findDirection = (windDegrees) => {
+const findDirection = (windDegrees: number): number => {
   let degrees = (windDegrees * 16) / 360;
 
-  degrees = Math.round(degrees, 0);
+  degrees = Math.round(degrees);
   degrees = (degrees + 16) % 16;
 
   return degrees;
