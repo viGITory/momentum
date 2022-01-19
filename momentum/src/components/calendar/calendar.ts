@@ -1,3 +1,5 @@
+import getDayOfWeek from '../../utils/get-day-week';
+
 export default class Calendar {
   container: HTMLDivElement;
 
@@ -31,20 +33,20 @@ export default class Calendar {
         <tr>
     `;
 
-    for (let i = 0; i < this.getDay(d); i += 1) {
+    for (let i = 0; i < getDayOfWeek(d); i += 1) {
       table += '<td></td>';
     }
 
     while (d.getMonth() === mon) {
       table += `<td>${d.getDate()}</td>`;
 
-      if (this.getDay(d) % 7 === 6) table += '</tr><tr>';
+      if (getDayOfWeek(d) % 7 === 6) table += '</tr><tr>';
 
       d.setDate(d.getDate() + 1);
     }
 
-    if (this.getDay(d) !== 0) {
-      for (let i = this.getDay(d); i < 7; i += 1) {
+    if (getDayOfWeek(d) !== 0) {
+      for (let i = getDayOfWeek(d); i < 7; i += 1) {
         table += '<td></td>';
       }
     }
@@ -52,14 +54,6 @@ export default class Calendar {
     table += '</tr></tbody></table>';
 
     this.container.innerHTML = table;
-  }
-
-  getDay(date: Date): number {
-    let day = date.getDay();
-
-    if (day === 0) day = 7;
-
-    return day - 1;
   }
 
   init(): void {
