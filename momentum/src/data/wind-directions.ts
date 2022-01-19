@@ -1,4 +1,4 @@
-const windDirections = [
+const windDirections: readonly string[] = [
   'N',
   'NNE',
   'NE',

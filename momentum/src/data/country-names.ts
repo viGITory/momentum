@@ -1,4 +1,4 @@
-const countryNames = {
+const countryNames: { [key: string]: string } = {
   BD: 'Bangladesh',
   BE: 'Belgium',
   BF: 'Burkina Faso',
