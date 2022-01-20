@@ -108,8 +108,9 @@
       filter: opacity(.7);
     }
 
-    &--prev {
-      background-image: url("../assets/svg/play-prev.svg");
+    &--prev,
+    &--next {
+      background-image: url("../assets/svg/play-prev-next.svg");
     }
 
     &--play {
@@ -120,7 +121,7 @@
     }
 
     &--next {
-      background-image: url("../assets/svg/play-next.svg");
+      transform: rotate(180deg);
     }
 
     &--volume {

@@ -12,7 +12,19 @@
 
   background-color: rgba(0, 0, 0, .5);
 
-  & * {
+  &::-webkit-scrollbar {
+    width: 2px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #fff;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ff4040;
+  }
+
+  * {
     &::selection {
       color: #fff;
 
@@ -61,18 +73,19 @@
       filter: opacity(.7);
     }
 
+    &--prev,
+    &--next {
+      background-image: url("../assets/svg/slider-arrow.svg");
+    }
+
     &--prev {
       left: 10px;
-
-      background-image: url("../assets/svg/slider-next.svg");
 
       transform: rotate(180deg) translateY(50%);
     }
 
     &--next {
       right: 10px;
-
-      background-image: url("../assets/svg/slider-next.svg");
 
       transform: translateY(-50%);
     }

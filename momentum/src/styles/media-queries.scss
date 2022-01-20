@@ -235,6 +235,11 @@
     &__day:hover ~ .calendar {
       opacity: 1;
     }
+
+    &__greeting-wrapper {
+      max-width: 55%;
+      margin: 0 auto;
+    }
   }
 
   .time-format {

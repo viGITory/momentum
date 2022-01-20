@@ -4,12 +4,12 @@
 
   transition: opacity 1s ease;
 
-  & table {
+  table {
     border-spacing: 3px;
   }
 
-  & th,
-  & td {
+  th,
+  td {
     box-sizing: border-box;
     width: 30px;
     min-width: 30px;
@@ -24,11 +24,11 @@
     border-radius: 3px;
   }
 
-  & th {
+  th {
     font-weight: inherit;
   }
 
-  & td {
+  td {
     text-align: center;
   }
 }
