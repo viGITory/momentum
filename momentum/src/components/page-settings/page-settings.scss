@@ -8,11 +8,20 @@
     text-align: center;
   }
 
-  &__title {
-    margin: 0;
-    margin-bottom: 5px;
-
+  &__title,
+  &__clue {
     font-size: .75em;
+
+    pointer-events: none;
+  }
+
+  &__title,
+  &__button {
+    margin: 0;
+  }
+
+  &__title {
+    margin-bottom: 3px;
 
     animation: settings-help 40s ease infinite;
   }
@@ -22,23 +31,26 @@
     column-gap: 3px;
   }
 
+  &__button-wrapper {
+    position: relative;
+  }
+
   &__button {
     width: 30px;
     min-width: 30px;
     height: 30px;
-    margin: 0;
 
     font-family: inherit;
     font-size: 12px;
     line-height: 30px;
     color: inherit;
+
     cursor: pointer;
     background-color: rgba(0, 0, 0, .5);
     border: 1px solid rgba(255, 255, 255, .2);
     border-radius: 3px;
 
     transition: border-color .2s ease;
-
     appearance: none;
 
     &::after {
@@ -50,5 +62,20 @@
     &:hover {
       border-color: rgba(255, 255, 255, .5);
     }
+  }
+
+  &__button:hover ~ &__clue {
+    opacity: 1;
+  }
+
+  &__clue {
+    position: absolute;
+    bottom: -21px;
+    left: 50%;
+
+    opacity: 0;
+
+    transition: opacity .2s ease;
+    transform: translateX(-50%);
   }
 }

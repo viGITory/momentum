@@ -9,12 +9,30 @@ export default class PageSettings {
       <h2 class="visually-hidden">Settings</h2>
       <p class="page-settings__title">Click to hide/show widget</p>
       <div class="page-settings__wrapper">
-        <input class="page-settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
-        <input class="page-settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
-        <input class="page-settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
-        <input class="page-settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
-        <input class="page-settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
-        <input class="page-settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
+          <span class="page-settings__clue">Player</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
+          <span class="page-settings__clue">Weather</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>
+          <span class="page-settings__clue">Date</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-quotes" type="checkbox" value="Q" aria-label="checkbox-quotes" checked>
+          <span class="page-settings__clue">Quotes</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
+          <span class="page-settings__clue">Todo</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
+          <span class="page-settings__clue">Footer</span>
+        </div>
       </div>
     `;
 
