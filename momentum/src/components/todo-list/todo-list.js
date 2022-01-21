@@ -1,3 +1,5 @@
+import removeTodoItem from '../../utils/remove-todo-item';
+
 export default class TodoList {
   constructor() {
     this.container = document.createElement('section');
@@ -49,7 +51,7 @@ export default class TodoList {
     });
 
     this.todoList.addEventListener('click', (event) => {
-      const target = event.target;
+      const { target } = event;
       const targetParent = target.parentNode;
 
       if (target.name === 'button-complete') {
@@ -65,11 +67,16 @@ export default class TodoList {
         targetParent.parentNode.querySelector('.todo-list__input').style.color =
           'rgba(255, 255, 255, 0.5)';
       } else if (target.name === 'button-delete') {
-        targetParent.parentNode.classList.add('js-hide-section');
+        removeTodoItem(event);
+      }
+    });
 
-        targetParent.parentNode.addEventListener('animationend', () => {
-          targetParent.parentNode.remove();
-        });
+    this.todoList.addEventListener('change', (event) => {
+      const { target } = event;
+      const targetParent = target.parentNode;
+
+      if (targetParent.querySelector('.todo-list__input').value === '') {
+        removeTodoItem(event);
       }
     });
 
