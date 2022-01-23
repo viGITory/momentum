@@ -54,10 +54,6 @@ module.exports = ({ development }) => ({
         },
       },
       {
-        test: /\.pug$/,
-        loader: 'pug-loader',
-      },
-      {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
@@ -77,7 +73,7 @@ module.exports = ({ development }) => ({
       failOnError: false,
     }),
     new HtmlWebpackPlugin({
-      template: 'src/pages/index.pug',
+      template: 'src/pages/index.html',
       favicon: './src/favicon.ico',
       filename: 'index.html',
     }),
