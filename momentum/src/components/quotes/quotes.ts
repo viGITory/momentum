@@ -1,4 +1,4 @@
-import getQuotes from '../../api/quotes-api';
+import getApiData from '../../api/get-api-data';
 
 export default class Quotes {
   container: HTMLElement;
@@ -38,7 +38,9 @@ export default class Quotes {
 
   async setQuotes(): Promise<void> {
     try {
-      const quoteData = await getQuotes(this.quoteId);
+      const quoteData = await getApiData(
+        `https://genius-quotes.herokuapp.com/api/quotes/random?prev=${this.quoteId}`
+      );
       this.quoteId = quoteData.id;
 
       this.quotesWrapper.innerHTML = `

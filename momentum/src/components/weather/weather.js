@@ -1,7 +1,7 @@
-import getWeather from '../../api/weather-api';
 import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
 import findDirection from '../../utils/find-direction';
+import getApiData from '../../api/get-api-data';
 
 export default class Weather {
   constructor() {
@@ -79,7 +79,9 @@ export default class Weather {
         this.weatherCity.value =
           localStorage.getItem('vigitory-city') || 'Minsk';
 
-      this.weatherData = await getWeather(this.weatherCity.value);
+      this.weatherData = await getApiData(
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`
+      );
       this.setMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
 
       if (this.weatherData.cod === 200) {

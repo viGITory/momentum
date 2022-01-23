@@ -1,5 +1,5 @@
-import getImage from '../../api/image-api';
 import timesOfDay from '../../data/times-of-day';
+import getApiData from '../../api/get-api-data';
 
 export default class ImageSlider {
   constructor() {
@@ -25,8 +25,13 @@ export default class ImageSlider {
       let imageData;
 
       if (this.randomNum < 10)
-        imageData = await getImage(dayPart, `0${this.randomNum}`);
-      else imageData = await getImage(dayPart, this.randomNum);
+        imageData = await getApiData(
+          `https://raw.githubusercontent.com/viGITory/momentum-images/main/${dayPart}/0${this.randomNum}.jpg`
+        );
+      else
+        imageData = await getApiData(
+          `https://raw.githubusercontent.com/viGITory/momentum-images/main/${dayPart}/${this.randomNum}.jpg`
+        );
 
       this.container.style.backgroundImage = `url(${URL.createObjectURL(
         imageData
