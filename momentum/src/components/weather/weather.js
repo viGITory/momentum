@@ -2,6 +2,7 @@ import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
 import findDirection from '../../utils/find-direction';
 import getApiData from '../../api/get-api-data';
+import createMap from '../../utils/create-map';
 
 export default class Weather {
   constructor() {
@@ -13,9 +14,7 @@ export default class Weather {
   render() {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Weather</h2>
-      <div class="weather__map-wrapper">
-        <div class="weather__map" id="map"></div>
-      </div>
+      <div class="weather__map-wrapper"></div>
       <div class="weather__top-wrapper">
         <div class="weather__top">
           <input class="weather__input" type="text" placeholder="[Enter city]" value="${
@@ -43,28 +42,6 @@ export default class Weather {
     this.dataWrapper = this.container.querySelector('.weather__data');
   }
 
-  setMap(lat, lon) {
-    if (this.map) this.map.remove();
-
-    this.map = L.map('map', {
-      center: [lat, lon],
-      zoom: 8,
-      attributionControl: false,
-      zoomControl: false,
-    });
-
-    L.tileLayer(
-      'https://api.mapbox.com/styles/v1/pantory/ckxn8k9633p8415rqenh18x11/draft/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGFudG9yeSIsImEiOiJja3RvdWtrcTcwZ2JmMnVvYXhzcTJ1Ymx2In0.iHARQCH0cLkTZ2s52LQ-HQ',
-      {
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken:
-          'pk.eyJ1IjoicGFudG9yeSIsImEiOiJja3RvdWtrcTcwZ2JmMnVvYXhzcTJ1Ymx2In0.iHARQCH0cLkTZ2s52LQ-HQ',
-      }
-    ).addTo(this.map);
-  }
-
   async setWeather() {
     this.weatherCountry.classList.remove('js-show-elem');
     this.dataWrapper.classList.remove('js-show-elem');
@@ -82,7 +59,8 @@ export default class Weather {
       this.weatherData = await getApiData(
         `https://api.openweathermap.org/data/2.5/weather?q=${this.weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`
       );
-      this.setMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
+
+      createMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
 
       if (this.weatherData.cod === 200) {
         this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
