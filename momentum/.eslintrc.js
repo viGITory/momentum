@@ -14,6 +14,7 @@ module.exports = {
     'prettier/prettier': ['error'],
     '@typescript-eslint/rule-name': 'error',
     '@typescript-eslint/no-explicit-any': 'error',
+    'no-use-before-declare': true,
     'lines-between-class-members': [
       'error',
       'always',
