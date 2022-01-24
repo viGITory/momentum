@@ -1,15 +1,28 @@
 import timesOfDay from '../../data/times-of-day';
 
 export default class DateWidget {
+  container: HTMLElement;
+  dateTime!: HTMLParagraphElement;
+  dateDay!: HTMLParagraphElement;
+  dateGreeting!: HTMLSpanElement;
+  userName!: HTMLInputElement;
+  format12!: HTMLButtonElement;
+  format24!: HTMLButtonElement;
+  formatAM!: HTMLSpanElement;
+  formatPM!: HTMLSpanElement;
+
+  timeFormat: number;
+
   constructor() {
-    this.container = document.createElement('section');
+    this.container = document.createElement('section') as HTMLElement;
     this.container.classList.add('section', 'date');
     this.container.id = 'section-date';
 
-    this.timeFormat = +localStorage.getItem('vigitory-timeFormat') || 24;
+    this.timeFormat =
+      +(localStorage.getItem('vigitory-timeFormat') || '') || 24;
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Date</h2>
       <div class="date__time-wrapper">
@@ -37,24 +50,40 @@ export default class DateWidget {
     return this.container;
   }
 
-  getElements() {
-    this.dateTime = this.container.querySelector('.date__time');
-    this.dateDay = this.container.querySelector('.date__day');
-    this.dateGreeting = this.container.querySelector('.date__greeting');
+  getElements(): void {
+    this.dateTime = this.container.querySelector(
+      '.date__time'
+    ) as HTMLParagraphElement;
+    this.dateDay = this.container.querySelector(
+      '.date__day'
+    ) as HTMLParagraphElement;
+    this.dateGreeting = this.container.querySelector(
+      '.date__greeting'
+    ) as HTMLSpanElement;
 
-    this.userName = this.container.querySelector('.date__input');
+    this.userName = this.container.querySelector(
+      '.date__input'
+    ) as HTMLInputElement;
 
-    this.format12 = this.container.querySelector('.time-format__item--12');
-    this.format24 = this.container.querySelector('.time-format__item--24');
-    this.formatAM = this.container.querySelector('.time-format__item--am');
-    this.formatPM = this.container.querySelector('.time-format__item--pm');
+    this.format12 = this.container.querySelector(
+      '.time-format__item--12'
+    ) as HTMLButtonElement;
+    this.format24 = this.container.querySelector(
+      '.time-format__item--24'
+    ) as HTMLButtonElement;
+    this.formatAM = this.container.querySelector(
+      '.time-format__item--am'
+    ) as HTMLSpanElement;
+    this.formatPM = this.container.querySelector(
+      '.time-format__item--pm'
+    ) as HTMLSpanElement;
   }
 
-  setDate() {
+  setDate(): void {
     const date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    let hours: number | string = date.getHours();
+    let minutes: number | string = date.getMinutes();
+    let seconds: number | string = date.getSeconds();
 
     this.dateGreeting.textContent = `Good ${
       timesOfDay[Math.floor(hours / 6)]
@@ -88,9 +117,9 @@ export default class DateWidget {
     setTimeout(() => this.setDate(), 1000);
   }
 
-  addListeners() {
+  addListeners(): void {
     window.addEventListener('beforeunload', () => {
-      localStorage.setItem('vigitory-timeFormat', this.timeFormat);
+      localStorage.setItem('vigitory-timeFormat', `${this.timeFormat}`);
 
       if (this.userName.value)
         localStorage.setItem('vigitory-userName', this.userName.value);
@@ -103,7 +132,7 @@ export default class DateWidget {
         this.format24.classList.add('js-active-btn');
 
       if (localStorage.getItem('vigitory-userName')) {
-        this.userName.value = localStorage.getItem('vigitory-userName');
+        this.userName.value = localStorage.getItem('vigitory-userName') || '';
       }
     });
 
@@ -120,7 +149,7 @@ export default class DateWidget {
     });
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.setDate();
     this.addListeners();
