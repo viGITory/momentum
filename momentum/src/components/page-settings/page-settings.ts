@@ -1,10 +1,14 @@
 export default class PageSettings {
+  container: HTMLElement;
+  inputsWrapper!: HTMLDivElement;
+  inputs!: HTMLInputElement[];
+
   constructor() {
-    this.container = document.createElement('section');
+    this.container = document.createElement('section') as HTMLElement;
     this.container.classList.add('page__settings', 'page-settings');
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Settings</h2>
       <p class="page-settings__title">Click to hide/show widget</p>
@@ -39,25 +43,32 @@ export default class PageSettings {
     return this.container;
   }
 
-  getElements() {
+  getElements(): void {
     this.inputsWrapper = this.container.querySelector(
       '.page-settings__wrapper'
+    ) as HTMLDivElement;
+    this.inputs = Array.from(
+      this.container.querySelectorAll<HTMLInputElement>(
+        '.page-settings__button'
+      )
     );
-    this.inputs = this.container.querySelectorAll('.page-settings__button');
   }
 
-  addListeners() {
+  addListeners(): void {
     this.inputsWrapper.addEventListener('click', (event) => {
-      const inputId = event.target.getAttribute('id').split('-')[1];
-      const section = document.querySelector(`#section-${inputId}`);
+      const target = event.target as HTMLInputElement;
+      const inputId = target.getAttribute('id')!.split('-')[1];
+      const section = document.querySelector(
+        `#section-${inputId}`
+      ) as HTMLElement;
 
       section.classList.toggle('js-hide-section');
-      event.target.classList.toggle('js-active-btn');
+      target.classList.toggle('js-active-btn');
     });
 
     window.addEventListener('beforeunload', () => {
       this.inputs.forEach((input) => {
-        const inputId = input.getAttribute('id').split('-')[1];
+        const inputId = input.getAttribute('id')!.split('-')[1];
 
         if (input.checked)
           localStorage.setItem(`vigitory-${inputId}`, 'visible');
@@ -67,8 +78,10 @@ export default class PageSettings {
 
     document.addEventListener('DOMContentLoaded', () => {
       this.inputs.forEach((input) => {
-        const inputId = input.getAttribute('id').split('-')[1];
-        const section = document.querySelector(`#section-${inputId}`);
+        const inputId = input.getAttribute('id')!.split('-')[1];
+        const section = document.querySelector(
+          `#section-${inputId}`
+        ) as HTMLElement;
 
         if (localStorage.getItem(`vigitory-${inputId}`) === 'visible') {
           input.setAttribute('checked', '');
@@ -86,7 +99,7 @@ export default class PageSettings {
     });
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.addListeners();
   }
