@@ -1,3 +1,4 @@
+import WeatherResponse from './weather.d';
 import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
 import findDirection from '../../utils/find-direction';
@@ -5,13 +6,22 @@ import getApiData from '../../api/get-api-data';
 import createMap from '../../utils/create-map';
 
 export default class Weather {
+  container: HTMLElement;
+  weatherCity!: HTMLInputElement;
+  cityTime!: HTMLParagraphElement;
+  weatherCountry!: HTMLParagraphElement;
+  weatherLines!: HTMLSpanElement[];
+  dataWrapper!: HTMLDivElement;
+
+  weatherData!: WeatherResponse;
+
   constructor() {
-    this.container = document.createElement('section');
+    this.container = document.createElement('section') as HTMLElement;
     this.container.classList.add('section', 'weather');
     this.container.id = 'section-weather';
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Weather</h2>
       <div class="weather__map-wrapper"></div>
@@ -34,15 +44,25 @@ export default class Weather {
     return this.container;
   }
 
-  getElements() {
-    this.weatherCity = this.container.querySelector('.weather__input');
-    this.cityTime = this.container.querySelector('.weather__city-time');
-    this.weatherCountry = this.container.querySelector('.weather__country');
-    this.weatherLines = this.container.querySelectorAll('.weather__line');
-    this.dataWrapper = this.container.querySelector('.weather__data');
+  getElements(): void {
+    this.weatherCity = this.container.querySelector(
+      '.weather__input'
+    ) as HTMLInputElement;
+    this.cityTime = this.container.querySelector(
+      '.weather__city-time'
+    ) as HTMLParagraphElement;
+    this.weatherCountry = this.container.querySelector(
+      '.weather__country'
+    ) as HTMLParagraphElement;
+    this.weatherLines = Array.from(
+      this.container.querySelectorAll<HTMLSpanElement>('.weather__line')
+    );
+    this.dataWrapper = this.container.querySelector(
+      '.weather__data'
+    ) as HTMLDivElement;
   }
 
-  async setWeather() {
+  async setWeather(): Promise<void> {
     this.weatherCountry.classList.remove('js-show-elem');
     this.dataWrapper.classList.remove('js-show-elem');
     this.weatherLines.forEach((item) => {
@@ -63,7 +83,7 @@ export default class Weather {
       createMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
 
       if (this.weatherData.cod === 200) {
-        this.weatherCity.value = `${this.weatherCity.value[0].toUpperCase()}${this.weatherCity.value.slice(
+        this.weatherCity.value = `${this.weatherCity.value[0]?.toUpperCase()}${this.weatherCity.value.slice(
           1
         )}`;
         localStorage.setItem('vigitory-city', this.weatherCity.value);
@@ -85,7 +105,7 @@ export default class Weather {
             this.weatherData.main.feels_like
           )}°C</span>
         </p>
-        <p class="weather__text weather__descr">${this.weatherData.weather[0].description[0].toUpperCase()}${this.weatherData.weather[0].description.slice(
+        <p class="weather__text weather__descr">${this.weatherData.weather[0].description[0]?.toUpperCase()}${this.weatherData.weather[0].description.slice(
         1
       )}</p>
         <p class="weather__text weather__wind">
@@ -121,7 +141,7 @@ export default class Weather {
     }
   }
 
-  async setCityTime() {
+  async setCityTime(): Promise<void> {
     try {
       const timezone = await this.weatherData.timezone;
 
@@ -134,8 +154,8 @@ export default class Weather {
       const localTime = utc + 1000 * timezone;
       const localDate = new Date(localTime);
 
-      let hours = localDate.getHours();
-      let minutes = localDate.getMinutes();
+      let hours: number | string = localDate.getHours();
+      let minutes: number | string = localDate.getMinutes();
 
       if (hours < 10) hours = `0${hours}`;
       if (minutes < 10) minutes = `0${minutes}`;
@@ -146,13 +166,13 @@ export default class Weather {
     } catch (err) {}
   }
 
-  addListeners() {
+  addListeners(): void {
     this.weatherCity.addEventListener('change', () => {
       if (this.weatherCity.value !== '') this.setWeather();
     });
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.setWeather();
     this.addListeners();
