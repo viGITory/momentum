@@ -1,19 +1,35 @@
 import playlist from '../../data/playlist';
 
 export default class AudioPlayer {
+  container: HTMLElement;
+  audioPlayer: HTMLAudioElement;
+  audioDuration!: HTMLSpanElement;
+  progressTrackName!: HTMLParagraphElement;
+  playerPlaylist!: HTMLUListElement;
+  progressTime!: HTMLSpanElement;
+  playButton!: HTMLButtonElement;
+  prevButton!: HTMLButtonElement;
+  nextButton!: HTMLButtonElement;
+  progressBar!: HTMLInputElement;
+  volumeButton!: HTMLButtonElement;
+  volumeBar!: HTMLInputElement;
+
+  currentVolume: number;
+  currentTrack: number;
+
   constructor() {
-    this.container = document.createElement('section');
+    this.container = document.createElement('section') as HTMLElement;
     this.container.classList.add('section', 'audio-player');
     this.container.id = 'section-player';
 
-    this.audioPlayer = new Audio();
+    this.audioPlayer = new Audio() as HTMLAudioElement;
     this.audioPlayer.volume = 0.5;
     this.currentVolume = this.audioPlayer.volume;
 
     this.currentTrack = 0;
   }
 
-  render() {
+  render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Audio-player</h2>
       <div class="audio-player__controls">
@@ -53,67 +69,73 @@ export default class AudioPlayer {
     return this.container;
   }
 
-  getElements() {
+  getElements(): void {
     this.audioDuration = this.container.querySelector(
       '.audio-player__duration'
-    );
+    ) as HTMLSpanElement;
     this.progressTrackName = this.container.querySelector(
       '.audio-player__name'
-    );
+    ) as HTMLParagraphElement;
     this.playerPlaylist = this.container.querySelector(
       '.audio-player__playlist'
-    );
-    this.progressTime = this.container.querySelector('.audio-player__time');
+    ) as HTMLUListElement;
+    this.progressTime = this.container.querySelector(
+      '.audio-player__time'
+    ) as HTMLSpanElement;
     this.playButton = this.container.querySelector(
       '.audio-player__button--play'
-    );
+    ) as HTMLButtonElement;
     this.prevButton = this.container.querySelector(
       '.audio-player__button--prev'
-    );
+    ) as HTMLButtonElement;
     this.nextButton = this.container.querySelector(
       '.audio-player__button--next'
-    );
-    this.progressBar = this.container.querySelector('.audio-player__progress');
+    ) as HTMLButtonElement;
+    this.progressBar = this.container.querySelector(
+      '.audio-player__progress'
+    ) as HTMLInputElement;
     this.volumeButton = this.container.querySelector(
       '.audio-player__button--volume'
-    );
-    this.volumeBar = this.container.querySelector('.audio-player__volume-bar');
+    ) as HTMLButtonElement;
+    this.volumeBar = this.container.querySelector(
+      '.audio-player__volume-bar'
+    ) as HTMLInputElement;
   }
 
-  createPlaylist() {
+  createPlaylist(): void {
     playlist.forEach((item) => {
-      const track = document.createElement('li');
+      const track = document.createElement('li') as HTMLLIElement;
 
       track.classList.add('audio-player__track');
-      this.audioPlayer.src = playlist[this.currentTrack].src;
-      this.audioDuration.textContent = playlist[this.currentTrack].duration;
-      this.progressTrackName.textContent = playlist[this.currentTrack].title;
+      this.audioPlayer.src = playlist[this.currentTrack]!.src;
+      this.audioDuration.textContent = playlist[this.currentTrack]!.duration;
+      this.progressTrackName.textContent = playlist[this.currentTrack]!.title;
 
       this.playerPlaylist.append(track);
       track.textContent = item.title;
     });
   }
 
-  playAudio() {
+  playAudio(): void {
     const tracks = this.container.querySelectorAll('.audio-player__track');
 
-    this.audioDuration.textContent = playlist[this.currentTrack].duration;
-    this.progressTrackName.textContent = playlist[this.currentTrack].title;
+    this.audioDuration.textContent = playlist[this.currentTrack]!.duration;
+    this.progressTrackName.textContent = playlist[this.currentTrack]!.title;
 
     if (this.audioPlayer.paused) {
-      tracks[this.currentTrack].classList.remove('js-track-stop');
-      tracks[this.currentTrack].classList.add('js-track-play');
+      tracks[this.currentTrack]!.classList.remove('js-track-stop');
+      tracks[this.currentTrack]!.classList.add('js-track-play');
       this.playButton.classList.add('js-play-btn');
       this.audioPlayer.play();
     } else {
       this.audioPlayer.pause();
-      tracks[this.currentTrack].classList.add('js-track-stop');
-      tracks[this.currentTrack].classList.remove('js-track-play');
+      tracks[this.currentTrack]!.classList.add('js-track-stop');
+      tracks[this.currentTrack]!.classList.remove('js-track-play');
       this.playButton.classList.remove('js-play-btn');
     }
   }
 
-  showAudioProgress = () => {
+  showAudioProgress = (): void => {
     const currentMinutes =
       Math.floor(this.audioPlayer.currentTime / 60) < 10
         ? `0${Math.floor(this.audioPlayer.currentTime / 60)}`
@@ -125,19 +147,20 @@ export default class AudioPlayer {
         : Math.floor(this.audioPlayer.currentTime % 60);
 
     this.progressTime.textContent = `${currentMinutes}:${currentSeconds}`;
-    this.progressBar.value =
+    this.progressBar.value = `${
       Math.floor(this.audioPlayer.currentTime) /
-        (Math.floor(this.audioPlayer.duration) / 100) || 0;
+        (Math.floor(this.audioPlayer.duration) / 100) || 0
+    }`;
     this.progressBar.style.background = `linear-gradient(to right, #ff4040 0%, #ff4040 ${this.progressBar.value}%, #fff ${this.progressBar.value}%, #fff 100%)`;
   };
 
-  changeAudioTime() {
+  changeAudioTime(): void {
     this.audioPlayer.currentTime =
-      this.audioPlayer.duration * (this.progressBar.value / 100);
+      this.audioPlayer.duration * (+this.progressBar.value / 100);
   }
 
-  сhangeVolume = () => {
-    const volume = this.volumeBar.value / 100;
+  сhangeVolume = (): void => {
+    const volume = +this.volumeBar.value / 100;
     this.audioPlayer.volume = volume;
 
     if (this.audioPlayer.volume !== 0) {
@@ -156,10 +179,10 @@ export default class AudioPlayer {
     }%, #ff4040 ${volume * 100}%,  #fff ${volume * 100}%, #fff 100%)`;
   };
 
-  muteVolume = () => {
+  muteVolume = (): void => {
     if (this.audioPlayer.volume === 0) {
       this.audioPlayer.volume = this.currentVolume;
-      this.volumeBar.value = this.audioPlayer.volume * 100;
+      this.volumeBar.value = `${this.audioPlayer.volume * 100}`;
       this.volumeButton.style.backgroundImage =
         'url(assets/svg/volume-btn.svg)';
       this.volumeBar.style.background = `linear-gradient(to right, #ff4040 ${
@@ -169,13 +192,13 @@ export default class AudioPlayer {
       }%, #fff 100%)`;
     } else {
       this.audioPlayer.volume = 0;
-      this.volumeBar.value = 0;
+      this.volumeBar.value = '0';
       this.volumeButton.style.backgroundImage = 'url(assets/svg/mute.svg)';
       this.volumeBar.style.background = `linear-gradient(to right,  #ff4040 0%, #ff4040 0%, #fff 0%, #fff 100%)`;
     }
   };
 
-  addListeners() {
+  addListeners(): void {
     const tracks = this.container.querySelectorAll('.audio-player__track');
 
     this.playButton.addEventListener('click', () => {
@@ -189,7 +212,7 @@ export default class AudioPlayer {
         this.currentTrack -= 1;
       }
 
-      this.audioPlayer.src = playlist[this.currentTrack].src;
+      this.audioPlayer.src = playlist[this.currentTrack]!.src;
 
       tracks.forEach((item) => item.classList.remove('js-track-play'));
       this.playAudio();
@@ -202,7 +225,7 @@ export default class AudioPlayer {
         this.currentTrack += 1;
       }
 
-      this.audioPlayer.src = playlist[this.currentTrack].src;
+      this.audioPlayer.src = playlist[this.currentTrack]!.src;
 
       tracks.forEach((item) => item.classList.remove('js-track-play'));
       this.playAudio();
@@ -217,7 +240,7 @@ export default class AudioPlayer {
 
       tracks.forEach((item) => item.classList.remove('js-track-play'));
 
-      this.audioPlayer.src = playlist[this.currentTrack].src;
+      this.audioPlayer.src = playlist[this.currentTrack]!.src;
       this.playAudio();
     });
 
@@ -232,8 +255,8 @@ export default class AudioPlayer {
         this.progressBar.style.background = `linear-gradient(to right, #ff4040 0%, #ff4040 ${this.progressBar.value}%,  #fff ${this.progressBar.value}%, #fff 100%)`;
       });
 
-      this.progressBar.addEventListener('pointerup', (event) => {
-        this.changeAudioTime(event);
+      this.progressBar.addEventListener('pointerup', () => {
+        this.changeAudioTime();
         this.audioPlayer.addEventListener('timeupdate', this.showAudioProgress);
       });
 
@@ -248,7 +271,7 @@ export default class AudioPlayer {
     this.volumeBar.addEventListener('input', this.сhangeVolume);
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.createPlaylist();
     this.addListeners();
