@@ -1,4 +1,4 @@
-export default async function getApiData(path) {
+export default async function getApiData(path: string) {
   const result = await fetch(path);
   let data;
 
