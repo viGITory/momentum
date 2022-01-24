@@ -2,23 +2,33 @@ import timesOfDay from '../../data/times-of-day';
 import getApiData from '../../api/get-api-data';
 
 export default class ImageSlider {
+  container: HTMLDivElement;
+  arrowPrev!: HTMLButtonElement;
+  arrowNext!: HTMLButtonElement;
+
+  randomNum: number;
+
   constructor() {
-    this.container = document.createElement('div');
+    this.container = document.createElement('div') as HTMLDivElement;
     this.container.classList.add('background');
 
     this.randomNum = Math.floor(1 + Math.random() * 19);
   }
 
-  getElements() {
-    this.arrowPrev = document.querySelector('.page__arrow--prev');
-    this.arrowNext = document.querySelector('.page__arrow--next');
-  }
-
-  render() {
+  render(): HTMLDivElement {
     return this.container;
   }
 
-  async setImage() {
+  getElements(): void {
+    this.arrowPrev = document.querySelector(
+      '.page__arrow--prev'
+    ) as HTMLButtonElement;
+    this.arrowNext = document.querySelector(
+      '.page__arrow--next'
+    ) as HTMLButtonElement;
+  }
+
+  async setImage(): Promise<void> {
     const dayPart = timesOfDay[Math.floor(new Date().getHours() / 6)];
 
     try {
@@ -40,7 +50,7 @@ export default class ImageSlider {
     } catch (err) {}
   }
 
-  addListeners() {
+  addListeners(): void {
     document.addEventListener('click', (event) => {
       if (event.target === this.arrowPrev) {
         if (this.randomNum <= 1) {
@@ -60,7 +70,7 @@ export default class ImageSlider {
     });
   }
 
-  init() {
+  init(): void {
     this.getElements();
     this.setImage();
     this.addListeners();
