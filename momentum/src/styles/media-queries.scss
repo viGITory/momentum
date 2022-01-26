@@ -128,12 +128,13 @@
 
 @media (min-width: 1024px) {
   .page {
+    padding: 30px;
+
     font-size: 18px;
 
     &__inner {
       justify-content: space-between;
       min-height: calc(100vh - 60px);
-      margin: 30px;
     }
 
     &__top {

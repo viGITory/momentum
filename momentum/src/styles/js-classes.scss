@@ -2,12 +2,10 @@
   animation-name: fade-in;
 }
 
-// *** QUOTES ***
 .js-rotate-btn {
   animation-name: rotate-btn;
 }
 
-// *** AUDIO PLAYER ***
 .js-play-btn {
   background-image: url("../assets/svg/pause.svg");
 }
@@ -23,12 +21,9 @@
   animation-name: track-stop;
 }
 
-// *** SETTINGS ***
 .js-hide-section {
   pointer-events: none;
   opacity: 0;
-
-  animation-name: fade-out;
 }
 
 .js-active-btn {

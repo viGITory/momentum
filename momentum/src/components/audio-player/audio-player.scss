@@ -99,13 +99,14 @@
     background-position: center;
     background-size: contain;
     border-radius: 50%;
-    -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 
     transition: background-image .2s ease, filter .2s ease;
 
     &:hover {
-      filter: opacity(.7);
+      filter:
+        invert(5%) sepia(0%) saturate(148%) hue-rotate(166deg)
+        brightness(95%) contrast(75%);
     }
 
     &--prev,

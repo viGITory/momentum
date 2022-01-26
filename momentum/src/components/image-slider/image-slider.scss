@@ -39,11 +39,12 @@
     border: 0;
 
     transition: filter .2s ease;
-    -webkit-tap-highlight-color: #fff;
     -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      filter: opacity(.7);
+      filter:
+        blur(.01px) invert(5%) sepia(0%) saturate(148%)
+        hue-rotate(166deg) brightness(95%) contrast(75%);
     }
 
     &--prev,

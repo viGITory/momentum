@@ -1,45 +1,27 @@
-// *** BASE ***
+// ### FONTS ###
 @import "owfont-regular";
 @import "fonts";
 
-// *** COMPONENTS ***
+// ### COMPONENTS ###
 @import "../components/page/page";
 @import "../components/visually-hidden/visually-hidden";
 @import "../components/section/section";
-
-// *** BACKGROUND ***
 @import "../components/image-slider/image-slider";
-
-// *** DATE ***
 @import "../components/date/date";
 @import "../components/time-format/time-format";
-
-// *** QUOTES ***
 @import "../components/quotes/quotes";
-
-// *** WEATHER ***
 @import "../components/weather/weather";
-
-// *** AUDIO PLAYER ***
 @import "../components/audio-player/audio-player";
-
-// *** PAGE-SETTINGS ***
 @import "../components/page-settings/page-settings";
-
-// *** CALENDAR ***
 @import "../components/calendar/calendar";
-
-// *** TODO-LIST ***
 @import "../components/todo-list/todo-list";
-
-// *** FOOTER ***
 @import "../components/main-footer/main-footer";
 
-// *** ANIMATION ***
+// ### ANIMATION ###
 @import "animation";
 
-// *** JS CLASSES ***
+// ### JS CLASSES ###
 @import "js-classes";
 
-// *** MEDIA-QUERIES ***
+// ### MEDIA-QUERIES ###
 @import "media-queries";

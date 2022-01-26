@@ -7,5 +7,5 @@
   border: 1px solid rgba(255, 255, 255, .2);
   border-radius: 5px;
 
-  animation: fade-in 1s ease;
+  transition: opacity .5s ease;
 }

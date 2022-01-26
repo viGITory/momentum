@@ -173,8 +173,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    z-index: -9999;
 
+    pointer-events: none;
     -webkit-mask-image: radial-gradient(#000 -200%, transparent);
   }
 
