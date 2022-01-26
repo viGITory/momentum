@@ -118,29 +118,25 @@ export default class Weather {
     }
   }
 
-  async setCityTime(): Promise<void> {
-    try {
-      const timezone = await this.weatherData.timezone;
+  setCityTime(timezone: number): void {
+    if (!timezone && timezone !== 0) return;
 
-      if (!timezone && timezone !== 0) return;
+    const date = new Date();
+    const time = date.getTime();
+    const timeOffset = date.getTimezoneOffset() * 60000;
+    const utc = time + timeOffset;
+    const localTime = utc + 1000 * timezone;
+    const localDate = new Date(localTime);
 
-      const date = new Date();
-      const time = date.getTime();
-      const timeOffset = date.getTimezoneOffset() * 60000;
-      const utc = time + timeOffset;
-      const localTime = utc + 1000 * timezone;
-      const localDate = new Date(localTime);
+    let hours: number | string = localDate.getHours();
+    let minutes: number | string = localDate.getMinutes();
 
-      let hours: number | string = localDate.getHours();
-      let minutes: number | string = localDate.getMinutes();
+    if (hours < 10) hours = `0${hours}`;
+    if (minutes < 10) minutes = `0${minutes}`;
 
-      if (hours < 10) hours = `0${hours}`;
-      if (minutes < 10) minutes = `0${minutes}`;
+    this.cityTime.textContent = `${hours}:${minutes}`;
 
-      this.cityTime.textContent = `${hours}:${minutes}`;
-
-      this.cityTime.classList.add('js-show-elem');
-    } catch (err) {}
+    this.cityTime.classList.add('js-show-elem');
   }
 
   addListeners(): void {
@@ -155,6 +151,6 @@ export default class Weather {
     this.addListeners();
 
     setInterval(() => this.setWeather(), 20 * 60000);
-    setInterval(() => this.setCityTime(), 1000);
+    setInterval(() => this.setCityTime(this.weatherData.timezone), 1000);
   }
 }
