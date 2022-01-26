@@ -7,7 +7,7 @@ import createMap from '../../utils/create-map';
 
 export default class Weather {
   container: HTMLElement;
-  weatherCity!: HTMLInputElement;
+  city!: HTMLInputElement;
   cityTime!: HTMLParagraphElement;
   dataWrapper!: HTMLDivElement;
 
@@ -35,7 +35,7 @@ export default class Weather {
   }
 
   getElements(): void {
-    this.weatherCity = this.container.querySelector(
+    this.city = this.container.querySelector(
       '.weather__input'
     ) as HTMLInputElement;
     this.cityTime = this.container.querySelector(
@@ -50,21 +50,20 @@ export default class Weather {
     this.dataWrapper.classList.remove('js-show-elem');
 
     try {
-      this.weatherCity.value = this.weatherCity.value.trim();
+      this.city.value = this.city.value.trim();
 
-      if (this.weatherCity.value === '')
-        this.weatherCity.value =
-          localStorage.getItem('vigitory-city') || 'Minsk';
+      if (this.city.value === '')
+        this.city.value = localStorage.getItem('vigitory-city') || 'Minsk';
 
       this.weatherData = await getApiData(
-        `https://api.openweathermap.org/data/2.5/weather?q=${this.weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`
+        `https://api.openweathermap.org/data/2.5/weather?q=${this.city.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`
       );
 
       if (this.weatherData.cod === 200) {
-        this.weatherCity.value = `${this.weatherCity.value[0]?.toUpperCase()}${this.weatherCity.value.slice(
+        this.city.value = `${this.city.value[0]?.toUpperCase()}${this.city.value.slice(
           1
         )}`;
-        localStorage.setItem('vigitory-city', this.weatherCity.value);
+        localStorage.setItem('vigitory-city', this.city.value);
       }
 
       this.dataWrapper.innerHTML = `
@@ -114,7 +113,7 @@ export default class Weather {
         <p class="weather__warn">No weather data</p>
       `;
 
-      this.weatherCity.value = '';
+      this.city.value = '';
       this.cityTime.textContent = '';
     }
   }
@@ -145,8 +144,8 @@ export default class Weather {
   }
 
   addListeners(): void {
-    this.weatherCity.addEventListener('change', () => {
-      if (this.weatherCity.value !== '') this.setWeather();
+    this.city.addEventListener('change', () => {
+      if (this.city.value !== '') this.setWeather();
     });
   }
 
