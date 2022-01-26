@@ -1,8 +1,5 @@
 .page {
-  box-sizing: border-box;
   min-width: 320px;
-  min-height: 100vh;
-  padding: 20px;
   margin: 0;
 
   font-family: Lato, sans-serif;
@@ -10,8 +7,7 @@
   font-weight: 300;
   color: #fff;
 
-  background-color: rgba(0, 0, 0, .5);
-
+  background-color: rgba(0, 0, 0, 1);
   &::-webkit-scrollbar {
     width: 2px;
   }
@@ -32,63 +28,23 @@
     }
   }
 
-  &,
-  &__top,
-  &__bottom {
+  &__inner {
     position: relative;
+    box-sizing: border-box;
+    min-height: calc(100vh - 40px);
+    margin: 20px 30px;
   }
 
-  &,
+  &__inner,
   &__top {
     flex-direction: column;
   }
 
-  &,
+  &__inner,
   &__top,
   &__center {
     display: flex;
     row-gap: 20px;
-  }
-
-  &__arrow {
-    position: absolute;
-    bottom: 0;
-    z-index: 9999;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-
-    cursor: pointer;
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    border: 0;
-
-    transition: filter .2s ease;
-    -webkit-tap-highlight-color: #fff;
-    -webkit-tap-highlight-color: transparent;
-
-    &:hover {
-      filter: opacity(.7);
-    }
-
-    &--prev,
-    &--next {
-      background-image: url("../assets/svg/slider-arrow.svg");
-    }
-
-    &--prev {
-      left: 10px;
-
-      transform: rotate(180deg) translateY(50%);
-    }
-
-    &--next {
-      right: 10px;
-
-      transform: translateY(-50%);
-    }
   }
 
   &__top,

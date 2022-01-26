@@ -9,18 +9,6 @@
       border: 1px solid rgba(255, 255, 255, .2);
       border-radius: 5px;
     }
-
-    &__arrow {
-      top: 50%;
-
-      &--prev {
-        left: 20px;
-      }
-
-      &--next {
-        right: 20px;
-      }
-    }
   }
 
   .date,
@@ -70,8 +58,6 @@
 
 @media (min-width: 768px) {
   .page {
-    justify-content: space-between;
-
     &__center {
       order: -1;
     }
@@ -142,19 +128,24 @@
 
 @media (min-width: 1024px) {
   .page {
-    padding: 30px;
-
     font-size: 18px;
 
-    background-color: rgba(0, 0, 0, .7);
+    &__inner {
+      justify-content: space-between;
+      min-height: calc(100vh - 60px);
+      margin: 30px;
+    }
 
     &__top {
-      position: static;
       flex-grow: 0;
       row-gap: 70px;
 
       background-color: transparent;
       border: 0;
+    }
+
+    &__bottom {
+      position: relative;
     }
 
     &__todo-list {
@@ -165,8 +156,15 @@
     }
   }
 
-  .background {
-    background-color: rgba(0, 0, 0, .7);
+  .image-slider {
+    &__image {
+      background-color: rgba(0, 0, 0, .7);
+    }
+
+    &__arrow {
+      width: 40px;
+      height: 40px;
+    }
   }
 
   .section {

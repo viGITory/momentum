@@ -5,26 +5,39 @@ export default class ImageSlider {
   container: HTMLDivElement;
   arrowPrev!: HTMLButtonElement;
   arrowNext!: HTMLButtonElement;
+  image!: HTMLDivElement;
 
   randomNum: number;
 
   constructor() {
     this.container = document.createElement('div') as HTMLDivElement;
-    this.container.classList.add('background');
+    this.container.classList.add('image-slider');
 
     this.randomNum = Math.floor(1 + Math.random() * 19);
   }
 
   render(): HTMLDivElement {
+    this.container.innerHTML = `
+      <div class="image-slider__image"></div>
+      <button class="image-slider__arrow image-slider__arrow--prev" type="button">
+        <span class="visually-hidden">Prev slide</span>
+      </button>
+      <button class="image-slider__arrow image-slider__arrow--next" type="button">
+        <span class="visually-hidden">Next slide</span>
+      </button>
+    `;
     return this.container;
   }
 
   getElements(): void {
-    this.arrowPrev = document.querySelector(
-      '.page__arrow--prev'
+    this.image = this.container.querySelector(
+      '.image-slider__image'
+    ) as HTMLDivElement;
+    this.arrowPrev = this.container.querySelector(
+      '.image-slider__arrow--prev'
     ) as HTMLButtonElement;
-    this.arrowNext = document.querySelector(
-      '.page__arrow--next'
+    this.arrowNext = this.container.querySelector(
+      '.image-slider__arrow--next'
     ) as HTMLButtonElement;
   }
 
@@ -43,10 +56,10 @@ export default class ImageSlider {
           `https://raw.githubusercontent.com/viGITory/momentum-images/main/${dayPart}/${this.randomNum}.jpg`
         );
 
-      this.container.style.backgroundImage = `url(${URL.createObjectURL(
+      this.image.style.backgroundImage = `url(${URL.createObjectURL(
         imageData
       )}`;
-      this.container.style.opacity = '1';
+      this.image.style.opacity = '1';
     } catch (err) {}
   }
 

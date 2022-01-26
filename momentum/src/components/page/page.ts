@@ -40,17 +40,12 @@ export default class Page {
 
   render(): HTMLBodyElement {
     this.container.innerHTML = `
-      <h1 class="visually-hidden">Momentum</h1>
-      <div class="page__top">
-        <button class="page__arrow page__arrow--prev" type="button">
-          <span class="visually-hidden">Prev slide</span>
-        </button>
-        <button class="page__arrow page__arrow--next" type="button">
-          <span class="visually-hidden">Next slide</span>
-        </button>
+      <div class="page__inner">
+        <h1 class="visually-hidden">Momentum</h1>
+        <div class="page__top"></div>
+        <div class="page__center"></div>
+        <div class="page__bottom"></div>
       </div>
-      <div class="page__center"></div>
-      <div class="page__bottom"></div>
     `;
 
     return this.container;
