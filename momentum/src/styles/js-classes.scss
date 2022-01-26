@@ -23,20 +23,6 @@
   animation-name: track-stop;
 }
 
-// *** WEATHER ***
-.js-weather-warn {
-  color: #ff4040;
-
-  animation-duration: 1s;
-  animation-timing-function: ease;
-}
-
-.js-line-through {
-  width: 100%;
-
-  animation-name: line-through;
-}
-
 // *** SETTINGS ***
 .js-hide-section {
   pointer-events: none;

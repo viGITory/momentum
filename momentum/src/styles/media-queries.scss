@@ -35,10 +35,6 @@
   }
 
   .weather {
-    &__top-wrapper {
-      min-height: 50px;
-    }
-
     &__wind {
       column-gap: 7px;
     }
@@ -46,10 +42,6 @@
 
   .audio-player {
     order: -1;
-
-    &__top {
-      min-height: 50px;
-    }
   }
 
   .todo-list {
@@ -113,7 +105,7 @@
     }
 
     &__feel {
-      padding-top: 7px;
+      margin-top: 7px;
     }
 
     &__wind-speed,

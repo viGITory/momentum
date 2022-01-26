@@ -2,7 +2,7 @@
   position: relative;
   min-height: 208px;
 
-  &__top,
+  &__city,
   &__country-wrapper,
   &__temp-wrapper,
   &__wind {
@@ -10,8 +10,8 @@
     align-items: center;
   }
 
-  &__top-wrapper {
-    height: 40px;
+  &__city {
+    height: 25px;
   }
 
   &__input {
@@ -20,7 +20,7 @@
     padding: 0;
 
     font-family: inherit;
-    font-size: 1.375em;
+    font-size: 1.25em;
 
     background-color: transparent;
     border: 0;
@@ -43,6 +43,7 @@
   &__country-wrapper {
     justify-content: center;
     min-height: 15px;
+    margin-bottom: 10px;
   }
 
   &__country,
@@ -67,18 +68,15 @@
     text-indent: calc(2em / 5);
     text-transform: uppercase;
     letter-spacing: calc(2em / 5);
-
-    animation: 1s ease;
   }
 
   &__line {
-    width: 0;
     height: 1px;
 
     background-color: rgba(255, 255, 255, .7);
     border-radius: 1px;
 
-    animation: 2s ease;
+    animation: line-through 2s ease;
   }
 
   &__city-time,
@@ -91,7 +89,8 @@
   &__city-time,
   &__temp-wrapper,
   &__icon,
-  &__text {
+  &__text,
+  &__warn {
     margin: 0;
   }
 
@@ -101,12 +100,9 @@
     column-gap: 10px;
   }
 
-  &__top-wrapper,
   &__text {
     margin-bottom: 10px;
-  }
 
-  &__text {
     &:last-child {
       margin-bottom: 0;
     }
@@ -129,7 +125,7 @@
 
   &__feel {
     align-self: flex-start;
-    padding-top: 5px;
+    margin-top: 5px;
   }
 
   &__wind {
@@ -185,5 +181,13 @@
   &__map {
     background-color: transparent;
     -webkit-mask-image: radial-gradient(#000 0%, transparent);
+  }
+
+  &__warn {
+    margin-top: 25px;
+
+    color: #ff4040;
+
+    animation: fade-in 1s ease;
   }
 }

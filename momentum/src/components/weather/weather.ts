@@ -9,8 +9,6 @@ export default class Weather {
   container: HTMLElement;
   weatherCity!: HTMLInputElement;
   cityTime!: HTMLParagraphElement;
-  weatherCountry!: HTMLParagraphElement;
-  weatherLines!: HTMLSpanElement[];
   dataWrapper!: HTMLDivElement;
 
   weatherData!: WeatherResponse;
@@ -24,19 +22,11 @@ export default class Weather {
   render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Weather</h2>
-      <div class="weather__map-wrapper"></div>
-      <div class="weather__top-wrapper">
-        <div class="weather__top">
-          <input class="weather__input" type="text" placeholder="[Enter city]" value="${
-            localStorage.getItem('vigitory-city') || 'Minsk'
-          }" aria-label="user-city">
-          <p class="weather__city-time"></p>
-        </div>
-        <div class="weather__country-wrapper">
-          <span class="weather__line"></span>
-          <p class="weather__country"></p>
-          <span class="weather__line"></span>
-        </div>
+      <div class="weather__city">
+        <input class="weather__input" type="text" placeholder="[Enter city]" value="${
+          localStorage.getItem('vigitory-city') || 'Minsk'
+        }" aria-label="user-city">
+        <p class="weather__city-time"></p>
       </div>
       <div class="weather__data"></div>
     `;
@@ -51,23 +41,13 @@ export default class Weather {
     this.cityTime = this.container.querySelector(
       '.weather__city-time'
     ) as HTMLParagraphElement;
-    this.weatherCountry = this.container.querySelector(
-      '.weather__country'
-    ) as HTMLParagraphElement;
-    this.weatherLines = Array.from(
-      this.container.querySelectorAll<HTMLSpanElement>('.weather__line')
-    );
     this.dataWrapper = this.container.querySelector(
       '.weather__data'
     ) as HTMLDivElement;
   }
 
   async setWeather(): Promise<void> {
-    this.weatherCountry.classList.remove('js-show-elem');
     this.dataWrapper.classList.remove('js-show-elem');
-    this.weatherLines.forEach((item) => {
-      item.classList.remove('js-line-through');
-    });
 
     try {
       this.weatherCity.value = this.weatherCity.value.trim();
@@ -80,20 +60,22 @@ export default class Weather {
         `https://api.openweathermap.org/data/2.5/weather?q=${this.weatherCity.value}&lang=en&appid=a8122fbe52b443584fbcba6f23095ca1&units=metric`
       );
 
-      createMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
-
       if (this.weatherData.cod === 200) {
         this.weatherCity.value = `${this.weatherCity.value[0]?.toUpperCase()}${this.weatherCity.value.slice(
           1
         )}`;
         localStorage.setItem('vigitory-city', this.weatherCity.value);
-
-        this.weatherLines.forEach((item) => {
-          item.classList.add('js-line-through');
-        });
       }
 
       this.dataWrapper.innerHTML = `
+        <div class="weather__map-wrapper"></div>
+        <div class="weather__country-wrapper">
+          <span class="weather__line"></span>
+          <p class="weather__country">${
+            countryNames[this.weatherData.sys.country]
+          }</p>
+          <span class="weather__line"></span>
+        </div>
         <p class="weather__temp-wrapper">
           <span class="weather__icon weather__icon owf owf-${
             this.weatherData.weather[0].id
@@ -124,20 +106,16 @@ export default class Weather {
         }%</p>
       `;
 
-      this.weatherCountry.classList.add('js-show-elem');
       this.dataWrapper.classList.add('js-show-elem');
 
-      this.weatherCountry.textContent = `${
-        countryNames[this.weatherData.sys.country]
-      }`;
+      createMap(this.weatherData.coord.lat, this.weatherData.coord.lon);
     } catch (err) {
       this.dataWrapper.innerHTML = `
-        <span class="js-weather-warn js-show-elem">No weather data</span>
+        <p class="weather__warn">No weather data</p>
       `;
 
       this.weatherCity.value = '';
       this.cityTime.textContent = '';
-      this.weatherCountry.textContent = '';
     }
   }
 
