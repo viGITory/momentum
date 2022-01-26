@@ -145,12 +145,15 @@ export default class Weather {
     });
   }
 
+  addIntervals(): void {
+    setInterval(() => this.setWeather(), 20 * 60000);
+    setInterval(() => this.setCityTime(this.weatherData.timezone), 1000);
+  }
+
   init(): void {
     this.getElements();
     this.setWeather();
     this.addListeners();
-
-    setInterval(() => this.setWeather(), 20 * 60000);
-    setInterval(() => this.setCityTime(this.weatherData.timezone), 1000);
+    this.addIntervals();
   }
 }
