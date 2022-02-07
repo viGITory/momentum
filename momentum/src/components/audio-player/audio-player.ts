@@ -29,7 +29,7 @@ export default class AudioPlayer {
     this.currentTrack = 0;
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Audio-player</h2>
       <div class="audio-player__controls">
@@ -69,7 +69,7 @@ export default class AudioPlayer {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.audioDuration = this.container.querySelector(
       '.audio-player__duration'
     ) as HTMLSpanElement;
@@ -102,7 +102,7 @@ export default class AudioPlayer {
     ) as HTMLInputElement;
   }
 
-  createPlaylist(): void {
+  private createPlaylist(): void {
     playlist.forEach((item) => {
       const track = document.createElement('li') as HTMLLIElement;
 
@@ -116,7 +116,7 @@ export default class AudioPlayer {
     });
   }
 
-  playAudio(): void {
+  private playAudio(): void {
     const tracks = this.container.querySelectorAll('.audio-player__track');
 
     this.audioDuration.textContent = playlist[this.currentTrack]!.duration;
@@ -135,7 +135,7 @@ export default class AudioPlayer {
     }
   }
 
-  showAudioProgress = (): void => {
+  private showAudioProgress = (): void => {
     const currentMinutes =
       Math.floor(this.audioPlayer.currentTime / 60) < 10
         ? `0${Math.floor(this.audioPlayer.currentTime / 60)}`
@@ -154,12 +154,12 @@ export default class AudioPlayer {
     this.progressBar.style.background = `linear-gradient(to right, #ff4040 0%, #ff4040 ${this.progressBar.value}%, #fff ${this.progressBar.value}%, #fff 100%)`;
   };
 
-  changeAudioTime(): void {
+  private changeAudioTime(): void {
     this.audioPlayer.currentTime =
       this.audioPlayer.duration * (+this.progressBar.value / 100);
   }
 
-  сhangeVolume = (): void => {
+  private сhangeVolume = (): void => {
     const volume = +this.volumeBar.value / 100;
     this.audioPlayer.volume = volume;
 
@@ -179,7 +179,7 @@ export default class AudioPlayer {
     }%, #ff4040 ${volume * 100}%,  #fff ${volume * 100}%, #fff 100%)`;
   };
 
-  muteVolume = (): void => {
+  private muteVolume = (): void => {
     if (this.audioPlayer.volume === 0) {
       this.audioPlayer.volume = this.currentVolume;
       this.volumeBar.value = `${this.audioPlayer.volume * 100}`;
@@ -198,7 +198,7 @@ export default class AudioPlayer {
     }
   };
 
-  addListeners(): void {
+  private addListeners(): void {
     const tracks = this.container.querySelectorAll('.audio-player__track');
 
     this.playButton.addEventListener('click', () => {
@@ -271,7 +271,7 @@ export default class AudioPlayer {
     this.volumeBar.addEventListener('input', this.сhangeVolume);
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.createPlaylist();
     this.addListeners();

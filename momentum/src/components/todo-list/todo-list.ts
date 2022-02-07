@@ -16,7 +16,7 @@ export default class TodoList {
     this.todoStorage = [];
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Todo</h2>
       <div class="todo-list__top">
@@ -28,7 +28,7 @@ export default class TodoList {
     return this.container;
   }
 
-  createTodoItem(value: string): HTMLLIElement {
+  private createTodoItem(value: string): HTMLLIElement {
     this.newTodoItem = document.createElement('li') as HTMLLIElement;
     this.newTodoItem.classList.add('todo-list__item');
 
@@ -47,7 +47,7 @@ export default class TodoList {
     return this.newTodoItem;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.newTodoInput = this.container.querySelector(
       '[name=new-todo-input]'
     ) as HTMLInputElement;
@@ -56,7 +56,7 @@ export default class TodoList {
     ) as HTMLUListElement;
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     this.newTodoInput.addEventListener('change', () => {
       this.todoList.append(this.createTodoItem(this.newTodoInput.value));
     });
@@ -125,7 +125,7 @@ export default class TodoList {
     });
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.addListeners();
   }

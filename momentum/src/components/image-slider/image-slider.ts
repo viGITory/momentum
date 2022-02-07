@@ -16,7 +16,7 @@ export default class ImageSlider {
     this.randomNum = Math.floor(1 + Math.random() * 19);
   }
 
-  render(): HTMLDivElement {
+  public render(): HTMLDivElement {
     this.container.innerHTML = `
       <div class="image-slider__image"></div>
       <button class="image-slider__arrow image-slider__arrow--prev" type="button">
@@ -29,7 +29,7 @@ export default class ImageSlider {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.image = this.container.querySelector(
       '.image-slider__image'
     ) as HTMLDivElement;
@@ -41,7 +41,7 @@ export default class ImageSlider {
     ) as HTMLButtonElement;
   }
 
-  async setImage(): Promise<void> {
+  public async setImage(): Promise<void> {
     const dayPart = timesOfDay[Math.floor(new Date().getHours() / 6)];
 
     try {
@@ -63,7 +63,7 @@ export default class ImageSlider {
     } catch (err) {}
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     document.addEventListener('click', (event) => {
       if (event.target === this.arrowPrev) {
         if (this.randomNum <= 1) {
@@ -83,7 +83,7 @@ export default class ImageSlider {
     });
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.setImage();
     this.addListeners();

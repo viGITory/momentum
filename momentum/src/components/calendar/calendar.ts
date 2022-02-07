@@ -8,11 +8,11 @@ export default class Calendar {
     this.container.classList.add('date__calendar', 'calendar');
   }
 
-  render(): HTMLDivElement {
+  public render(): HTMLDivElement {
     return this.container;
   }
 
-  createCalendar(year: number, month: number): void {
+  private createCalendar(year: number, month: number): void {
     const mon = month;
     const d = new Date(year, mon);
 
@@ -56,7 +56,7 @@ export default class Calendar {
     this.container.innerHTML = table;
   }
 
-  init(): void {
+  public init(): void {
     this.createCalendar(new Date().getFullYear(), new Date().getMonth());
   }
 }

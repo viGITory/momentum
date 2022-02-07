@@ -15,7 +15,7 @@ export default class Quotes {
     this.quoteId = null;
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Quotes</h2>
       <button class="quotes__button" type="button">
@@ -27,7 +27,7 @@ export default class Quotes {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.quotesWrapper = this.container.querySelector(
       '.quotes__wrapper'
     ) as HTMLDivElement;
@@ -36,7 +36,7 @@ export default class Quotes {
     ) as HTMLButtonElement;
   }
 
-  async setQuotes(): Promise<void> {
+  private async setQuotes(): Promise<void> {
     try {
       const quoteData = await getApiData(
         `https://genius-quotes.herokuapp.com/api/quotes/random?prev=${this.quoteId}`
@@ -54,7 +54,7 @@ export default class Quotes {
     }
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     this.quoteButton.addEventListener('click', () => {
       this.quoteButton.classList.add('js-rotate-btn');
     });
@@ -65,7 +65,7 @@ export default class Quotes {
     });
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.setQuotes();
     this.addListeners();

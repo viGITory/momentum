@@ -8,7 +8,7 @@ export default class PageSettings {
     this.container.classList.add('page__settings', 'page-settings');
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Settings</h2>
       <p class="page-settings__title">Click to hide/show widget</p>
@@ -43,7 +43,7 @@ export default class PageSettings {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.inputsWrapper = this.container.querySelector(
       '.page-settings__wrapper'
     ) as HTMLDivElement;
@@ -54,7 +54,7 @@ export default class PageSettings {
     );
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     this.inputsWrapper.addEventListener('click', (event) => {
       const target = event.target as HTMLInputElement;
       const inputId = target.getAttribute('id')!.split('-')[1];
@@ -99,7 +99,7 @@ export default class PageSettings {
     });
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.addListeners();
   }

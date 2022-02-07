@@ -7,7 +7,7 @@ export default class MainFooter {
     this.container.id = 'section-footer';
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <div class="main-footer__left">
         <a class="main-footer__link" href="https://github.com/viGITory" target="_blank" rel="noopener noreferrer" title="“This is the way..” (The Mandalorian)">viGITory</a>

@@ -22,7 +22,7 @@ export default class DateWidget {
       +(localStorage.getItem('vigitory-timeFormat') || '') || 24;
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Date</h2>
       <div class="date__time-wrapper">
@@ -50,7 +50,7 @@ export default class DateWidget {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.dateTime = this.container.querySelector(
       '.date__time'
     ) as HTMLParagraphElement;
@@ -79,7 +79,7 @@ export default class DateWidget {
     ) as HTMLSpanElement;
   }
 
-  setDate(): void {
+  private setDate(): void {
     const date = new Date();
     let hours: number | string = date.getHours();
     let minutes: number | string = date.getMinutes();
@@ -117,7 +117,7 @@ export default class DateWidget {
     setTimeout(() => this.setDate(), 1000);
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     window.addEventListener('beforeunload', () => {
       localStorage.setItem('vigitory-timeFormat', `${this.timeFormat}`);
 
@@ -149,7 +149,7 @@ export default class DateWidget {
     });
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.setDate();
     this.addListeners();

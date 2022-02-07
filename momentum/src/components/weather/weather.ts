@@ -19,7 +19,7 @@ export default class Weather {
     this.container.id = 'section-weather';
   }
 
-  render(): HTMLElement {
+  public render(): HTMLElement {
     this.container.innerHTML = `
       <h2 class="visually-hidden">Weather</h2>
       <div class="weather__city">
@@ -34,7 +34,7 @@ export default class Weather {
     return this.container;
   }
 
-  getElements(): void {
+  private getElements(): void {
     this.city = this.container.querySelector(
       '.weather__input'
     ) as HTMLInputElement;
@@ -46,7 +46,7 @@ export default class Weather {
     ) as HTMLDivElement;
   }
 
-  async setWeather(): Promise<void> {
+  private async setWeather(): Promise<void> {
     this.dataWrapper.classList.remove('js-show-elem');
 
     try {
@@ -118,7 +118,7 @@ export default class Weather {
     }
   }
 
-  setCityTime(timezone: number): void {
+  private setCityTime(timezone: number): void {
     if (!timezone && timezone !== 0) return;
 
     const date = new Date();
@@ -139,18 +139,18 @@ export default class Weather {
     this.cityTime.classList.add('js-show-elem');
   }
 
-  addListeners(): void {
+  private addListeners(): void {
     this.city.addEventListener('change', () => {
       if (this.city.value !== '') this.setWeather();
     });
   }
 
-  addIntervals(): void {
+  private addIntervals(): void {
     setInterval(() => this.setWeather(), 20 * 60000);
     setInterval(() => this.setCityTime(this.weatherData.timezone), 1000);
   }
 
-  init(): void {
+  public init(): void {
     this.getElements();
     this.setWeather();
     this.addListeners();
