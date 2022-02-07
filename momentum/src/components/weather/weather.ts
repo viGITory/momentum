@@ -1,4 +1,4 @@
-import WeatherResponse from './weather.d';
+import IWeatherResponse from './weather.d';
 import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
 import findDirection from '../../utils/find-direction';
@@ -11,7 +11,7 @@ export default class Weather {
   cityTime!: HTMLParagraphElement;
   dataWrapper!: HTMLDivElement;
 
-  weatherData!: WeatherResponse;
+  weatherData!: IWeatherResponse;
 
   constructor() {
     this.container = document.createElement('section') as HTMLElement;

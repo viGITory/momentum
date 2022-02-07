@@ -1,10 +1,10 @@
-interface AudioTrack {
+interface IAudioTrack {
   title: string;
   src: string;
   duration: string;
 }
 
-const trackList: AudioTrack[] = [
+const trackList: IAudioTrack[] = [
   {
     title: 'Ott - Cley Hill',
     src: './assets/sounds/Ott - Cley Hill.mp3',

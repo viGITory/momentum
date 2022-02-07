@@ -1,4 +1,4 @@
-interface WeatherResponse {
+interface IWeatherResponse {
   cod: number;
   coord: {
     lat: number;
@@ -25,4 +25,4 @@ interface WeatherResponse {
   };
 }
 
-export = WeatherResponse;
+export = IWeatherResponse;
