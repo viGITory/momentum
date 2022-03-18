@@ -15,7 +15,6 @@ export default class Page {
   quotes: Quotes;
   weather: Weather;
   audioPlayer: AudioPlayer;
-  mainFooter: MainFooter;
   pageSettings: PageSettings;
   todoList: TodoList;
 
@@ -33,7 +32,6 @@ export default class Page {
     this.quotes = new Quotes();
     this.weather = new Weather();
     this.audioPlayer = new AudioPlayer();
-    this.mainFooter = new MainFooter();
     this.pageSettings = new PageSettings();
     this.todoList = new TodoList();
   }
@@ -44,7 +42,9 @@ export default class Page {
         <h1 class="visually-hidden">Momentum</h1>
         <div class="page__top"></div>
         <div class="page__center"></div>
-        <div class="page__bottom"></div>
+        <div class="page__bottom">
+          ${MainFooter.render()}
+        </div>
       </div>
     `;
 
@@ -67,9 +67,8 @@ export default class Page {
     this.pageTop.append(this.quotes.render());
     this.pageCenter.append(this.weather.render());
     this.pageCenter.append(this.audioPlayer.render());
-    this.pageBottom.append(this.todoList.render());
-    this.pageBottom.append(this.pageSettings.render());
-    this.pageBottom.append(this.mainFooter.render());
+    this.pageBottom.prepend(this.todoList.render());
+    this.pageBottom.prepend(this.pageSettings.render());
 
     this.container
       .querySelector('.date__day-wrapper')
