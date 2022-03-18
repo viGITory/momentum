@@ -9,6 +9,8 @@ import PageSettings from '../page-settings/page-settings';
 import TodoList from '../todo-list/todo-list';
 
 export default class Page {
+  private static container = document.querySelector('#root') as HTMLBodyElement;
+
   imageSlider: ImageSlider;
   dateWidget: DateWidget;
   calendar: Calendar;
@@ -18,14 +20,11 @@ export default class Page {
   pageSettings: PageSettings;
   todoList: TodoList;
 
-  container: HTMLBodyElement;
   pageTop!: HTMLDivElement;
   pageCenter!: HTMLDivElement;
   pageBottom!: HTMLDivElement;
 
   constructor() {
-    this.container = document.querySelector('#root') as HTMLBodyElement;
-
     this.imageSlider = new ImageSlider();
     this.dateWidget = new DateWidget();
     this.calendar = new Calendar();
@@ -37,7 +36,7 @@ export default class Page {
   }
 
   private render(): HTMLBodyElement {
-    this.container.innerHTML = `
+    Page.container.innerHTML = `
       <div class="page__inner">
         <h1 class="visually-hidden">Momentum</h1>
         <div class="page__top"></div>
@@ -48,21 +47,21 @@ export default class Page {
       </div>
     `;
 
-    return this.container;
+    return Page.container;
   }
 
   private getElements(): void {
-    this.pageTop = this.container.querySelector('.page__top') as HTMLDivElement;
-    this.pageCenter = this.container.querySelector(
+    this.pageTop = Page.container.querySelector('.page__top') as HTMLDivElement;
+    this.pageCenter = Page.container.querySelector(
       '.page__center'
     ) as HTMLDivElement;
-    this.pageBottom = this.container.querySelector(
+    this.pageBottom = Page.container.querySelector(
       '.page__bottom'
     ) as HTMLDivElement;
   }
 
   private addComponents(): void {
-    this.container.prepend(this.imageSlider.render());
+    Page.container.prepend(this.imageSlider.render());
     this.pageTop.append(this.dateWidget.render());
     this.pageTop.append(this.quotes.render());
     this.pageCenter.append(this.weather.render());
@@ -70,7 +69,7 @@ export default class Page {
     this.pageBottom.prepend(this.todoList.render());
     this.pageBottom.prepend(this.pageSettings.render());
 
-    this.container
+    Page.container
       .querySelector('.date__day-wrapper')
       ?.append(this.calendar.render());
   }
