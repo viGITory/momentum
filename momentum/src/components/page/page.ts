@@ -6,7 +6,6 @@ import Weather from '../weather/weather';
 import AudioPlayer from '../audio-player/audio-player';
 import MainFooter from '../main-footer/main-footer';
 import PageSettings from '../page-settings/page-settings';
-import TodoList from '../todo-list/todo-list';
 
 export default class Page {
   private static container = document.querySelector('#root') as HTMLBodyElement;
@@ -18,7 +17,6 @@ export default class Page {
   weather: Weather;
   audioPlayer: AudioPlayer;
   pageSettings: PageSettings;
-  todoList: TodoList;
 
   pageTop!: HTMLDivElement;
   pageCenter!: HTMLDivElement;
@@ -32,7 +30,6 @@ export default class Page {
     this.weather = new Weather();
     this.audioPlayer = new AudioPlayer();
     this.pageSettings = new PageSettings();
-    this.todoList = new TodoList();
   }
 
   private render(): HTMLBodyElement {
@@ -66,7 +63,6 @@ export default class Page {
     this.pageTop.append(this.quotes.render());
     this.pageCenter.append(this.weather.render());
     this.pageCenter.append(this.audioPlayer.render());
-    this.pageBottom.prepend(this.todoList.render());
     this.pageBottom.prepend(this.pageSettings.render());
 
     Page.container
@@ -109,6 +105,5 @@ export default class Page {
     this.weather.init();
     this.audioPlayer.init();
     this.pageSettings.init();
-    this.todoList.init();
   }
 }

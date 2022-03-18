@@ -30,10 +30,6 @@ export default class PageSettings {
           <span class="page-settings__clue">Quotes</span>
         </div>
         <div class="page-settings__button-wrapper">
-          <input class="page-settings__button" id="checkbox-todo" type="checkbox" value="T" aria-label="checkbox-todo" checked>
-          <span class="page-settings__clue">Todo</span>
-        </div>
-        <div class="page-settings__button-wrapper">
           <input class="page-settings__button" id="checkbox-footer" type="checkbox" value="F" aria-label="checkbox-footer" checked>
           <span class="page-settings__clue">Footer</span>
         </div>
