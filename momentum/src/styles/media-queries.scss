@@ -183,7 +183,7 @@
   }
 
   .quotes {
-    max-width: 40%;
+    max-width: 60%;
     min-height: 155px;
     margin: 0 auto;
 
@@ -221,10 +221,6 @@
 
   .main-footer {
     align-items: flex-end;
-
-    &__logo {
-      width: 80px;
-      height: 40px;
-    }
+    min-height: 50px;
   }
 }

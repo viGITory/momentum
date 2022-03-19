@@ -3,31 +3,8 @@
   align-items: center;
   justify-content: space-between;
 
-  &__link,
-  &__logo {
-    display: block;
-  }
-
   &__link {
-    font-size: 1.375em;
     color: #ff4040;
     text-decoration: none;
-  }
-
-  &__logo {
-    width: 70px;
-    height: 30px;
-
-    background-image: url("../assets/svg/rsschool-icon.svg");
-    filter: invert(100%);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-
-    transition: filter .2s ease;
-
-    &:hover {
-      filter: invert(100%) opacity(.7);
-    }
   }
 }
