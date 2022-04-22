@@ -1,5 +1,5 @@
 const staticCacheName = 'momentum-static';
-const assets = ['./', './index.html', './style.css'];
+const assets = [];
 
 self.addEventListener('install', (evt) => {
   evt.waitUntil(
