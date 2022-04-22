@@ -1,4 +1,4 @@
-import IWeatherResponse from './weather.d';
+import IWeatherResponse from '../../scripts/types';
 import windDirections from '../../data/wind-directions';
 import countryNames from '../../data/country-names';
 import findDirection from '../../utils/find-direction';
