@@ -1,81 +1,81 @@
 .page-settings {
   display: none;
-
-  animation: fade-in 1s ease;
-
-  &__title,
-  &__button::after {
-    text-align: center;
-  }
-
-  &__title,
-  &__clue {
-    font-size: .75em;
-
-    pointer-events: none;
-  }
-
-  &__title,
-  &__button {
-    margin: 0;
-  }
+  max-width: max-content;
 
   &__title {
-    margin-bottom: 3px;
+    font-size: 1rem;
+    text-align: center;
 
-    animation: settings-help 40s ease infinite;
+    animation: settings-help 40s infinite;
   }
 
   &__wrapper {
     display: flex;
-    column-gap: 3px;
+    justify-content: center;
+    gap: .1rem;
   }
 
   &__button-wrapper {
     position: relative;
+
+    background-color: var(--color-dark-xs);
+    transition: background-color .2s;
+
+    &:hover {
+      background-color: var(--color-primary);
+    }
+
+    &:first-child {
+      border-top-left-radius: .2rem;
+      border-bottom-left-radius: .2rem;
+    }
+
+    &:last-child {
+      border-top-right-radius: .2rem;
+      border-bottom-right-radius: .2rem;
+    }
   }
 
   &__button {
-    width: 30px;
-    min-width: 30px;
-    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
 
     font-family: inherit;
-    font-size: 12px;
-    line-height: 30px;
-    color: inherit;
+    font-size: .8rem;
+    color: var(--color-light-m);
 
     cursor: pointer;
-    background-color: rgba(0, 0, 0, .5);
-    border: 1px solid rgba(255, 255, 255, .2);
-    border-radius: 3px;
-
-    transition: border-color .2s ease;
+    outline: none;
+    transition: color .2s;
     appearance: none;
 
-    &::after {
-      display: block;
+    &:focus {
+      background-color: var(--color-primary);
+    }
 
+    &::after {
       content: attr(value);
     }
 
-    &:hover {
-      border-color: rgba(255, 255, 255, .5);
+    &:hover ~ .page-settings__clue,
+    &:focus ~ .page-settings__clue {
+      opacity: 1;
     }
-  }
-
-  &__button:hover ~ &__clue {
-    opacity: 1;
   }
 
   &__clue {
     position: absolute;
-    bottom: -21px;
+    bottom: -1.5rem;
     left: 50%;
 
-    opacity: 0;
+    font-size: 1rem;
 
-    transition: opacity .2s ease;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s;
     transform: translateX(-50%);
   }
 }

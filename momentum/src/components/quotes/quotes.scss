@@ -1,52 +1,48 @@
 .quotes {
-  min-height: 180px;
-
+  min-height: 17.5rem;
   text-align: center;
 
   &__button {
-    width: 30px;
-    min-width: 30px;
-    height: 30px;
-    padding: 0;
-    margin-bottom: 20px;
-
-    font-family: inherit;
-    color: #fff;
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
 
     cursor: pointer;
     background-color: transparent;
-    background-image: url("../assets/svg/reload.svg");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
     border: 0;
+    outline: none;
+    animation-duration: 1s;
     -webkit-tap-highlight-color: transparent;
 
-    transition: filter .2s ease;
-    animation-duration: 1s;
-    animation-timing-function: ease;
+    &:hover svg,
+    &:focus svg {
+      fill: var(--color-primary);
+    }
 
-    &:hover {
-      filter:
-        invert(5%) sepia(0%) saturate(148%) hue-rotate(166deg)
-        brightness(95%) contrast(75%);
+    svg {
+      width: 100%;
+      height: 100%;
+
+      transition: fill .2s;
+      fill: var(--color-light-l);
     }
   }
 
   &__text,
   &__author,
   &__warn {
-    margin: 0;
-
-    animation: fade-in 1s ease;
+    animation: fade-in 1s;
   }
 
   &__text {
-    margin-bottom: 10px;
+    margin-bottom: .5rem;
   }
 
-  &__author,
+  &__author {
+    color: var(--color-primary);
+  }
+
   &__warn {
-    color: #ff4040;
+    color: var(--color-light-m);
   }
 }

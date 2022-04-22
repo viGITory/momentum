@@ -14,12 +14,12 @@ export default class PageSettings {
       <p class="page-settings__title">Click to hide/show widget</p>
       <div class="page-settings__wrapper">
         <div class="page-settings__button-wrapper">
-          <input class="page-settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
-          <span class="page-settings__clue">Player</span>
-        </div>
-        <div class="page-settings__button-wrapper">
           <input class="page-settings__button" id="checkbox-weather" type="checkbox" value="W" aria-label="checkbox-weather" checked>
           <span class="page-settings__clue">Weather</span>
+        </div>
+        <div class="page-settings__button-wrapper">
+          <input class="page-settings__button" id="checkbox-player" type="checkbox" value="P" aria-label="checkbox-player" checked>
+          <span class="page-settings__clue">Player</span>
         </div>
         <div class="page-settings__button-wrapper">
           <input class="page-settings__button" id="checkbox-date" type="checkbox" value="D" aria-label="checkbox-date" checked>

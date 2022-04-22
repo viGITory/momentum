@@ -1,56 +1,29 @@
 .date {
   text-align: center;
 
-  &__time-wrapper {
-    column-gap: 5px;
-  }
-
   &__time {
-    font-size: 3.25em;
-    font-variant-numeric: tabular-nums;
+    font-size: 5rem;
+    line-height: 1;
   }
 
-  &__time,
-  &__day,
-  &__greeting-wrapper {
-    margin: 0;
-  }
-
-  &__second,
-  &__input {
-    color: #ff4040;
-  }
-
-  &__format {
-    margin-top: 18px;
+  &__second {
+    color: var(--color-primary);
   }
 
   &__day-wrapper {
-    position: relative;
-    margin-bottom: 5px;
+    margin-bottom: .5rem;
   }
 
   &__day,
   &__input {
-    font-size: 1.375em;
-  }
-
-  &__day {
-    transition: color .2s ease;
-  }
-
-  &__calendar {
-    position: absolute;
-    top: -330px;
-    left: 50%;
-
-    transform: translateX(-50%);
+    font-size: 1.6rem;
+    outline: none;
   }
 
   &__greeting-wrapper {
     display: flex;
     align-items: baseline;
-    justify-content: center;
+    gap: .2rem;
   }
 
   &__greeting,
@@ -59,31 +32,20 @@
   }
 
   &__greeting {
-    margin-right: 3px;
-
     text-align: right;
   }
 
   &__input {
-    padding: 0;
-
     font-family: inherit;
+    color: var(--color-primary);
 
+    cursor: pointer;
     background-color: transparent;
     border: 0;
-    outline: none;
 
     &::placeholder {
-      font-size: .6875em;
-      color: #fff;
-
-      transition: color .2s ease;
-    }
-
-    &:hover {
-      &::placeholder {
-        color: #ff4040;
-      }
+      font-size: 1.4rem;
+      color: var(--color-light-m);
     }
   }
 }

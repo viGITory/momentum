@@ -39,7 +39,7 @@ export default class DateWidget {
         </div>
       </div>
       <div class="date__day-wrapper">
-        <p class="date__day"></p>
+        <p class="date__day" tabindex="0"></p>
       </div>
       <p class="date__greeting-wrapper">
         <span class="date__greeting"></span>

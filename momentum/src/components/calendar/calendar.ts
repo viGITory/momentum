@@ -38,7 +38,9 @@ export default class Calendar {
     }
 
     while (d.getMonth() === mon) {
-      table += `<td>${d.getDate()}</td>`;
+      if (d.getDate() === new Date().getDate())
+        table += `<td style="color: var(--color-light-l);">${d.getDate()}</td>`;
+      else table += `<td>${d.getDate()}</td>`;
 
       if (getDayOfWeek(d) % 7 === 6) table += '</tr><tr>';
 

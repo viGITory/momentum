@@ -1,135 +1,123 @@
 .weather {
   position: relative;
-  min-height: 208px;
+  min-height: 17.5rem;
 
   &__city,
   &__country-wrapper,
-  &__temp-wrapper,
-  &__wind {
+  &__temp-wrapper {
     display: flex;
     align-items: center;
   }
 
-  &__city {
-    height: 25px;
+  &__city,
+  &__country-wrapper {
+    justify-content: center;
+  }
+
+  &__city,
+  &__temp-wrapper {
+    gap: .5rem;
+  }
+
+  &__data,
+  &__city-time {
+    animation-duration: 1s;
   }
 
   &__input {
-    box-sizing: border-box;
-    display: block;
-    padding: 0;
+    width: 100%;
 
     font-family: inherit;
-    font-size: 1.25em;
+    font-size: 1.6rem;
+    color: inherit;
 
+    cursor: pointer;
     background-color: transparent;
     border: 0;
     outline: none;
-    -webkit-mask-image: linear-gradient(90deg, #000 60%, transparent);
+    transition: color .2s;
 
-    transition: color .2s ease;
-
-    &,
     &::placeholder {
-      color: inherit;
+      color: var(--color-light-m);
+    }
+
+    &:hover {
+      color: var(--color-primary);
     }
   }
 
-  &__input,
-  &__line {
-    width: 100%;
+  &__city-time,
+  &__country,
+  &__feel {
+    font-size: 1rem;
   }
 
-  &__country-wrapper {
-    justify-content: center;
-    min-height: 15px;
-    margin-bottom: 10px;
+  &__map-wrapper {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 50%;
+    height: 70%;
+
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(var(--color-dark-l) -200%, transparent);
+  }
+
+  &__map {
+    width: 100%;
+    height: 100%;
+
+    background-color: transparent;
+    -webkit-mask-image: radial-gradient(var(--color-dark-l) 0%, transparent);
+  }
+
+  &__country-wrapper,
+  &__temp-wrapper,
+  &__text:not(:last-child) {
+    margin-bottom: 1rem;
   }
 
   &__country,
-  &__city-time,
-  &__input:hover {
-    color: rgba(255, 255, 255, .7);
+  &__icon,
+  &__temp {
+    line-height: 1;
   }
 
-  &__city-time {
-    min-width: 40px;
-
-    text-align: right;
+  &__country,
+  &__warn {
+    color: var(--color-light-m);
   }
 
   &__country {
     flex-shrink: 0;
-    max-width: 90%;
-    padding: 0 7px;
+    padding: 0 .5rem;
 
-    font-size: .625em;
-    text-align: center;
-    text-indent: calc(2em / 5);
+    text-indent: .2rem;
     text-transform: uppercase;
-    letter-spacing: calc(2em / 5);
+    letter-spacing: .25rem;
   }
 
   &__line {
-    height: 1px;
+    display: inline-block;
+    width: 100%;
+    height: .1rem;
 
-    background-color: rgba(255, 255, 255, .7);
-    border-radius: 1px;
-
-    animation: line-through 2s ease;
-  }
-
-  &__city-time,
-  &__data {
-    animation-duration: 1s;
-    animation-timing-function: ease;
-  }
-
-  &__country,
-  &__city-time,
-  &__temp-wrapper,
-  &__icon,
-  &__text,
-  &__warn {
-    margin: 0;
-  }
-
-  &__temp-wrapper {
-    min-height: 40px;
-    margin-bottom: 15px;
-    column-gap: 10px;
-  }
-
-  &__text {
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
+    background-color: var(--color-light-m);
+    border-radius: .5rem;
+    animation: line-through 2s;
   }
 
   &__icon {
-    min-width: 40px;
-
-    font-size: 40px;
+    width: 3.5rem;
   }
 
+  &__icon,
   &__temp {
-    font-size: 33px;
-  }
-
-  &__city-time,
-  &__feel {
-    font-size: .75em;
+    font-size: 3.5rem;
   }
 
   &__feel {
     align-self: flex-start;
-    margin-top: 5px;
-  }
-
-  &__wind {
-    column-gap: 5px;
   }
 
   &__wind-speed,
@@ -140,7 +128,7 @@
 
   &__wind-speed,
   &__humidity {
-    padding-left: 30px;
+    padding-left: 2.5rem;
 
     background-position: left center;
     background-size: auto 100%;
@@ -152,8 +140,8 @@
 
   &__wind-arrow {
     display: inline-block;
-    width: 10px;
-    height: 10px;
+    width: 1rem;
+    height: 1rem;
 
     background-image: url("../assets/svg/wind-arrow.svg");
     background-size: contain;
@@ -163,30 +151,8 @@
     background-image: url("../assets/svg/humidity-icon.svg");
   }
 
-  &__map-wrapper {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    width: 50%;
-    height: 70%;
-
-    pointer-events: none;
-    -webkit-mask-image: radial-gradient(#000 -200%, transparent);
-  }
-
-  &__map {
-    width: 100%;
-    height: 100%;
-
-    background-color: transparent;
-    -webkit-mask-image: radial-gradient(#000 0%, transparent);
-  }
-
   &__warn {
-    margin-top: 25px;
-
-    color: #ff4040;
-
-    animation: fade-in 1s ease;
+    margin-top: 1rem;
+    animation: fade-in 1s;
   }
 }

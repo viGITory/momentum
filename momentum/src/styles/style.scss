@@ -4,6 +4,21 @@
 @import "owfont-regular";
 @import "fonts";
 
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+  &::selection {
+    color: var(--color-light-l);
+    background-color: var(--color-primary);
+  }
+}
+
+html {
+  font-size: 62.5%;
+}
+
 // ### COMPONENTS ###
 @import "../components/page/page";
 @import "../components/visually-hidden/visually-hidden";

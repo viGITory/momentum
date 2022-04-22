@@ -1,68 +1,37 @@
 .page {
-  box-sizing: border-box;
-  min-width: 320px;
-  padding: 20px 30px;
-  margin: 0;
+  min-width: 32rem;
+  min-height: 100vh;
+  padding: 2rem;
 
   font-family: Lato, sans-serif;
-  font-size: 14px;
+  font-size: 1.4rem;
   font-weight: 300;
-  color: #fff;
+  color: var(--color-light-l);
 
-  background-color: rgba(0, 0, 0, 1);
+  background-color: var(--color-dark-l);
+
   &::-webkit-scrollbar {
-    width: 2px;
+    width: .5rem;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #fff;
+    background-color: var(--color-light-l);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #ff4040;
+    background-color: var(--color-primary);
   }
 
-  * {
-    &::selection {
-      color: #fff;
-
-      background-color: #ff4040;
-    }
+  &__inner,
+  &__top,
+  &__center {
+    display: grid;
+    gap: 1rem;
   }
 
   &__inner {
     position: relative;
-    box-sizing: border-box;
-    min-height: calc(100vh - 40px);
-  }
-
-  &__inner,
-  &__top {
-    flex-direction: column;
-  }
-
-  &__inner,
-  &__top,
-  &__center {
-    display: flex;
-    row-gap: 20px;
-  }
-
-  &__top,
-  &__center {
-    justify-content: space-between;
-  }
-
-  &__center {
-    flex-wrap: wrap;
-  }
-
-  &__settings {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    z-index: 9999;
-
-    transform: translateX(-50%);
+    max-width: 30rem;
+    margin: 0 auto;
   }
 }
