@@ -21,11 +21,11 @@
   &__progress,
   &__volume-bar {
     height: .5rem;
+    background-color: var(--color-light-l);
     border-radius: .5rem;
 
     &,
     &::-webkit-slider-thumb {
-      background-color: var(--color-light-l);
       appearance: none;
     }
 
@@ -38,6 +38,19 @@
       border: .2rem solid var(--color-light-l);
       border-radius: 50%;
     }
+
+    // ### must be separate ###
+    &::-moz-range-thumb {
+      box-sizing: border-box;
+      width: 1.5rem;
+      height: 1.5rem;
+
+      cursor: ew-resize;
+      background-color: var(--color-primary);
+      border: .2rem solid var(--color-light-l);
+      border-radius: 50%;
+    }
+    // ###
   }
 
   &__top,
